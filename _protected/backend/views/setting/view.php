@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\Price */
 
 $this->title = Yii::t('messages', 'Settings');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('messages', 'Settings'), 'url' => ['update', 'id'=>1, 'lang' => Yii::$app->language]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="price-view">
+<div class="price-view card card-padding">
 
     <?= DetailView::widget([
         'model' => $model,

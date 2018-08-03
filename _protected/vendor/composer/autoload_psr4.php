@@ -7,7 +7,6 @@ $baseDir = dirname(dirname($vendorDir));
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
-    'yii\\redis\\' => array($vendorDir . '/yiisoft/yii2-redis'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug'),
@@ -17,13 +16,13 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'robregonm\\pdf\\' => array($vendorDir . '/robregonm/yii2-pdf'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
-    'resque\\' => array($vendorDir . '/resque/yii2-resque'),
     'nenad\\passwordStrength\\' => array($vendorDir . '/nenad/yii2-password-strength'),
     'nenad\\' => array($vendorDir . '/nenad/yii2-widgets-base', $vendorDir . '/nenad/yii2-strength-meter'),
     'mihaildev\\ckeditor\\' => array($vendorDir . '/mihaildev/yii2-ckeditor'),
     'marciocamello\\' => array($vendorDir . '/marciocamello/yii2-paypal'),
     'machour\\yii2\\notifications\\' => array($vendorDir . '/machour/yii2-notifications'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

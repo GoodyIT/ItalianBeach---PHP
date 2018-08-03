@@ -10,7 +10,7 @@ return array(
 	'layout.administration' => 'Administration',
 	'layout.home' => 'Home',
 	'layout.profile' => 'Profile',
-	'layout.mybooklist' => 'Booking Chart ',
+	'layout.mybooklist' => 'Booking Cart ',
 	'layout.logout' => 'Log out',
 	'layout.styles' => 'Styles',
 	'layout.about' => 'About',
@@ -88,5 +88,6 @@ return array(
 	'Max Guests' => 'Max Guests',
 	'Customers info' => 'Customers info',
 	'Send / Print Book Info' => 'Book Info',
-	'Customers Info' => 'Customers Info'
+	'Customers Info' => 'Customers Info',
+	'Contact Us Message' => "If you have business inquiries or other questions, please fill out the following form to contact us. Thank you."
 );

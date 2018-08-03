@@ -7,7 +7,10 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Guest */
 ?>
-
+<h4 >
+    <a href="http://beachclubippocampo.rentals" style="display: flex; padding-left: 60px; padding-top: 8px;  color: blue"><img src="http://beachclubippocampo.rentals/img/disponibile.png"><strong>Beach Club Ippocampo</strong>
+    </a>
+</h4>
 
 <div class="guest-view hidden">
     <form id="sendinfo-form" method="post">
@@ -31,13 +34,13 @@ use yii\helpers\Url;
                         <th><?=Yii::t('messages', 'Country')?></th> <td><?=$model['country']?></td>
                     </tr>
                     <tr>
-                        <th><?=Yii::t('messages', 'Arrival Date')?></th><td><?=$model['arrival']?></td>
+                        <th><?=Yii::t('messages', 'checkin Date')?></th><td><?=$model['checkin']?></td>
                     </tr>
                     <tr>    
                         <th><?=Yii::t('messages', 'Checkout Date')?></th><td><?=$model['checkout']?></td>
                     </tr>
                     <tr>    
-                        <th><?=Yii::t('messages', 'Sunshade')?></th><td><?=$model['sunshadeseat']?></td>
+                        <th><?=Yii::t('messages', 'Sunshade')?></th><td><?=$model['sunshade']?></td>
                     </tr>
                     <tr>    
                         <th><?=Yii::t('messages', 'Guests')?></th><td><?=$model['guests']?></td>

@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     ;(function($) {
         $(function () {
-
             function notify(title, message){
                 $.notifyClose('all');
 
@@ -44,26 +43,96 @@ $this->params['breadcrumbs'][] = $this->title;
                 });
             };
 
-            $('body').on('click', '.bulkupdate', function() {
-                var keys = $("input[name='selection[]']:checked");
-                if (keys.length == 0 || keys.length > 1) {
-                    notify('<?=Yii::t("messages", "Please select one sunshade you want change")?>');
-                    return;
-                } 
-      
-                $('form').submit();
+            $('body').on('click', '.change-bookstate', function(e){
+                var self = $(this);
+                e.preventDefault();
+
+                 swal({   
+                        title: "<?=Yii::t('messages', 'Are you sure?')?>",   
+                        text: "<?=Yii::t('messages', 'Do you want to change the state of this sunshade?')?>",   
+                        type: "warning",   
+                        showCancelButton: true,   
+                        confirmButtonColor: "#DD6B55",   
+                        confirmButtonText: "<?=Yii::t('messages', 'Yes')?>",   
+                        cancelButtonText: "<?=Yii::t('messages', 'No')?>",   
+                        closeOnConfirm: false,   
+                        closeOnCancel: false 
+                    }, function(isConfirm){   
+                        if (isConfirm) {
+                            doStopedAction(self.attr('href'));
+                        } else {     
+                            swal("<?=Yii::t('messages', 'Cancelled!')?>", "<?=Yii::t('messages', 'The information of the current sunshade remains safe')?>", "error");   
+                            return false;
+                        } 
+                    }); 
             });
 
+            function doStopedAction(href) {
+                window.location.href = href;
+            }
+
+            function getSelectedRow() {
+                var selection = [];
+                $.each($("input[name='selection[]']:checked"), function(){
+                    selection.push($(this).val());
+                });
+                return selection;
+            }
+
+            function doConfirm() {
+                 swal({   
+                    title: "<?=Yii::t('messages', 'Are you sure?')?>",   
+                    text: "<?=Yii::t('messages', 'Do you want to change the state of this sunshade?')?>",   
+                    type: "warning",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "<?=Yii::t('messages', 'Yes')?>",   
+                    cancelButtonText: "<?=Yii::t('messages', 'No')?>",   
+                    closeOnConfirm: false,   
+                    closeOnCancel: false 
+                }, function(isConfirm){   
+                    if (isConfirm) {
+                        $('form').submit();
+                    } else {     
+                        swal("<?=Yii::t('messages', 'Cancelled!')?>", "<?=Yii::t('messages', 'The information of the current sunshade remains safe')?>", "error");   
+                        return false;
+                    } 
+                }); 
+            }
+
+            $('body').on('click', '.bulkupdate', function() {
+                var keys =  getSelectedRow();   
+                if (keys.length == 0) {
+                    notify('<?=Yii::t("messages", "Please select sunshades you want change")?>');
+                    return;
+                } else if(keys.length >= 1) {
+                    $.ajax({
+                        type: 'post',
+                        url: '<?=Url::to(["bookinfo/checkbulkbookavailability"])?>',
+                        data: {
+                            selection: keys,
+                            _csrf: '<?=Yii::$app->request->getCsrfToken()?>'
+                        },
+                        success: function(msg){
+                            if (msg == '1') {
+                                doConfirm();
+                            } else {
+                                notify('<?=Yii::t("messages", "They have no common service type")?>');
+                            }
+                        }
+                    });
+                }
+            });
         });
     })(jQuery);
 </script>
 
 
-<div class="book-index">
+<div class="book-index  m-b-25">
 <?php Pjax::begin(); ?>
-<?=Html::beginForm(['bookinfo/bulk'],'post');?>
+<?=Html::beginForm(['guest/recursivebooking', 'lang' => Yii::$app->language],'post');?>
     <?=Html::Button(Yii::t('messages', 'Change / Make a Reservation'), ['class' => 'btn btn-success bulkupdate',]);?>
-
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -74,7 +143,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'emptyCell'=>'-',
         'columns' => [
             ['class' => 'yii\grid\CheckboxColumn'],
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => '#',
+                'format' => 'raw',
+                'value' => function ($model) {                      
+                        return '<div>'.$model->Id.'</div>';
+                },
+            ],
             [
                 'attribute' => 'seat',
                 'label' => Yii::t('messages', 'Sunshade'),
@@ -96,9 +171,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>array("available"=>"Available","booked"=>"Booked", "booking"=>"Booking"),
 		        'content'=>function($data){
                     $value = $data['bookstate'];
-                    $params = array_merge(["bookinfo/bulk"], ['selection[]'=>$data['Id'], 'lang' =>Yii::$app->language]);
+                    $params = array_merge(["guest/recursivebooking"], ['selection'=>$data['Id'], 'lang' =>Yii::$app->language]);
                     $href = Yii::$app->urlManager->createUrl($params);              
-                    $result = "<a href='". $href ."' title='" . Yii::t('messages', 'Change / Make a Reservation') . "' data-confirm='" . Yii::t('messages', 'Are you sure you want to change the state of this sunshade?') . "'>" . $value ." <i class= 'fa fa-pencil-square-o fa-2'></i></a>";
+                    $result = "<a class='change-bookstate' href='". $href ."' title='" . Yii::t('messages', 'Change / Make a Reservation') . "'>" . $value ." <i class= 'fa fa-pencil-square-o fa-2'></i></a>";
                     return $result;
 		          }
             ],

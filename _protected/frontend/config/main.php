@@ -14,6 +14,12 @@ return [
     'components' => [
         // here you can set theme used for your frontend application 
         // - template comes with: 'default', 'slate', 'spacelab' and 'cerulean'
+        'urlManagerBackEnd' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '/sunticketsDemo/admin',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
         'view' => [
             'theme' => [
                 'pathMap' => ['@app/views' => '@webroot/themes/cerulean/views'],
@@ -38,15 +44,15 @@ return [
         'paypal'=> [
             'class'        => 'common\component\Paypal',
             'clientId'     => 'AUtUnu_6egzotmx8u7m3mx8YPZUTdEWEZyiVc5cfvYHazCtiEaJabfzsLPIJgzPGFW5CIMIGf4KiLY_9',
-            'clientSecret' => 'EPznnYQHmSbXB-5kt4exaGeYcQuHQ5hoNRtJpopgA_UyaUxyfh10xaVV_zqIDRANYGZe5YY8R8DsgtcV',
+            'clientSecret' => 'EMqjqp8w4Dbg4tX7GFcgnuEDruRSDMrlWc3Sto2NVAOrRIQykyPjnqHNqs5pd-NNHHAKGZxsBa9Hw10L',
             'isProduction' => false,
              // This is config file for the PayPal system
              'config'       => [
                  'http.ConnectionTimeOut' => 30,
                  'http.Retry'             => 1,
                  'mode'                   => \common\component\Paypal::MODE_SANDBOX,
-                 'log.LogEnabled'         => YII_DEBUG ? 0 : 0,
-                 'log.FileName'           => '@runtime/logs/paypal.log',
+                 'log.LogEnabled'         => YII_DEBUG ? 1 : 0,
+                 'log.FileName'           => 'paypal.log',
                  'log.LogLevel'           => \common\component\Paypal::LOG_LEVEL_FINE,
             ]
         ],

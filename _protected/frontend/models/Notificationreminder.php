@@ -90,4 +90,23 @@ class Notificationreminder extends \yii\db\ActiveRecord
 
         Yii::$app->getDb()->createCommand($sql)->execute();
     }
+
+    public static function checkCartExpire()
+    {
+        $sql = "select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 3";
+        $result = Yii::$app->getDb()->createCommand($sql)->queryOne();
+
+        if(empty($result))
+        {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function updateCartExipreReminder()
+    {
+         $sql = sprintf("update tbl_notificationreminder set reminderdate = now(), adminIP = '%s' where Id = 3", $_SERVER['REMOTE_ADDR']);
+        Yii::$app->getDb()->createCommand($sql)->execute();
+    }
 }

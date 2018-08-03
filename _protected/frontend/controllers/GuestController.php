@@ -4,10 +4,19 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Guest;
+use frontend\models\PendingGuest;
 use frontend\models\GuestSearch;
 use frontend\models\Bookinfo;
+use frontend\models\Cart;
+use frontend\models\CartMilestone;
+use frontend\models\General;
+use frontend\models\BookLookup;
 use frontend\models\Book;
+use common\models\User;
+use frontend\models\Price;
+use frontend\models\Pricesearch;
 use frontend\models\Notification;
+use frontend\models\Notificationreminder;
 use frontend\models\Guestmilestone;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,21 +47,6 @@ class GuestController extends \common\component\BaseController
     }
 
     /**
-     * Lists all Guest models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new GuestSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
      * Displays a single Guest model.
      * @param integer $id
      * @return mixed
@@ -64,33 +58,14 @@ class GuestController extends \common\component\BaseController
         ]);
     }
     
-     public function unsetCookies() {
-        $cookies = Yii::$app->response->cookies;
-        
-        $cookies->remove('sunshadeseat');
-        unset($cookies['arrival']);
-        unset($cookies['price']);
-        unset($cookies['mainprice']);
-        unset($cookies['supplement']);
-        unset($cookies['servicetype']);
-        unset($cookies['guests']);
+    public function clearCart() {
+        $token = $_COOKIE['clientId'];
+        Cart::clearCart($token);
+        CartMilestone::deleteMilestones($token);
+        General::resetFromTo($token);
+        PendingGuest::clearGuest($token);
     }
     
-    public function actionAftersuccess() {
-        $bookId = Book::saveInfo();
-        $model =  Yii::$app->session->getFlash("guestmodel");
-        $guestId = Guest::saveInfo($model);
-        unset($_model);
-
-        $cookies = Yii::$app->request->cookies;
-        if (($cookie = $cookies->get('sunshadeseat')) !== null) {
-            $sunshadeseat = $cookie->value;
-        }
-
-        Bookinfo::updateInfo($sunshadeseat, $guestId, $bookId, "booked");
-        $this->unsetCookies();
-    }
-
     public function actionCheckcustomerexistence() {
         $email = Yii::$app->request->get('email');
 
@@ -99,7 +74,7 @@ class GuestController extends \common\component\BaseController
         echo isset($guestId['Id']) && $guestId != 1;
         return;
     }
-   
+
     /**
      * Creates a new Guest model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -107,51 +82,47 @@ class GuestController extends \common\component\BaseController
      */
     public function actionCreate()
     {
-        $cookies = Yii::$app->request->cookies;
-        if (($cookie = $cookies->get('sunshadeseat')) !== null){ 
-            $sunshadeseat = $cookie->value;
+        if (!isset($_COOKIE['clientId'])) {
+            return $this->redirect(Url::to(['site/index', 'lang' =>  Yii::$app->language]));
         }
-        
-        if (!isset($sunshadeseat) || $sunshadeseat == "") {
-            return $this->redirect(['site/index']);
-        }
-    
-        $model = new Guest();
-        
+        $model = new PendingGuest();
+        $price = Price::getAllInfoWithArray();
+        $token = $_COOKIE['clientId'];
+        $myCart = Cart::getAllValidSunshades($token);
+        $totalPrice = Cart::getTotalPriceOfCart($token);
+
         if ($model->load(Yii::$app->request->post())) {
-           // $guestId = $model->saveOrUpdateInfo();
-            $model->saveInfoIntoCookie();
-            return $this->redirect(Url::to(['confirm']));
+            $model->saveInfo();
+            $lang = Yii::$app->request->get('lang');
+            return $this->redirect(Url::to(['confirm', 'lang' =>  $lang]));
         } else {
-            return $this->render('create', [
+            return $this->render('guestinfo', [
                 'model' => $model,
+                'token' => $token,
+                'price' => $price,
+                'myCart' => $myCart,
+                'totalPrice' => $totalPrice
             ]);
         }
     }
     
     public function actionConfirm()
     {
-        /* @var $_model type */
-        $cookies = Yii::$app->request->cookies;
-        $price = 0;
-        $servicetype = 1;
-        $payment = "paypal";
-        if (($cookie = $cookies->get('price')) !== null) { 
-            $price = $cookie->value;  
+        if (!isset($_COOKIE['clientId'])) {
+            return $this->redirect(Url::to(['site/index', 'lang' =>  Yii::$app->language]));
         }
-        
-        if (($cookie = $cookies->get('servicetype')) !== null) {
-            $servicetype = $cookie->value;
-            $servicetype = Servicetype::find()->where(['id' => $servicetype])->one();
-        }
-    
+        $token = $_COOKIE['clientId'];
+        $price = Price::getAllInfoWithArray();
+        $myCart = Cart::getAllValidSunshades($token);
+        $totalPrice = Cart::getTotalPriceOfCart($token);
+
         return $this->render('bookconfirm', [
-            'amount' => $price,
-            'description' => $servicetype['servicename'],
-            'payment' => $payment,
+            'price' => $price,
+            'myCart' => $myCart,
+            'totalPrice' => $totalPrice
         ]);
     }
-    
+
     public function getLink(array $links, $type) {
         foreach($links as $link) {
             if($link->getRel() == $type) {
@@ -164,8 +135,11 @@ class GuestController extends \common\component\BaseController
     public function actionBookplace() {
        if($_SERVER['REQUEST_METHOD'] == 'POST') {	
             $book = $_REQUEST['book'];
-           $message = "";
-           try {
+            $session = Yii::$app->session;
+            $session['language'] = Yii::$app->request->post('lang');
+            $session['token'] = $_COOKIE['clientId'];
+            $message = "";
+            try {
                 if($book['payment_method'] == 'credit_card') {
                     // Make a payment using credit card.
                     $user = getUser(getSignedInUser());
@@ -175,16 +149,12 @@ class GuestController extends \common\component\BaseController
                     $message = "Your order has been placed successfully. Your Order id is <b>$orderId</b>";
                     $messageType = "success";
 
-                } else if($book['payment_method'] == 'paypal') {
+                } else if($book['payment_method'] == 'PayPal') {
                     $baseUrl = Yii::$app->urlManager->createAbsoluteUrl(['guest/bookcomplete']);
+
                     $payment =  Yii::$app->paypal->makePaymentUsingPayPal($book['amount'], 'EUR', $book['description'], $baseUrl."?success=true", $baseUrl . "?success=false");
-
-                    // Guest::updateBookInfo($guestId, $payment->getId(), $payment->getState());
-
-                    //Guest::savePaymentInfoIntoCookie($payment->getId(), $payment->getState());
-                    
                     header("Location: " . $this->getLink($payment->getLinks(), "approval_url") );
-                    exit;
+                   exit;
                 }
             } catch (\PayPal\Exception\PPConnectionException $ex) {
                     $message = parseApiError($ex->getData());
@@ -198,60 +168,73 @@ class GuestController extends \common\component\BaseController
 
     public function actionBookcomplete(){
         $success = Yii::$app->request->get("success");
+        $session = Yii::$app->session;
+        $lang =  $session['language'];
+        Yii::$app->language = $session['language'];
+        $token = $session['token'];
+        $cartId = 0;
 
         $messageType = "";
         $message = "";
-        if ($success) {
+        if ($success == 'true') {
             try {
-               $payment = Yii::$app->paypal->executePayment($_GET['paymentId'], $_GET['PayerID']);
-                
+                $payment = Yii::$app->paypal->executePayment($_GET['paymentId'], $_GET['PayerID']);
 
-               if ($payment->getState() == "approved") {
-                    $cookies = Yii::$app->request->cookies;
-                    $sunshadeseat = "";
-                    $price = "";
-                    if (($cookie = $cookies->get('sunshadeseat')) !== null) {
-                        $sunshadeseat = $cookie->value;
+                if ($payment->getState() == "approved") {
+                    $allSunshades = Cart::getAllValidSunshades($token);
+                    $pendingGuest = PendingGuest::getGuestInfo($token);
+                    if (empty($allSunshades)) {
+                        $messageType = "error";
+                        $message = Yii::t('messages', "Sorry, Your booking cart is empty now.");
+                        Yii::$app->session->setFlash($messageType, $message);
+                        return $this->redirect(Url::to(['site/index', 'lang' => $lang]));
+                    } else if (empty($pendingGuest['email'])) {
+                        $messageType = "error";
+                        $message = Yii::t('messages', "Sorry, Please input your information here.");
+                        Yii::$app->session->setFlash($messageType, $message);
+                        return $this->redirect(Url::to(['guest/create', 'lang' => $lang]));
+                    }  
+                    $totalPaid = 0;
+                    foreach ($allSunshades as $item) {
+                        $totalPaid += $item['price'];
                     }
+                    $guestId = Guest::saveOrUpdateInfo($pendingGuest, count($allSunshades), $totalPaid);
+                    $book = Book::saveInfo($allSunshades);
+                    for ($i = 0; $i < count($allSunshades); $i++) {
+                        $timestamp = time().$i;
+                        Bookinfo::updateInfo($allSunshades[$i]['sunshade']);
+                        $id = BookLookup::saveBookInfo($allSunshades[$i]['sunshade'], $guestId, $book[$i]->Id, $timestamp);
 
-                     if (($cookie = $cookies->get('price')) !== null) { 
-                        $price = $cookie->value;  
+                        $title = ' Made a Reservation on Sunshade ' .  $allSunshades[$i]['sunshade'];
+                        $title_it = ' Ha prenotato il Parasole ' . $allSunshades[$i]['sunshade'];
+                        $guest = BookLookup::getCustomerDetailInfo($id);
+                        $username = $guest['username'];
+
+                        Notification::saveNewNotification($title, $title_it, $username, $id, trim($allSunshades[$i]['sunshade']));
+                        Notificationreminder::resetAdminReminder();
+                        $milestones = CartMilestone::getMilestoneWithCartId($allSunshades[$i]['Id']);
+                       Guestmilestone::saveFromCart($book[$i]->Id, $guestId, $allSunshades[$i],  $milestones, $timestamp);
+                       $emailBody = $this->buildEmail($guest);
+                        Yii::$app->mailer->compose()
+                            ->setFrom(Yii::$app->params['supportEmail'])
+                            ->setTo($guest['email'])
+                            ->setHtmlBody($emailBody)
+                            ->setSubject('Booking info')
+                            ->send();
+
+                        Yii::$app->mailer->compose()
+                            ->setFrom(Yii::$app->params['supportEmail'])
+                            ->setTo(Yii::$app->params['adminEmail'])
+                            ->setHtmlBody($emailBody)
+                            ->setSubject('Booking info')
+                            ->send();
                     }
-
-                    $guestId = Guest::saveOrUpdateInfo();
-                    $book = Book::saveInfo();
-
-                    $timestamp = time();
-
-                    Bookinfo::updateInfo($sunshadeseat, $guestId, $book->Id, "booked", $timestamp);
-
-                    $title = ' Made a Reservation on Sunshade ' .  $sunshadeseat;
-                    $title_it = ' Ha prenotato il Parasole ' . $sunshadeseat;
-                    Notification::saveNewNotification($title, $title_it, $sunshadeseat);
-
-                    $guest = Bookinfo::getCurrentBookinfo($sunshadeseat);
-
-                    $timestamp = time();
-                    Guestmilestone::saveWithGuestId([$book->price], [$book->bookedtime], $guestId, $sunshadeseat, $timestamp);
-
-                    $emailBody = $this->buildEmailBody($guest);
-                    $message = Yii::$app->mailer->compose()
-                        ->setFrom(Yii::$app->params['supportEmail'])
-                        ->setTo($guest['email'])
-                        ->setSubject('Booking info')
-                        ->setHtmlBody($emailBody)
-                        ->send();
-
-                    $message = Yii::$app->mailer->compose()
-                        ->setFrom(Yii::$app->params['supportEmail'])
-                        ->setTo(Yii::$app->params['supportEmail'])
-                        ->setSubject('Booking info')
-                        ->setHtmlBody($emailBody)
-                        ->send();
-
-                    $this->unsetCookies();
-                    $messageType = "success";
-                    $message = Yii::t('messages', "Your payment was successful. Your book id is ") . $book['Id'];
+                   
+                   $messageType = "success";
+                   $message = Yii::t('messages', "Your payment was successful.");
+                    if ($lang == "it") {
+                      $message = "Il tuo pagamento è stato eseguito correttamente.";
+                    }
                }
             } catch (\PayPal\Exception\PPConnectionException $ex) {
                 $message = parseApiError($ex->getData());
@@ -264,17 +247,18 @@ class GuestController extends \common\component\BaseController
         else {
             $messageType = "error";
             $message = Yii::t('messages', "Your payment was cancelled.");
+            if ($lang == "it") {
+               $message = "Il pagamento è stato annullato.";
+            }
         }
 
         Yii::$app->session->setFlash($messageType, $message);
 
-        return $this->redirect(Url::to(['site/index', 'messageType' => $messageType, 'message' => $message]));
+        $this->clearCart();
+
+       return $this->redirect(Url::to(['site/index', 'lang' => $lang]));
     }
     
-    public function actionOrdercomplete($orderId = 1, $success=true) {
-        return $this->render('bookplace');
-    }
-
     public function actionSuccess(){
         return $this->render('success');
     }

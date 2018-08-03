@@ -21,15 +21,6 @@ return array (
       '@nenad/passwordStrength' => $vendorDir . '/nenad/yii2-password-strength',
     ),
   ),
-  'yiisoft/yii2-swiftmailer' => 
-  array (
-    'name' => 'yiisoft/yii2-swiftmailer',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
-    ),
-  ),
   'mihaildev/yii2-ckeditor' => 
   array (
     'name' => 'mihaildev/yii2-ckeditor',
@@ -93,10 +84,28 @@ return array (
       '@marciocamello' => $vendorDir . '/marciocamello/yii2-paypal',
     ),
   ),
+  'robregonm/yii2-pdf' => 
+  array (
+    'name' => 'robregonm/yii2-pdf',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@robregonm/pdf' => $vendorDir . '/robregonm/yii2-pdf',
+    ),
+  ),
+  'yiisoft/yii2-swiftmailer' => 
+  array (
+    'name' => 'yiisoft/yii2-swiftmailer',
+    'version' => '2.0.6.0',
+    'alias' => 
+    array (
+      '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
+    ),
+  ),
   'rmrevin/yii2-fontawesome' => 
   array (
     'name' => 'rmrevin/yii2-fontawesome',
-    'version' => '2.15.1.0',
+    'version' => '2.16.1.0',
     'alias' => 
     array (
       '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
@@ -109,33 +118,6 @@ return array (
     'alias' => 
     array (
       '@machour/yii2/notifications' => $vendorDir . '/machour/yii2-notifications',
-    ),
-  ),
-  'robregonm/yii2-pdf' => 
-  array (
-    'name' => 'robregonm/yii2-pdf',
-    'version' => '1.0.1.0',
-    'alias' => 
-    array (
-      '@robregonm/pdf' => $vendorDir . '/robregonm/yii2-pdf',
-    ),
-  ),
-  'resque/yii2-resque' => 
-  array (
-    'name' => 'resque/yii2-resque',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@resque' => $vendorDir . '/resque/yii2-resque',
-    ),
-  ),
-  'yiisoft/yii2-redis' => 
-  array (
-    'name' => 'yiisoft/yii2-redis',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@yii/redis' => $vendorDir . '/yiisoft/yii2-redis',
     ),
   ),
 );

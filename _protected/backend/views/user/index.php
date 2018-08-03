@@ -10,25 +10,51 @@ use yii\grid\GridView;
 $this->title = Yii::t('messages', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="user-index card card-padding">
+    <div class="card-header card-padding">
     <h1>
-
-    <?= Html::encode($this->title) ?>
-
+    <small>
+        <?= Html::encode($this->title) ?>
+    </small>
     <span class="pull-right">
         <?= Html::a(Yii::t('messages', 'Create User'), ['create', 'lang' => Yii::$app->language], ['class' => 'btn btn-success']) ?>
     </span>         
 
     </h1>
+    </div>
+    <div class="card-body card-padding">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout'=>"{pager}\n{items}",
         'summary' => false,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'username',
             'email:email',
-         
+            // role
+            [
+                'attribute'=>'item_name',
+                'filter' => $searchModel->rolesList,
+                'value' => function ($data) {
+                    return $data->roleName;
+                },
+                'contentOptions'=>function($model, $key, $index, $column) {
+
+                    return ['class'=>CssHelper::roleCss($model->roleName)];
+                }
+            ],
+            // status
+            [
+                'attribute'=>'status',
+                'filter' => $searchModel->statusList,
+                'value' => function ($data) {
+                    return $data->statusName;
+                },
+                'contentOptions'=>function($model, $key, $index, $column) {
+                    return ['class'=>CssHelper::statusCss($model->statusName)];
+                }
+            ],
             // buttons
             ['class' => 'yii\grid\ActionColumn',
             'header' => "Menu",
@@ -61,4 +87,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ], // ActionColumn
         ], // columns
     ]); ?>
+    </div>
 </div>

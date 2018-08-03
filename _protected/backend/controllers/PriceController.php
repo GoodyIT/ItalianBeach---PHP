@@ -53,34 +53,19 @@ class PriceController extends BaseController
      */
     public function actionIndex()
     {
-       $searchModel = new Pricesearch();
-     //$priceLists = Price::getAllInfo();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-     /*   $priceLists = Price::getInfo();
-        $dataProvider = new ArrayDataProvider([
-            'allModels' => $priceLists,            
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-            'sort' => [
-                    'attributes' => ['rowid', 'servicename', 'mainprice', 'tax', 'supplement', 'maxguests'],
-            ],
-            'key' => 'Id',
-        ]);
-       */ 
-    
+        $lang = Yii::$app->request->get('lang');
+        $prices = Price::getAllAsArray($lang);
         return $this->render('index', [
-          //  'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'prices' => $prices,
         ]);
     }
 
-    public function actionDelete($id)
+    public function actionDelete()
     {
+        $id = Yii::$app->request->post('id');
        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang'=>Yii::$app->request->post('lang')]);
     }
 
     /**

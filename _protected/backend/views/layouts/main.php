@@ -1,4 +1,5 @@
 <?php
+
 $lang = Yii::$app->language;
 $en = array_values($this->context->languages)[0];
 $it = array_values($this->context->languages)[1];
@@ -8,328 +9,331 @@ if ($lang == "en" || $lang == "") {
     $isEnglish = true;
 }
 
-
-use backend\assets\AppAsset;
 use frontend\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
-//use yii\bootstrap\Nav;
-//use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-//use machour\yii2\notifications\widgets\NotificationsWidget;
-
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 // AppAsset::register($this);
 
-$baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
-
+$baseurl = Yii::getAlias("@web")."/..";
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+  <meta charset="<?= Yii::$app->charset ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?= Html::csrfMetaTags() ?>
+  <title><?= Html::encode($this->title) ?></title>
 
-    <!--  display favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?=$baseurl?>/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="<?=$baseurl?>/images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="<?=$baseurl?>/images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="<?=$baseurl?>/images/favicon/manifest.json">
-    <link rel="mask-icon" href="<?=$baseurl?>/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
+  <!--  display favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="<?=$baseurl?>/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="<?=$baseurl?>/img/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="<?=$baseurl?>/img/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="<?=$baseurl?>/img/favicon/manifest.json">
+  <link rel="mask-icon" href="<?=$baseurl?>/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href="<?=$baseurl?>/js/vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?=$baseurl?>/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" />
 
-    <script src="<?=$baseurl?>/js/vendors/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="<?=$baseurl?>/js/yii.js"></script>
-    <script src="<?=$baseurl?>/js/jquery-ui.js"></script>
-    <script type="text/javascript" src="<?=$baseurl?>/js/bootstrap-notify.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="<?=$baseurl?>/js/moment.js"></script>
+  <!-- Vendor CSS -->
+  <link href="<?=$baseurl?>/js/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+  <link href="<?=$baseurl?>/js/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+  <link href="<?=$baseurl?>/js/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+  <link href="<?=$baseurl?>/js/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-    <!-- Vendor CSS -->
-    <link href="<?=$baseurl?>/js/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-    <link href="<?=$baseurl?>/js/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-    <link href="<?=$baseurl?>/js/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
-    <link href="<?=$baseurl?>/js/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-    <link href="<?=$baseurl?>/js/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">      
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/3.1.2/jquery.bootstrap-touchspin.min.css">
+  <link rel="stylesheet" href="<?=$baseurl?>/css/datepicker.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.3.0/balloon.min.css">
+  <link href="<?=$baseurl?>/js/vendors/farbtastic/farbtastic.css" rel="stylesheet">
+  <link href="<?=$baseurl?>/js/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
+  <link href="<?=$baseurl?>/js/vendors/summernote/dist/summernote.css" rel="stylesheet">  
+   
+  <!-- CSS -->
+  <link href="<?=Yii::getAlias('@web')?>/css/app.1.css" rel="stylesheet">
+  <link href="<?=Yii::getAlias('@web')?>/css/app.2.css" rel="stylesheet">  
+  <link rel="stylesheet" href="<?=$baseurl?>/css/demostyle.css" media="screen">
 
-    <link href="<?=$baseurl?>/js/vendors/farbtastic/farbtastic.css" rel="stylesheet">
-    <link href="<?=$baseurl?>/js/vendors/bower_components/chosen/chosen.min.css" rel="stylesheet">
-    <link href="<?=$baseurl?>/js/vendors/summernote/dist/summernote.css" rel="stylesheet">  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="<?=$baseurl?>/js/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/2.2.0/moment-range.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+  <script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+  <script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+  <script type="text/javascript" src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 
-    <!-- CSS -->
-    <link href="<?=Yii::getAlias('@web')?>/css/app.min.1.css" rel="stylesheet">
-    <link href="<?=Yii::getAlias('@web')?>/css/app.min.2.css" rel="stylesheet">
-    <link href="<?=Yii::getAlias('@web')?>/css/app.min.2.css" rel="stylesheet">
+  <script src="<?=$baseurl?>/js/yii.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/bower_components/Waves/dist/waves.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/bower_components/autosize/dist/autosize.min.js"></script>
+  <script type="text/javascript" src="<?=$baseurl?>/js/bootstrap-notify.min.js"></script>  
+  <script type="text/javascript" src="<?=$baseurl?>/js/jQuery.print.js"></script>
 
-    <script src="<?=$baseurl?>/js/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/Waves/dist/waves.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/moment/min/moment.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
-    <!-- Placeholder for IE9 -->
-    <!--[if IE 9 ]>
-        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
-    <![endif]-->
+  <script src="<?=$baseurl?>/js/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="<?=$baseurl?>/js/jquery.smoothZoom.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
+  <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.3/js/dataTables.checkboxes.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/3.1.2/jquery.bootstrap-touchspin.min.js"></script>
 
-    <script type="text/javascript" src="<?=$baseurl?>/js/jquery.mousewheel.min.js"></script>
-    <script type="text/javascript" src="<?=$baseurl?>/js/jquery.jscrollpane.min.js"></script>
+ <script src="<?=$baseurl?>/js/vendors/sparklines/jquery.sparkline.min.js"></script>
+ <script src="<?=$baseurl?>/js/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+ <script src="<?=$baseurl?>/js/vendors/bower_components/flot/jquery.flot.js"></script>
+<script src="<?=$baseurl?>/js/vendors/bower_components/flot/jquery.flot.time.js"></script>
+<script src="<?=$baseurl?>/js/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+<script src="<?=$baseurl?>/js/vendors/bower_components/flot/jquery.flot.pie.js"></script>
+<script src="<?=$baseurl?>/js/vendors/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 
-    <script src="<?=$baseurl?>/js/vendors/bower_components/chosen/chosen.jquery.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/fileinput/fileinput.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/input-mask/input-mask.min.js"></script>
-    <script src="<?=$baseurl?>/js/vendors/farbtastic/farbtastic.min.js"></script>
-    
-    <script src="<?=$baseurl?>/js/functions.js"></script>
-    <script src="<?=$baseurl?>/js/charts.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-    <style type="text/css">
-        .divider{
-                height: 1px;
-                margin: 8px 0;
-                overflow: hidden;
-                background-color: rgba(0, 0, 0, 0.08);
-        }
+  <!-- Placeholder for IE9 -->
+  <!--[if IE 9 ]>
+      <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+  <![endif]-->
 
-        .outerContainer {
-            min-height: 0px;
-            height: auto;
-            margin: 0 auto -60px;
-            padding: 0 0 60px;
-            background-color: #0783C3;
-        }
-        .lang-active {
-            background-color: #f6675d 
-        }
-    </style>
+  <script type="text/javascript" src="<?=$baseurl?>/js/jquery.mousewheel.min.js"></script>
+  <script type="text/javascript" src="<?=$baseurl?>/js/jquery.jscrollpane.min.js"></script>
 
-    <script type="text/javascript">
+  <script src="<?=$baseurl?>/js/vendors/bower_components/chosen/chosen.jquery.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/fileinput/fileinput.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/input-mask/input-mask.min.js"></script>
+  <script src="<?=$baseurl?>/js/vendors/farbtastic/farbtastic.min.js"></script>
+  <script src="<?=$baseurl?>/js/js.cookie.js"> </script>
 
+  <script src="<?=$baseurl?>/js/charts.js"></script>
+  <script src="<?=Yii::getAlias('@web')?>/js/functions.min.js"></script>
+  <script src="<?=$baseurl?>/js/cart.min.js"></script>
+  <script src="<?=$baseurl?>/js/app.js"></script>
+
+  <script type="text/javascript">
     ;(function($) {
     $(document).ready(function() {
+      var delayTime = 0;
 
+    <?php if (!Yii::$app->user->isGuest) : ?>
+      var refreshId = setInterval(function(){ refreshNotification(); }, 10000);
 
-        
-            var delayTime = 0;
-            function notify(title, message){
-               // $.notifyClose('all');
-                $.notifyDefaults({
-                    placement: {
-                        from:'top',
-                        align:'center'
-                    },
-                    animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                    },
-                    offset: {
-                        x: 20,
-                        y: 50
-                    }
-                });
-                $.notify({
-                    message: "<strong>" + title + "</strong> <br/>" + message
-                },{
-                    type: 'danger',
-                    allow_dismiss: true,    
-                    delay: 10000,
-                });
-            };
-            
-
-             var refreshId = setInterval(function(){ refreshNotification(); console.log('refresh notification 1'); }, 10000);
-
-            /*
-             * Clear Notification
-             */
-            $('body').on('click', '[data-clear="notification"]', function(e){
-              e.preventDefault();
-
-              clearInterval(refreshId);
-
-              var x = $(this).closest('.listview');
-              var y = x.find('.lv-item');
-              var z = y.size();
-
-              $(this).parent().fadeOut();
-
-              x.find('.list-group').prepend('<i class="grid-loading hide-it"></i>');
-              x.find('.grid-loading').fadeIn(1500);
-
-
-              var w = 0;
-              var listOfIds = [];
-              y.each(function(){
-                  var z = $(this);
-                  listOfIds.push(z.attr('data-notification-index'));
-                  setTimeout(function(){
-                  z.addClass('animated fadeOutRightBig').delay(1000).queue(function(){
-                      z.remove();
-                  });
-                  }, w+=150);
-              })
-
-              $('.notification-count').addClass('hide').html('');
-
-              $.ajax({
-                   url: '<?= Yii::$app->request->baseUrl. '/notification/updatenotification' ?>',
-                   type: 'post',
-                   data: {
-                        listOfIds: listOfIds,
-                        _csrf: '<?=Yii::$app->request->getCsrfToken()?>'
-                   },
-                   success: function (data) {
-                        //Popup empty message
-                        setTimeout(function(){
-                          //  $('#notifications').addClass('empty');
-                            setInterval(function(){ refreshNotification(); console.log('refresh notification 2');  }, 10000);
-                        }, (z*150)+200);
-                   }
-               });
-
+      function notify(username, title){
+        $.notify(
+          { message: '<strong>' + username + '</strong><br>' + title },
+          {
+            offset: {
+              x: 10,
+              y: 50
+            },
+            animate: {
+              enter: 'animated bounceIn',
+              exit: 'animated bounceOut'
+            },
+            type: 'danger'
           });
-           /* function changeFavicon() {
-                document.getElementById('favicon').href = iconNew;
-            }*/
+      };
 
-            var isShownObj1 = false, isShownObj2 = false, isShownObj3 = false, isShownObj4 = false; 
-            function refreshNotification() {
-                $.ajax({
-                   url: '<?= Yii::$app->request->baseUrl. '/notification/' ?>',
-                   data: {lang: '<?=Yii::$app->language?>'},
-                   type: 'get',
-                   success: function (data) {
-                      var jsonObject = JSON.parse(data); 
-                      var length = 0;
-                       if (jsonObject.notification.length !== 0 && !isShownObj1) {
-                            obj1 = jsonObject.notification;
-                            $('.notification-body').html('');
-                            $('#notifications').removeClass('empty'); 
-                            $('#notifications .lv-header ul li').show();
-                            length += obj1.length;
-                            var idx1 = 0;
-                            for (var i = obj1.length - 1; i >= 0; i--) {
-                                $('.notification-item-template.hide .notification-username').html(obj1[i].username);
-                                $('.notification-item-template.hide .notification-content').html(obj1[i].title);
-                                $('.notification-item-template.hide a.lv-item').attr('data-notification-index', obj1[i].notiId);
-                                $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["bookinfo/view"])?>' + '?id=' + obj1[i].Id + '&lang=' + '<?=Yii::$app->language?>');
-                                $('.notification-body').append($clone);
-                                
-                                delayTime += 3000;
-                                setTimeout(function(){
-                                    notify(obj1[idx1].username, obj1[idx1].title);
-                                    idx1++
-                                }, delayTime);
-                                isShownObj1 = true;
-                            }
+      /*
+       * Clear Notification
+       */
+      $('body').on('click', '[data-clear="notification"]', function(e){
+        e.preventDefault();
 
-                            obj2 = jsonObject.onedayAvailable;
-                            var idx2 = 0;
-                            if (obj2 != undefined && obj2.length !== 0 && !isShownObj2) {
-                                <?php
-                                    $message = Yii::t('messages', ' will be available 1 day later');
-                                ?>
-                                length += obj2.length;
-                                for (var i = obj2.length - 1; i >= 0; i--) {
-                                    $('.notification-item-template.hide .notification-username').html(obj2[i].seat);
-                                    $('.notification-item-template.hide .notification-content').html('<?=Yii::t("messages", "Will be available again 1 day later!")?>');
-                                    $('.notification-item-template.hide .notification-item-template a.lv-item').attr('data-notification-index', obj2[i].Id);
-                                    $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["bookinfo/view"])?>' + '?id=' + obj2[i].Id + '&lang=' + '<?=Yii::$app->language?>');
-                                    $('.notification-body').append($clone);
+        clearInterval(refreshId);
 
-                                    delayTime += 3000;
-                                    setTimeout(function(){
-                                        notify(obj2[idx2].seat, '<?=$message?>');
-                                        idx2++;
-                                    }, delayTime);
-                                    isShownObj2 = true;
-                                }
-                            }
+        var x = $(this).closest('.listview');
+        var y = x.find('.lv-item');
+        var z = y.size();
 
-                            obj3 = jsonObject.twodayAvailable;
-                            var idx3 = 0;
-                            if (obj3 != undefined && obj3.length !== 0 && !isShownObj3) {
-                                <?php
-                                    $message = Yii::t('messages', ' will be available 2 day later');
-                                ?>
-                                length += obj3.length;
-                                for (var i = obj3.length - 1; i >= 0; i--) {
-                                    $('.notification-item-template.hide .notification-username').html(obj3[i].seat);
-                                    $('.notification-item-template.hide .notification-content').html('<?=Yii::t("messages", "Will be available again 1 day later!")?>');
-                                    $('.notification-item-template.hide .notification-item-template a.lv-item').attr('data-notification-index', obj3[i].Id);
-                                     $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["bookinfo/view"])?>' + '?id=' + obj3[i].Id + '&lang=' + '<?=Yii::$app->language?>');
-                                    $('.notification-body').append($clone);
+        $(this).parent().fadeOut();
 
-                                    delayTime += 3000;
+        x.find('.list-group').prepend('<i class="grid-loading hide-it"></i>');
+        x.find('.grid-loading').fadeIn(1500);
 
-                                    setTimeout(function(){
-                                        notify(obj3[idx3].seat, '<?=$message?>');
-                                        idx3++;
-                                    }, delayTime);
 
-                                    isShownObj3 = true;
-                                }
-                            }
+        var w = 0;
+        var listOfIds = [];
+        y.each(function(){
+            var z = $(this);
+            listOfIds.push(z.attr('data-notification-index'));
+            setTimeout(function(){
+            z.addClass('animated fadeOutRightBig').delay(1000).queue(function(){
+                z.remove();
+            });
+            }, w+=150);
+        })
 
-                            obj4 = jsonObject.todayAvailable;
-                            var idx4 = 0;
-                            if (obj4 != undefined && obj4.length !== 0 && !isShownObj4) {
-                                <?php
-                                    $message = Yii::t('messages', ' will be available today');
-                                ?>
-                                length += obj4.length;
-                                for (var i = obj4.length - 1; i >= 0; i--) {
-                                    $('.notification-item-template.hide .notification-username').html(obj4[i].seat);
-                                    $('.notification-item-template.hide .notification-content').html('<?=Yii::t("messages", "Will be available again 1 day later!")?>');
-                                    $('.notification-item-template.hide .notification-item-template a.lv-item').attr('data-notification-index', obj4[i].Id);
-                                     $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["bookinfo/view"])?>' + '?id=' + obj4[i].Id + '&lang=' + '<?=Yii::$app->language?>');
-                                    $('.notification-body').append($clone);
+        $('.notification-count').addClass('hide').html('');
 
-                                    delayTime += 3000;
+        $.ajax({
+             url: '<?= Yii::$app->request->baseUrl. '/notification/updatenotification' ?>',
+             type: 'post',
+             data: {
+                  listOfIds: listOfIds,
+                  _csrf: '<?=Yii::$app->request->getCsrfToken()?>'
+             },
+             success: function (data) {
+                  console.log(data);
+                  //Popup empty message
+                  setTimeout(function(){
+                    //  $('#notifications').addClass('empty');
+                      setInterval(function(){ refreshNotification(); console.log('refresh notification 2');  }, 10000);
+                  }, (z*150)+200);
+             }
+         });
+      });
 
-                                    setTimeout(function(){
-                                        notify(obj4[idx4].name, '<?=$message?>');
-                                        idx4++;
-                                    }, delayTime);
+      <?php endif ?>
+          var isShownObj1 = false, isShownObj2 = false, isShownObj3 = false, isShownObj4 = false; 
+          function refreshNotification() {
+              $.ajax({
+                 url: '<?= Yii::$app->request->baseUrl. '/notification/' ?>',
+                 data: {lang: '<?=Yii::$app->language?>'},
+                 type: 'get',
+                 success: function (data) {
+                    var jsonObject = JSON.parse(data); 
+                    var length = 0;
+                     if (jsonObject.notification.length !== 0 && !isShownObj1) {
+                          obj1 = jsonObject.notification;
+                          isShownObj1 = true;
+                          $('.notification-body').html('');
+                          $('#notifications').removeClass('empty'); 
+                          $('#notifications .lv-header ul li').show();
+                          length += obj1.length;
+                          var idx1 = 0;
+                          for (var i = obj1.length - 1; i >= 0; i--) {
+                              $('.notification-item-template.hide .notification-username').html(obj1[i].username);
+                              $('.notification-item-template.hide .notification-content').html(obj1[i].title);
+                              $('.notification-item-template.hide a.lv-item').attr('data-notification-index', obj1[i].notiId);
+                              $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["book-lookup/view"])?>' + '?sunshadeId=' + obj1[i].sunshadeId + '&bookId=' + obj1[i].bookId + '&guestId=' + obj1[i].guestId + '&lang=' + '<?=Yii::$app->language?>');
+                              $('.notification-body').append($clone);
+                              
+                              delayTime += 3000;
+                              setTimeout(function(){
+                                  notify(obj1[idx1].username, obj1[idx1].title);
+                                  idx1++
+                              }, delayTime);
+                              // isShownObj1 = true;
+                          }
 
-                                    isShownObj4 = true;
-                                }
-                            }
+                          obj2 = jsonObject.onedayAvailable;
+                          var idx2 = 0;
+                          if (obj2 != undefined && obj2.length !== 0 && !isShownObj2) {
+                            isShownObj2 = true;
+                              <?php
+                                  $message = Yii::t('messages', ' will be available 1 day later');
+                              ?>
+                              length += obj2.length;
+                              for (var i = obj2.length - 1; i >= 0; i--) {
+                                  $('.notification-item-template.hide .notification-username').html(obj2[i].sunshade);
+                                  $('.notification-item-template.hide .notification-content').html('<?=$message?>');
+                                  $('.notification-item-template.hide .notification-item-template a.lv-item').attr('data-notification-index', obj2[i].lookupId);
+                                  $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["book-lookup/view"])?>' + '?sunshadeId=' + obj2[i].sunshadeId + '&bookId=' + obj2[i].bookId + '&guestId=' + obj2[i].guestId + '&lang=' + '<?=Yii::$app->language?>');
+                                  $('.notification-body').append($clone);
 
-                            $('.notification-count').removeClass('hide').html(length);
+                                  delayTime += 3000;
+                                  setTimeout(function(){
+                                      notify(obj2[idx2].sunshade, '<?=$message?>');
+                                      idx2++;
+                                  }, delayTime);
+                                  // isShownObj2 = true;
+                              }
+                          }
 
-                            // $(".notification-body").jScrollPane();
-                        } 
-                        
-                        else {
-                         //  $('#notifications').addClass('empty'); 
-                        }
-                     }
-              });
-            }
-        });
+                          obj3 = jsonObject.twodayAvailable;
+                          var idx3 = 0;
+                          if (obj3 != undefined && obj3.length !== 0 && !isShownObj3) {
+                            isShownObj3 = true;
+                              <?php
+                                  $message = Yii::t('messages', ' will be available 2 day later');
+                              ?>
+                              length += obj3.length;
+                              for (var i = obj3.length - 1; i >= 0; i--) {
+                                  $('.notification-item-template.hide .notification-username').html(obj3[i].sunshade);
+                                  $('.notification-item-template.hide .notification-content').html('<?=$message?>');
+                                  $('.notification-item-template.hide .notification-item-template a.lv-item').attr('data-notification-index', obj3[i].lookupId);
+                                   $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["book-lookup/view"])?>' + '?sunshadeId=' + obj3[i].sunshadeId + '&bookId=' + obj3[i].bookId + '&guestId=' + obj3[i].guestId + '&lang=' + '<?=Yii::$app->language?>');
+                                  $('.notification-body').append($clone);
+
+                                  delayTime += 3000;
+
+                                  setTimeout(function(){
+                                      notify(obj3[idx3].sunshade, '<?=$message?>');
+                                      idx3++;
+                                  }, delayTime);
+
+                                  // isShownObj3 = true;
+                              }
+                          }
+
+                          obj4 = jsonObject.todayAvailable;
+                          var idx4 = 0;
+                          if (obj4 != undefined && obj4.length !== 0 && !isShownObj4) {
+                            isShownObj4 = true;
+                              <?php
+                                  $message = Yii::t('messages', ' will be available today');
+                              ?>
+                              length += obj4.length;
+                              for (var i = obj4.length - 1; i >= 0; i--) {
+                                  $('.notification-item-template.hide .notification-username').html(obj4[i].sunshade);
+                                  $('.notification-item-template.hide .notification-content').html('<?=$message?>');
+                                  $('.notification-item-template.hide .notification-item-template a.lv-item').attr('data-notification-index', obj4[i].lookupId);
+                                   $clone = $('.notification-item-template a').clone().removeClass('hide').attr('href', '<?=Url::to(["book-lookup/view"])?>' + '?sunshadeId=' + obj4[i].sunshadeId + '&bookId=' + obj4[i].bookId + '&guestId=' + obj4[i].guestId + '&lang=' + '<?=Yii::$app->language?>');
+                                  $('.notification-body').append($clone);
+
+                                  delayTime += 3000;
+
+                                  setTimeout(function(){
+                                      notify(obj4[idx4].sunshade, '<?=$message?>');
+                                      idx4++;
+                                  }, delayTime);
+
+                                  /*isShownObj4 = true;*/
+                              }
+                          }
+
+                          $('.notification-count').removeClass('hide').html(length);
+                      } 
+                      
+                      else {
+                       //  $('#notifications').addClass('empty'); 
+                      }
+                   }
+            });
+          }
+      });
     })(jQuery);
+  </script>
+
+
+    <!-- Google Analytics -->
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-86349913-1', {
+      'cookieName': 'clientId',
+      'cookieExpires': 60 * 60 * 24  // Time in seconds.
+    });
+    ga('send', 'pageview');
     </script>
-    <?php $this->head() ?>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+  <?php $this->head() ?>
 </head>
 <body>
     <?php $this->beginBody() ?>
     
-        <header id="header" class="clearfix" data-current-skin="blue">
+        <header id="header" class="clearfix bgm-white" data-current-skin="white">
             <ul class="header-inner">
                 <li id="menu-trigger" data-trigger="#sidebar">
                     <div class="line-wrap">
@@ -339,10 +343,10 @@ $baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
                     </div>
                 </li>
             
-                <li class="hidden-xs">
-                    <a href="<?= Url::to(['dashboard/index', 'lang' => $lang])?>" ><img class="p-b-10" src="<?=$baseurl?>/images/logo-mobile.png" alt="<?=Yii::t('messages', Yii::$app->name)?>" style="border-radius: 50%;"></a>
+                <li class="hidden-xs" >
+                    <a href="<?= Url::to(['dashboard/index', 'lang' => $lang])?>" ><img class="p-b-10" src="<?=$baseurl?>/img/disponibile.png" alt="<?=Yii::t('messages', Yii::$app->name)?>" ></a>
                 </li>
-                
+
                 <li class="pull-right">
                     <ul class="top-menu">
                         <li id="toggle-width">
@@ -354,46 +358,45 @@ $baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
 
                         <li class="dropdown">
                             <a data-toggle="dropdown" href="">
-                                <i class="tm-icon zmdi zmdi-notifications"></i>
+                                <i class="tm-icon zmdi zmdi-notifications" style="color: #24c140;"></i>
                                 <i class="tmn-counts notification-count hide"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg pull-right">
                                 <div class="listview" id="notifications">
-                                    <div class="lv-header">
-                                        <?=Yii::t('messages', 'Notification')?>
-                        
-                                        <ul class="actions">
-                                            <li class="dropdown">
-                                                <a href="" data-clear="notification">
-                                                    <i class="zmdi zmdi-check-all"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                  <div class="lv-header">
+                                      <?=Yii::t('messages', 'Notification')?>
+                      
+                                      <ul class="actions">
+                                          <li class="dropdown">
+                                              <a href="" data-clear="notification">
+                                                  <i class="zmdi zmdi-check-all"></i>
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </div>
                                     <div class="notification-body scroll-pane" style="overflow-y: auto; height: 300px;">
                                     </div>
                                 </div>
                             </div>
-                                <div class="notification-item-template hide">
-                                    <a class="lv-item" href="">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="lv-img-sm" src="<?=$baseurl?>/images/logo.png" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="lv-title notification-username">David Belle</div>
-                                                <small class="lv-small notification-content">Booked sunshade A1</small>
-                                            </div>
-                                        </div>
-                                    </a>   
-                                </div>
+                            <div class="notification-item-template hide">
+                              <a class="lv-item" href="">
+                                  <div class="media">
+                                      <div class="pull-left">
+                                          <img class="lv-img-sm img-responsive" src="<?=$baseurl?>/img/disponibile.png" alt="<?=Yii::$app->name?>">
+                                      </div>
+                                      <div class="media-body">
+                                          <div class="lv-title notification-username">David Belle</div>
+                                          <small class="lv-small notification-content">Booked sunshade A1</small>
+                                      </div>
+                                  </div>
+                              </a>   
+                            </div>
                         </li>
-
                     </ul>
                 </li>
             </ul>
         </header>
-        
+
     <section id="main" data-layout="layout-1">
          <aside id="sidebar" class="sidebar c-overflow">
             <div class="profile-menu" style="padding-top: 8px;">
@@ -407,22 +410,31 @@ $baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
             </div>
 
             <ul class="main-menu">
-                <li><a href="<?= Url::to(['dashboard/index', 'lang' => $lang])?>"><i class="zmdi zmdi-home"></i> <?=Yii::t('messages', 'Dashboard')?></a></li>
-                <li class="divider"></li>
+              <li><a href="<?= Url::to(['dashboard/index', 'lang' => $lang])?>"><i class="zmdi zmdi-home"></i> <?=Yii::t('messages', 'Dashboard')?></a></li>
+              <li class="divider"></li>
+              <li>
+                <a class="bgm-orange" href="<?= Yii::$app->urlManagerFrontEnd->createUrl('/').'?lang='.Yii::$app->language?>" ><i class="fa fa-sign-in fa-2"></i> <?=Yii::t('messages', 'YOUR WEBSITE')?></a>
+              </li>
+              <li class="divider"></li>
+
+              <?php $this->beginBlock('registeredUserBlock') ?>
+                  <li><a href="<?=Url::to(['guest/sendbookinfo', 'lang' => $lang])?>"><i class="fa fa-print fa-2"></i> <?=Yii::t('messages', 'Bookings Info(ID/Email/Print)')?></a></li>
+                  <li><a href="<?=Url::to(['guest/guestinfo', 'lang' => $lang])?>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> <?=Yii::t('messages', 'Customers Info')?></a></li>
+                  <li><a href="<?=Url::to(['guest/mapbooking', 'lang' => $lang])?>"><i class="zmdi zmdi-google-maps zmdi-hc-fw"></i> <?=Yii::t('messages', 'Map Booking')?></a></li>
+                  <li><a href="<?=Url::to(['price/index', 'lang' => $lang])?>"><i class="fa fa-eur fa-2"></i> <?=Yii::t('messages', 'Price Management')?></a></li>
+                  <li><a href="<?=Url::to(['setting/update', 'lang' => $lang])?>"><i class="zmdi zmdi-settings zmdi-hc-fw"></i> <?= Yii::t('messages', 'General Settings')?></a></li>
+                   
+                <?php $this->endBlock() ?>
+                <?php if (!Yii::$app->user->isGuest) echo $this->blocks['registeredUserBlock']  ?>
 
                 <?php $this->beginBlock('adminBlock') ?>
-                    <li><a href="<?=Url::to(['guest/sendbookinfo', 'lang' => $lang])?>"><i class="fa fa-print fa-2"></i> <?=Yii::t('messages', 'Book Info (send / print)')?></a></li>
-                    <li><a href="<?=Url::to(['guest/guestinfo', 'lang' => $lang])?>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> <?=Yii::t('messages', 'Customers Info')?></a></li>
-                    <li><a href="<?=Url::to(['bookinfo/index', 'lang' => $lang])?>"><i class="zmdi zmdi-book-image zmdi-hc-fw"></i><?=Yii::t('messages', 'Sunshade Book Management')?></a></li>
-                    <li><a href="<?=Url::to(['bookinfo/roombook', 'lang' => $lang])?>"><i class="fa fa-bed c-lightblack"></i><?=Yii::t('messages', 'Room Book Management')?></a></li>
-                    <li><a href="<?=Url::to(['price/index', 'lang' => $lang])?>"><i class="fa fa-eur fa-2"></i> <?=Yii::t('messages', 'Price Management')?></a></li>
-                    <li><a href="<?=Url::to(['setting/update', 'lang' => $lang])?>"><i class="zmdi zmdi-settings zmdi-hc-fw"></i> <?= Yii::t('messages', 'General Settings')?></a></li>
-                    <li><a href="<?=Url::to(['user/index', 'lang' => $lang])?>"><i class="fa fa-user fa-2"></i> <?= Yii::t('messages', 'User Management')?></a></li>
+                   <li><a href="<?=Url::to(['user/index', 'lang' => $lang])?>"><i class="fa fa-user fa-2"></i> <?= Yii::t('messages', 'User Management')?></a></li>
                 <?php $this->endBlock() ?>
                 <?php if (Yii::$app->user->can('admin')) echo $this->blocks['adminBlock']  ?>
 
                 <?php $this->beginBlock('guestBlock') ?>
                     <li><a href="<?=Url::to(['site/login', 'lang' => $lang])?>"><i class="fa fa-sign-in fa-2"></i> <?=Yii::t('messages', 'Login')?></a></li>
+                    <li><a href="<?=Url::to(['site/signup', 'lang' => $lang])?>"><i class="fa fa-sign-in fa-2"></i> <?=Yii::t('messages', 'Signup')?></a></li>
                 <?php $this->endBlock() ?>
                 <?php if (Yii::$app->user->isGuest) echo $this->blocks['guestBlock']  ?>
                     
@@ -433,8 +445,8 @@ $baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
                 <?php if (!Yii::$app->user->isGuest) echo $this->blocks['nonGuestBlock']  ?>
                 <li class="divider"></li>
                      
-                <li><a href="<?php printFlags($this->context->paramKeys, $this->context->paramValues, $en)?>" class="<?php if($isEnglish) echo 'lang-active';?>"><img class="selectedflag" src="<?=$baseurl?>/images/flags/en.gif" alt="en"> <?=Yii::t('messages', 'English')?></a></li>
-                <li><a href="<?php printFlags($this->context->paramKeys, $this->context->paramValues, $it)?>" class="<?php if(!$isEnglish) echo 'lang-active';?>""><img class="selectedflag" src="<?=$baseurl?>/images/flags/it.gif" alt="it"> <?=Yii::t('messages', 'Italian')?></a></li>
+                <li><a href="<?php printFlags($this->context->paramKeys, $this->context->paramValues, $en)?>" class="<?php if($isEnglish) echo 'lang-active';?>"><img class="selectedflag" src="<?=$baseurl?>/img/flags/en.gif" alt="en"> <?=Yii::t('messages', 'English')?></a></li>
+                <li><a href="<?php printFlags($this->context->paramKeys, $this->context->paramValues, $it)?>" class="<?php if(!$isEnglish) echo 'lang-active';?>""><img class="selectedflag" src="<?=$baseurl?>/img/flags/it.gif" alt="it"> <?=Yii::t('messages', 'Italian')?></a></li>
             </ul>
         </aside>
 
@@ -454,14 +466,19 @@ $baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
             <ul class="f-menu">
                 <li><a href="<?= Url::to(['dashboard/index', 'lang' => $lang])?>"><i class="zmdi zmdi-home"></i> <?=Yii::t('messages', 'Dashboard')?></a></li>
                     <li class="divider"></li>
-                <?php $this->beginBlock('adminBlock') ?>
-                    <li><a href="<?=Url::to(['guest/sendbookinfo', 'lang' => $lang])?>"><i class="fa fa-print fa-2"></i> <?=Yii::t('messages', 'Send / Print Book Info')?></a></li>
-                    <li><a href="<?=Url::to(['bookinfo/index', 'lang' => $lang])?>"><i class="zmdi zmdi-book-image zmdi-hc-fw"></i><?=Yii::t('messages', 'Book Management')?></a></li>
+                <?php $this->beginBlock('registeredUserBlock') ?>
+                    <li><a href="<?=Url::to(['guest/sendbookinfo', 'lang' => $lang])?>"><i class="fa fa-print fa-2"></i> <?=Yii::t('messages', 'Bookings Info(ID/Email/Print)')?></a></li>
+                    <li><a href="<?=Url::to(['guest/guestinfo', 'lang' => $lang])?>"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> <?=Yii::t('messages', 'Customers Info')?></a></li>
+                    <li><a href="<?=Url::to(['guest/mapbooking', 'lang' => $lang])?>"><i class="zmdi zmdi-google-maps zmdi-hc-fw"></i> <?=Yii::t('messages', 'Map Booking')?></a></li>
                     <li><a href="<?=Url::to(['price/index', 'lang' => $lang])?>"><i class="fa fa-eur fa-2"></i> <?=Yii::t('messages', 'Price Management')?></a></li>
                     <li><a href="<?=Url::to(['setting/update', 'lang' => $lang])?>"><i class="zmdi zmdi-settings zmdi-hc-fw"></i> <?= Yii::t('messages', 'General Settings')?></a></li>
+                <?php $this->endBlock() ?>
+                <?php if (Yii::$app->user->can('admin')) echo $this->blocks['registeredUserBlock']?>
+                <?php $this->beginBlock('adminBlock') ?>
                     <li><a href="<?=Url::to(['user/index', 'lang' => $lang])?>"><i class="fa fa-user fa-2"></i> <?= Yii::t('messages', 'User Management')?></a></li>
                 <?php $this->endBlock() ?>
-                <?php if (Yii::$app->user->can('admin')) echo $this->blocks['adminBlock']  ?>
+                <?php if (!Yii::$app->user->isGuest) echo $this->blocks['registeredUserBlock']?>
+                
             </ul>
     </footer>
 
@@ -478,6 +495,53 @@ $baseurl = Yii::getAlias("@appRoot");//"http://www.beachclubippocampo.rentals";
 
     <?php $this->endBody() ?>
 </body>
+<div class="modal fade" id="myModal-warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content overlay" style=" overflow-x: hidden;">
+        <div class="row modal-body">
+            <div class="col-xs-2 col-sm-2 nopl left">
+                <img alt="<?=Yii::$app->name?>" src="<?=Yii::getAlias('@web')?>/img/disponibile.png" />
+                <div class="number p-l-8">C23</div>
+            </div>
+            <div class="col-xs-9 col-sm-9 left ">
+                <div class="m-b-10">
+                    <span class="sunshade-array"></span>
+                    <div class="message-warning"><?=Yii::t('messages', 'There is no book list yet.')?></div>
+                    <button class="warning-button add_sunshine modal-close cursor-pointer"><?=Yii::t('messages', 'OK')?>
+            </button>
+                </div>
+            </div>
+
+            <div class="col-xs-1 col-sm-1 left nopl p-r-20 cursor-pointer">
+                <i class="fa fa-close modal-close" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content overlay" style=" overflow-x: hidden;">
+        <div class="row modal-body">
+            <div class="col-xs-2 col-sm-2 nopl left">
+                <img alt="<?=Yii::$app->name?>" src="<?=Yii::getAlias('@web')?>/img/disponibile.png" />
+                <div class="number p-l-8">C23</div>
+            </div>
+            <div class="col-xs-9 col-sm-9 left ">
+                <div class="message"></div>
+                <a href="<?=Url::to(['guest/gotocart', 'lang' => Yii::$app->language])?>" type="submit" class="btn-gotocart"><?=Yii::t('messages', 'GO TO CART')?>
+                </a>
+            </div>
+
+            <div class="col-xs-1 col-sm-1 left nopl p-r-20 cursor-pointer">
+                <i class="fa fa-close modal-close" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 </html>
 <?php $this->endPage() ?>
 <?php
@@ -487,17 +551,14 @@ function printFlags($paramKeys, $paramValues, $language)
 
     $arrayUrl[0] = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
 
-    $idExist = false;
-    foreach (Yii::$app->controller->actionParams  as $key => $value) {
-        if ($key == "id") {
-            $idExist = true;
-            $arrayUrl[0] .= "?" . $key . "=" . $value . "&lang=" . $language;
+    $arrayUrl[0] .= "?";
+    foreach (Yii::$app->request->queryParams  as $key => $value) {
+        if ($key != "lang") {
+            $arrayUrl[0] .= $key . "=" . $value . "&";
         }
     }
 
-    if (!$idExist) {
-         $arrayUrl[0] .= "?lang=" . $language;
-    }
+    $arrayUrl[0] .= "lang=" . $language;
     for($i = 0; $i < count($paramKeys); $i++)
         if($paramKeys[$i] !== 'lang')
             $arrayUrl[$paramKeys[$i]] = $paramValues[$i];
@@ -506,5 +567,5 @@ function printFlags($paramKeys, $paramValues, $language)
 }
 ?>
 
-<!-- Javascript Libraries -->
-       
+
+

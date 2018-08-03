@@ -7,67 +7,68 @@ use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Notification;
+use frontend\models\Cart;
+use frontend\models\CartMilestone;
 use common\models\User;
 use frontend\models\Notificationreminder;
-use frontend\models\Bookinfo;
+use frontend\models\BookLookup;
 use yii\filters\AccessControl;
 
 class NotificationController extends \common\component\BaseController
 {
-
     public function actionIndex() {
         $lang = Yii::$app->request->get('lang');
 
         // check and update the upcomming available sunshade
         $onedayAvailable = "";
         $twodayAvailable = "";
-        $todayAvailable = "";
         $result = array();
-        if (!Notificationreminder::checkAdminReminder()) {
-            Notificationreminder::updateAdminReminder();
-            $todayAvailable =  Bookinfo::getAllAvailableSunshade(0);
-            if (count($todayAvailable)) {
-                $result['todayAvailable'] = $todayAvailable;
+        $todayAvailable =  BookLookup::getAllAvailableSunshade(0);
+        if (count($todayAvailable)) {
+            $result['todayAvailable'] = $todayAvailable;
+        } else {
+            $onedayAvailable =  BookLookup::getAllAvailableSunshade(1);
+            if (count($onedayAvailable)) {
+                $result['onedayAvailable'] = $onedayAvailable;
             } else {
-                $onedayAvailable =  Bookinfo::getAllAvailableSunshade(1);
-                if (count($onedayAvailable)) {
-                    $result['onedayAvailable'] = $onedayAvailable;
-                } else {
-                    $twodayAvailable =  Bookinfo::getAllAvailableSunshade(2);
-                    if (count($twodayAvailable)) {
-                        $result['twodayAvailable'] = $twodayAvailable;
-                    }                    
-                }
+                $twodayAvailable =  BookLookup::getAllAvailableSunshade(2);
+                if (count($twodayAvailable)) {
+                    $result['twodayAvailable'] = $twodayAvailable;
+                }                    
             }
         }
 
+        if (!Notificationreminder::checkCartExpire()) {
+            Cart::checkExpire();
+            CartMilestone::checkExpire();
+            Notificationreminder::updateCartExipreReminder();
+        }
+
         if (!Notificationreminder::checkSunshadeReminder()) {
-            Bookinfo::checkExpiredate();
+            BookLookup::checkExpiredate();
             Notificationreminder::updateSunshadeReminder();
         }
 
         $notification = Notification::getNofications($lang);
        
         $result['notification'] = $notification;
+
     	return \yii\helpers\Json::encode($result);
     }
 
     public function actionUpdatenotification() {
         
         $listOfIds = (array) Yii::$app->request->post('listOfIds');
-        $result = Notification::updateNotification(implode(", ", $listOfIds));
+        $result = Notification::updateNotification(implode(",", $listOfIds));
 
-        print_r($result);
+        // print_r(implode(",", $listOfIds));
         return;
     }
 
     public function actionTest() {
-     $adminEmails = User::getAllEmails();
-            for ($i = 0; $i < count($adminEmails); $i++) {
-                print_r($adminEmails[$i]['email']);
-            }
+        $result =  Notification::eraseNotification([30,29]);
         
-        
-      return;
+        print_r($result);
+        return;
     }
 }

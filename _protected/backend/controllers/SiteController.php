@@ -2,13 +2,14 @@
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use common\models\SignupForm;
 use common\models\User;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
-use common\component\SignupForm;
-use common\component\BaseController;
+use yii\helpers\Html;
 use frontend\models\ResetPasswordForm;
+use frontend\models\AccountActivation;
 use frontend\models\PasswordResetRequestForm;
 use Yii;
 
@@ -30,7 +31,7 @@ class SiteController extends BaseController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'request-password-reset', 'reset-password'],
+                        'actions' => ['login', 'error', 'request-password-reset', 'reset-password', 'signup', 'activate-account'],
                         'allow' => true,
                     ],
                     [
@@ -49,20 +50,23 @@ class SiteController extends BaseController
         ];
     }
 
-    /**
-     * Declares external actions for the controller.
-     *
-     * @return array
-     */
     public function actions()
     {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'view' => '@app/views/site/error.php'
             ],
         ];
     }
 
+    /*public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            return $this->render('error', ['exception' => $exception]);
+        }
+    }*/
     /**
      * Displays the index (home) page.
      * Use it in case your home page contains static content.
@@ -71,7 +75,7 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+       return $this->redirect(Url::to(['dashboard/index', 'lang' =>  Yii::$app->language]));
     }
 
     /**
@@ -82,6 +86,8 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
+        User::deactiveExpiredUsers();
+
         if (!Yii::$app->user->isGuest) 
         {
             return $this->goHome();
@@ -94,9 +100,18 @@ class SiteController extends BaseController
         $lwe ? $model = new LoginForm(['scenario' => 'lwe']) : $model = new LoginForm() ;
 
         // everything went fine, log in the user
-        if ($model->load(Yii::$app->request->post()) && $model->login()) 
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
         {
-            return $this->redirect(Url::to(['dashboard/index', 'lang'=>Yii::$app->language]));
+            if ($model->notActivated()) {
+                $messageType = "error";
+                $message = Yii::t('messages', "Sorry, Your account is expired now.");
+                Yii::$app->session->setFlash($messageType, $message);
+                return $this->render('login', [
+                    'model' => $model,
+                ]);
+            } else if ($model->login()) {
+                $this->goBack();
+            }
         } 
         // errors will be displayed
         else 
@@ -137,14 +152,14 @@ class SiteController extends BaseController
             if ($model->sendEmail())
             {
                 Yii::$app->session->setFlash('success',
-                    'Check your email for further instructions.');
+                    Yii::t('messages', 'Check your email for further instructions.'));
 
-                return $this->goHome();
+                return $this->redirect(Url::to(['/', 'lang' =>  Yii::$app->language]));
             }
             else
             {
                 Yii::$app->session->setFlash('error',
-                    'Sorry, we are unable to reset password for email provided.');
+                    Yii::t('messages', 'Sorry, we are unable to reset password for email provided.'));
             }
         }
         else
@@ -177,7 +192,7 @@ class SiteController extends BaseController
         if ($model->load(Yii::$app->request->post())
             && $model->validate() && $model->resetPassword())
         {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', Yii::t('messages', 'New password was saved.'));
 
             return $this->goHome();
         }
@@ -209,8 +224,9 @@ class SiteController extends BaseController
         // get setting value for 'Registration Needs Activation'
         $rna = Yii::$app->params['rna'];
 
-        // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
+       // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
         $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
+
 
         // collect and validate user data
         if ($model->load(Yii::$app->request->post()) && $model->validate())
@@ -221,9 +237,34 @@ class SiteController extends BaseController
                 // if user is active he will be logged in automatically ( this will be first user )
                 if ($user->status === User::STATUS_ACTIVE)
                 {
+                    Yii::$app->session->setFlash('success',
+                    Yii::t('messages', 'Success! You can administrate the Sunticket.').'.<br>' . 
+                    Yii::t('messages', 'Thank you ').Html::encode($user->username). Yii::t('messages', ' for joining us!'));
+
+                    /*Yii::$app->mailer->compose()
+                                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                                ->setTo([Yii::$app->params['adminEmail']])
+                                ->setSubject(Yii::$app->name)
+                                ->setTextBody('A new user ' . $user->username .' was successfully activated')
+                                ->send();
+
+                    Yii::$app->mailer->compose('welcome')
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                        ->setTo($email)
+                        ->setSubject(Yii::$app->name)
+                        ->send();
+
+                    // to me
+                    Yii::$app->mailer->compose()
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                        ->setTo("imobilegang@gmail.com")
+                        ->setSubject(Yii::$app->name)
+                        ->setTextBody('A new user ' . $user->username .' was successfully activated')
+                        ->send();*/
+
                     if (Yii::$app->getUser()->login($user))
                     {
-                        return $this->goHome();
+                        return $this->refresh();
                     }
                 }
                 // activation is needed, use signupWithActivation()
@@ -231,6 +272,20 @@ class SiteController extends BaseController
                 {
                     $this->signupWithActivation($model, $user);
 
+                    Yii::$app->mailer->compose()
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                        ->setTo([Yii::$app->params['adminEmail']])
+                        ->setSubject(Yii::$app->name)
+                        ->setTextBody('A new user ' . $user->username .' is trying to sign up as a demo user')
+                        ->send();
+
+                    // to me
+                    Yii::$app->mailer->compose()
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                        ->setTo("imobilegang@gmail.com")
+                        ->setSubject(Yii::$app->name)
+                        ->setTextBody('A new user ' . $user->username .' is trying to sign up as a demo user')
+                        ->send();
                     return $this->refresh();
                 }
             }
@@ -239,16 +294,17 @@ class SiteController extends BaseController
             {
                 // display error message to user
                 Yii::$app->session->setFlash('error',
-                    "We couldn't sign you up, please contact us.");
+                    Yii::t("messages", "We couldn't sign you up, please contact us."));
 
                 // log this error, so we can debug possible problem easier.
-                Yii::error('Signup failed! 
-                    User '.Html::encode($user->username).' could not sign up.
-                    Possible causes: something strange happened while saving user in database.');
+                Yii::error( Yii::t('messages', 'Signup failed!') .
+                 Yii::t('messages', 'User') . Html::encode($user->username). Yii::t('messages', ' could not sign up.') .'.<br>' . 
+                    Yii::t('messages', 'Possible causes: something strange happened while saving user in database.'));
 
                 return $this->refresh();
             }
         }
+
 
         return $this->render('signup', [
             'model' => $model,
@@ -260,7 +316,7 @@ class SiteController extends BaseController
      * User will have to activate his account using activation link that we will
      * send him via email.
      *
-     * @param $model
+     * @param $model 
      * @param $user
      */
     private function signupWithActivation($model, $user)
@@ -269,21 +325,21 @@ class SiteController extends BaseController
         if ($model->sendAccountActivationEmail($user))
         {
             Yii::$app->session->setFlash('success',
-                'Hello '.Html::encode($user->username).'. 
-                To be able to log in, you need to confirm your registration. 
-                Please check your email, we have sent you a message.');
+                Yii::t('messages', 'Hello ').Html::encode($user->username).'.<br>' .  
+                 Yii::t('messages', 'To be able to log in, you need to confirm your registration.'). '<br>'.
+                 Yii::t('messages', 'Please check your email, we have sent you a message.'));
         }
         // email could not be sent
         else
         {
             // display error message to user
             Yii::$app->session->setFlash('error',
-                "We couldn't send you account activation email, please contact us.");
+               Yii::t("messages",  "We couldn't send you account activation email, please contact us."));
 
             // log this error, so we can debug possible problem easier.
-            Yii::error('Signup failed! 
-                User '.Html::encode($user->username).' could not sign up.
-                Possible causes: verification email could not be sent.');
+            Yii::error(Yii::t('messages', 'Signup failed!').'<br>'. 
+                Yii::t('messages', 'User') .Html::encode($user->username).Yii::t('messages', ' could not sign up.') . '<br>'.
+                Yii::t('messages', 'Possible causes: verification email could not be sent.'));
         }
     }
 
@@ -303,6 +359,8 @@ class SiteController extends BaseController
     {
         try
         {
+            $email = User::findByAccountActivationToken($token)->email;
+
             $user = new AccountActivation($token);
         }
         catch (InvalidParamException $e)
@@ -313,16 +371,37 @@ class SiteController extends BaseController
         if ($user->activateAccount())
         {
             Yii::$app->session->setFlash('success',
-                'Success! You can now log in. 
-                Thank you '.Html::encode($user->username).' for joining us!');
+                Yii::t('messages', 'Success! You can now log in.').'.<br>' . 
+                Yii::t('messages', 'Thank you ').Html::encode($user->username). Yii::t('messages', ' for joining us!'));
+
+            Yii::$app->mailer->compose()
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                        ->setTo([Yii::$app->params['adminEmail']])
+                        ->setSubject(Yii::$app->name)
+                        ->setTextBody('A new user ' . $user->username .' was successfully activated')
+                        ->send();
+
+            Yii::$app->mailer->compose('welcome')
+                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                ->setTo($email)
+                ->setSubject(Yii::$app->name)
+                ->send();
+
+            // to me
+            Yii::$app->mailer->compose()
+                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                ->setTo("imobilegang@gmail.com")
+                ->setSubject(Yii::$app->name)
+                ->setTextBody('A new user ' . $user->username .' was successfully activated')
+                ->send();
         }
         else
         {
             Yii::$app->session->setFlash('error',
-                ''.Html::encode($user->username).' your account could not be activated, 
-                please contact us!');
+                ''.Html::encode($user->username). Yii::t('messages', ' your account could not be activated,').'.<br>' . 
+                Yii::t('messages', 'please contact us!'));
         }
 
-        return $this->redirect('login');
+        return $this->redirect(Url::to(['login', 'lang' => Yii::$app->language]));
     }
 }

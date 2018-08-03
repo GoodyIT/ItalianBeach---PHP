@@ -8,7 +8,7 @@
                     <th data-column-id="email"><?=Yii::t('messages', 'Email')?></th>
                     <th data-column-id="phonenumber"><?=Yii::t('messages', 'Phonenumber')?></th>
                     <th data-column-id="country"><?=Yii::t('messages', 'Country')?></th>
-                    <th data-column-id="arrival"><?=Yii::t('messages', 'Arrival Date')?></th>
+                    <th data-column-id="checkin"><?=Yii::t('messages', 'checkin Date')?></th>
                     <th data-column-id="checkout"><?=Yii::t('messages', 'Checkout Date')?></th>
                     <th data-column-id="sunshade"><?=Yii::t('messages', 'Sunshade')?></th>
                     <th data-column-id="paidprice"><?=Yii::t('messages', 'Paid / Total')?>&nbsp;(€)</th>
@@ -25,7 +25,7 @@
                     <td><?=$guest[$i]['email']?></td>
                     <td><?=$guest[$i]['phonenumber']?></td>
                     <td><?=$guest[$i]['country']?></td>
-                    <td><?=$guest[$i]['arrival']?></td>
+                    <td><?=$guest[$i]['checkin']?></td>
                     <td><?=$guest[$i]['checkout']?></td>
                     <td><?=$guest[$i]['sunshade']?></td>
                     <td><?=$guest[$i]['paidprice']?>/<?=$guest[$i]['price']?></td>

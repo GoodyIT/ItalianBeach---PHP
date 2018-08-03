@@ -8,83 +8,118 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Guest */
 $lang = Yii::$app->language;
-if ($lang == "") $lang = 'en';
 
 $this->title = Yii::t('messages', 'Send Book Info');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('messages', 'Customers Info'), 'url' => ['guest/sendbookinfo', 'lang' => $lang]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('messages', 'Customers Info'), 'url' => ['guest/guestinfo', 'lang' => $lang]];
 $this->params['breadcrumbs'][] = Yii::t('messages', 'Customer Detail');
 
-$baseurl = Yii::getAlias("@appRoot") //"http://www.beachclubippocampo.rentals";
+//$baseurl = Yii::getAlias("@appRoot") //"http://www.beachclubippocampo.rentals";
 ?>
 
-<script type="text/javascript" src="<?=$baseurl?>/libs/jquery.fs.zoetrope.min.js"></script>
-<script type="text/javascript" src="<?=$baseurl?>/js/toe.min.js"></script>
-<script type="text/javascript" src="<?=$baseurl?>/js/jquery.mousewheel.min.js"></script>
-<script type="text/javascript" src="<?=$baseurl?>/js/imgViewer.min.js"></script>
-<script type="text/javascript" src="<?=$baseurl?>/src/imgNotes.js"></script>
- <script type="text/javascript" src="<?=$baseurl?>/js/bootstrap-notify.min.js"></script>  
+<style type="text/css">
+    @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+         /*
+        Label the data
+        */
+        .table > tbody > tr > td.my-cart:nth-of-type(1):before { content: "ID"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(2):before { content: "<?=Yii::t('messages', 'Username')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(3):before { content: "<?=Yii::t('messages', 'Address')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(4):before { content: "<?=Yii::t('messages', 'Email')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(5):before { content: "<?=Yii::t('messages', 'Country')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(6):before { content: "<?=Yii::t('messages', 'Phonenumber')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(7):before { content: "<?=Yii::t('messages', 'Check In')?>"; text-align: left;}
+        .table > tbody > tr > td.my-cart:nth-of-type(8):before { content: "<?=Yii::t('messages', 'Check Out')?>"; text-align: left;}
+        .table > tbody > tr > td.my-cart:nth-of-type(9):before { content: "<?=Yii::t('messages', 'Sunshade')?>"; text-align: left;}
+        .table > tbody > tr > td.my-cart:nth-of-type(10):before { content: "<?=Yii::t('messages', 'Paid / Total (€)')?>"; text-align: left; }
 
- <script type="text/javascript" src="<?=$baseurl?>/js/jQuery.print.js"></script>
- <link rel="stylesheet" href="<?=$baseurl?>/css/demostyles.css" media="screen">
+        .form-control{padding: 6px 3px;}
+
+        .table > tbody > tr > td.my-cart, .table > tfoot > tr > td.my-cart {
+            /* Behave  like a "row" */
+            /*border: 2px;*/
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 150px;
+        }
+
+        .container-fluid.azz
+        {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .container-fluid.azz .container
+        {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+</style>
 
 <div class="guest-detail">
-	<div id="imgdiv" align="center" >
-        <img id="image" src="<?=$baseurl?>/images/1.png" style="padding:20px;" width="100%" height="100%"/>
+	<div id="zoom_container">
+        <img id="sunshademap" src="<?=Yii::getAlias('@web')?>/../img/beachdev.jpg"/>
+        <div class="landmarks" data-show-at-zoom="100" data-allow-drag="true" data-allow-scale="false"> 
+        </div>
     </div>
 
     <div class="page-header">
-        <span class="sendbookinfo pull-left btn btn-success" style="margin-right: 10px"> 
+        <span class="sendbookinfo pull-left btn btn-success m-b-10" style="margin-right: 10px"> 
          <?=Yii::t('messages', 'Send Via Email')?>
         </span>
 
-        <span class="createPDF pull-left btn btn-success" style="margin-right: 10px"> 
+        <span class="createPDF pull-left btn btn-success m-b-10" style="margin-right: 10px"> 
             <?=Yii::t('messages', 'Create PDF for Book Info')?>
         </span> 
-        <span class="print pull-left btn btn-success"> 
+        <span class="print pull-left btn btn-success m-b-10"> 
             <?=Yii::t('messages', 'Print Book Info')?>
         </span>
         <div class="clearfix"></div>
     </div>
-   <div class="card">
+   <div class="card card-padding">
         <div class="card-header">
-            <h2></h2>
+
         </div>
-        <div class="table-responsive">
-        <table id="data-table-command" class="table table-striped table-vmiddle">
-            <thead>
-                <tr>
-                    <th data-column-id="sunshadeId" data-type="numeric" data-visible="false">sunshadeId</th>
-                    <th data-column-id="id" data-type="numeric">ID</th>
-                    <th data-column-id="username"><?=Yii::t('messages', 'Username')?></th>
-                    <th data-column-id="address"><?=Yii::t('messages', 'Address')?></th>
-                    <th data-column-id="email"><?=Yii::t('messages', 'Email')?></th>
-                    <th data-column-id="phonenumber"><?=Yii::t('messages', 'Phonenumber')?></th>
-                    <th data-column-id="country"><?=Yii::t('messages', 'Country')?></th>
-                    <th data-column-id="arrival"><?=Yii::t('messages', 'Arrival Date')?></th>
-                    <th data-column-id="checkout"><?=Yii::t('messages', 'Checkout Date')?></th>
-                    <th data-column-id="sunshade"><?=Yii::t('messages', 'Sunshade')?></th>
-                    <th data-column-id="paidprice"><?=Yii::t('messages', 'Paid / Total')?>&nbsp;(€)</th>
-                    <th data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php for ($i = 0; $i < count($guest); $i++) {?>
-                <tr>
-                    <td><?=$guest[$i]['Id']?></td>
-                    <td><?=$i+1?></td>
-                    <td><?=$guest[$i]['username']?></td>
-                    <td><?=$guest[$i]['address']?></td>
-                    <td><?=$guest[$i]['email']?></td>
-                    <td><?=$guest[$i]['phonenumber']?></td>
-                    <td><?=$guest[$i]['country']?></td>
-                    <td><?=$guest[$i]['arrival']?></td>
-                    <td><?=$guest[$i]['checkout']?></td>
-                    <td><?=$guest[$i]['sunshade']?></td>
-                    <td><?=$guest[$i]['paidprice']?>/<?=$guest[$i]['price']?></td>
-                </tr>
-                <?php }?>
-            </tbody>
-        </table>
+        <div class="table-responsive card-body card-padding">
+            <table id="data-table-command" class="table display hover lala" style="width: 100%">
+                <thead class="my-cart">
+                    <tr class="my-cart">
+                        <th class="my-cart" data-column-id="id" data-type="numeric">ID</th>
+                        <th class="my-cart  text-center" data-column-id="username"><?=Yii::t('messages', 'Username')?></th>
+                        <th class="my-cart  text-center" data-column-id="address"><?=Yii::t('messages', 'Address')?></th>
+                        <th class="my-cart  text-center" data-column-id="email"><?=Yii::t('messages', 'Email')?></th>
+                        <th class="my-cart" data-column-id="phonenumber"><?=Yii::t('messages', 'Phonenumber')?></th>
+                        <th class="my-cart  text-center" data-column-id="country"><?=Yii::t('messages', 'Country')?></th>
+                        <th class="my-cart  text-center" data-column-id="checkin"><?=Yii::t('messages', 'Check In')?></th>
+                        <th class="my-cart  text-center" data-column-id="checkout"><?=Yii::t('messages', 'Check Out')?></th>
+                        <th class="my-cart  text-center" data-column-id="sunshade"><?=Yii::t('messages', 'Sunshade')?></th>
+                        <th class="my-cart  text-center" data-column-id="paidprice"><?=Yii::t('messages', 'Paid / Total')?>&nbsp;(€)</th>
+                        <th class="my-cart  text-center" data-column-id="commands" dadata-sortable="false"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php for ($i = 0; $i < count($guest); $i++) {?>
+                    <tr class="my-cart">
+                        <td class="my-cart  text-center"><?=$i+1?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['username']?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['address']?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['email']?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['phonenumber']?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['country']?></td>
+                        <td class="my-cart  text-center"><?=date_create($guest[$i]['checkin'])->format('d M, Y')?></td>
+                        <td class="my-cart  text-center"><?=date_create($guest[$i]['checkout'])->format('d M, Y')?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['sunshade']?></td>
+                        <td class="my-cart  text-center"><?=$guest[$i]['paidprice']?>/<?=$guest[$i]['price']?></td>
+                        <td class="my-cart text-center">
+                            <button type="button" class="btn btn-icon command-view waves-effect waves-circle" 
+                            data-row-booklookupid = "<?=$guest[$i]['booklookupId']?>"
+                            data-row-bookid="<?=$guest[$i]['bookId']?>" data-row-sunshadeid="<?=$guest[$i]['Id']?>" title="<?=Yii::t('messages', 'View')?>"><span class="zmdi zmdi-view-toc zmdi-hc-fw"></span></button>
+                        </td>
+                    </tr>
+                    <?php }?>
+                </tbody>
+            </table>
         </div>
     </div>
     <form id="guest-form" method="post" action="<?= Yii::$app->urlManager->createUrl(["guest/sendbulkemail"]) ?>">
@@ -95,51 +130,41 @@ $baseurl = Yii::getAlias("@appRoot") //"http://www.beachclubippocampo.rentals";
 </div>
 
 <script type="text/javascript">
-          
-    tagWidth = 18;
-    tagFontSize = 6;
-    tagHeight = 18;
     lang = '<?=$lang?>';
-    dy = 6;
-    dx = 1;
-
     seat = '';
 
-    var $img;
     ;(function($) {
         $(document).ready(function() {
-       
-            var grid = $("#data-table-command").bootgrid({
-            caseSensitive: false,
-            css: {
-                icon: 'zmdi icon',
-                iconColumns: 'zmdi-view-module',
-                iconDown: 'zmdi-expand-more',
-                iconRefresh: 'zmdi-refresh',
-                iconUp: 'zmdi-expand-less'
-            },
-             formatters: {
-                commands: function (column, row)
-                {
-                    return "<button type=\"button\" class=\"btn btn-icon command-view waves-effect waves-circle\" data-row-id=\"" + row.sunshadeId + "\"><span class=\"zmdi zmdi-view-toc zmdi-hc-fw\"></span></button> ";
+            var option_lang =  "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
+            <?php if (Yii::$app->language == "it") : ?>
+                option_lang = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Italian.json";
+            <?php endif ?>
+            var grid = $("#data-table-command").DataTable({
+                dom: 'Bfrtip',
+                  buttons: [
+                      'copyHtml5',
+                      'excelHtml5',
+                      'csvHtml5',
+                      'pdfHtml5',
+                      'print'
+                  ],
+                "pagingType": "full_numbers",
+                "language": {
+                    "url" : option_lang
                 }
-            },
-            rowSelect: true,
-            selection: true,
-        }).
-        on("loaded.rs.jquery.bootgrid", function(e){
-            grid.find(".command-view").on("click", function(e)
-            {
-                 var id = $(this).data('row-id');
+            });
+            
+            $('.command-view').click(function(){
+                var sunshadeId = $(this).data('row-sunshadeid');
+                var bookId = $(this).data('row-bookid');
+                var booklookupId = $(this).data('row-booklookupid');
 
-                if(id != undefined)
-                    location.href = '<?=Url::to(["bookinfo/view"])?>' + '/' + id +'?lang='  + '<?=Yii::$app->language?>';
-           });
-        });
+                if(sunshadeId != undefined) {
+                    location.href = '<?=Url::to(["book-lookup/view", 'guestId' => $id, 'lang'=>Yii::$app->language])?>' + '&sunshadeId=' + sunshadeId + '&bookId=' + bookId + '&booklookupId=' + booklookupId;
+                }
+            })
 
-       
         	$('.sendbookinfo').click(function() {
-	            $('#guest-form').attr('action', '<?= Yii::$app->urlManager->createUrl(["guest/sendbulkemail"]) ?>')
 	            $('#guest-form').submit();
 	        });
 
@@ -162,102 +187,34 @@ $baseurl = Yii::getAlias("@appRoot") //"http://www.beachclubippocampo.rentals";
                 } else {
                 }
             }    
+        
+            checkPosition();
 
-            function addMarker(target, coord){
-                $img = target.imgNotes({
-                    onAdd: function() {
-                        this.options.vAll = "middle";
-                        this.options.hAll = "middle";
-                        this.options.tagHeight = tagHeight;
-                        this.options.tagWidth = tagWidth;
-                        this.options.tagFontSize = tagFontSize;
-                        var elem = $(document.createElement('span')).addClass("marker blue").css({
-                            height: tagHeight+"px",
-                            width: tagWidth + "px",
-                        }).attr("rel", "tooltip");
-                        return elem;
-                    }
-                });
-
-                $img.imgNotes("import", coord);
+            function Demo_Function () {
+                $('#sunshademap').smoothZoom('addLandmark', 
+                [
+                    <?php 
+                      for ($i = 0; $i < count($jsonValue); $i++) {
+                        $mark_image_name = "";
+                        if ($jsonValue[$i]['bookstate'] == "booked") {
+                            $mark_image_name = "red";
+                        } else {
+                            $mark_image_name = "blue";
+                        }
+                        echo "'" . '<div class="item mark" data-show-at-zoom="0" data-allow-scale = "true" data-position="'. $jsonValue[$i]['x'] .', '. $jsonValue[$i]['y'] .'">\
+                                <div>\
+                            <span class="sunshade text mark '.$mark_image_name.'" data-id="'. $jsonValue[$i]['Id'] .'" data-balloon-pos="up" data-balloon="'. $jsonValue[$i]['seat'] .'">\
+                                    </div>\
+                            </span>\
+                        </div>' . "' ,";
+                      } 
+                    ?>
+                    ]
+                );
             }
 
-            checkPosition();
-            addMarker($('#imgdiv').children('img'), <?= $jsonValue ?>);
+            Demo_Function();
 
-            var targets = $( '[rel~=tooltip]' ),
-                target  = false,
-                tooltip = false,
-                title   = false;
-
-            targets.bind( 'mouseenter', function()
-            {
-                target  = $( this );
-                tip     = target.attr( 'title' );
-                tooltip = $( '<div id="tooltip"></div>' );
-
-                if( !tip || tip == '' )
-                    return false;
-
-                target.removeAttr( 'title' );
-                tooltip.css( 'opacity', 0 )
-                    .html( tip )
-                    .appendTo( 'body' );
-
-                var init_tooltip = function()
-                {
-                    if( $( window ).width() < tooltip.outerWidth() * 1.5 )
-                        tooltip.css( 'max-width', $( window ).width() / 2 );
-                    else
-                        tooltip.css( 'max-width', 340 );
-
-                    var pos_left = target.offset().left + ( target.outerWidth() / 2 ) - ( tooltip.outerWidth() / 2 ),
-                        pos_top  = target.offset().top - tooltip.outerHeight() - 20;
-
-                    if( pos_left < 0 )
-                    {
-                        pos_left = target.offset().left + target.outerWidth() / 2 - 20;
-                        tooltip.addClass( 'left' );
-                    }
-                    else
-                        tooltip.removeClass( 'left' );
-
-                    if( pos_left + tooltip.outerWidth() > $( window ).width() )
-                    {
-                        pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
-                        tooltip.addClass( 'right' );
-                    }
-                    else
-                        tooltip.removeClass( 'right' );
-
-                    if( pos_top < 0 )
-                    {
-                        var pos_top  = target.offset().top + target.outerHeight();
-                        tooltip.addClass( 'top' );
-                    }
-                    else
-                        tooltip.removeClass( 'top' );
-
-                    tooltip.css( { left: pos_left, top: pos_top } )
-                        .animate( { top: '+=10', opacity: 1 }, 50 );
-                };
-
-                init_tooltip();
-                $( window ).resize( init_tooltip );
-
-                var remove_tooltip = function()
-                {
-                    tooltip.animate( { top: '-=10', opacity: 0 }, 50, function()
-                    {
-                        $( this ).remove();
-                    });
-
-                    target.attr( 'title', tip );
-                };
-
-                target.bind( 'mouseleave', remove_tooltip );
-                tooltip.bind( 'click', remove_tooltip );
-            });
         });
     })(jQuery);
 </script>

@@ -1,4 +1,4 @@
 <?php
 return [
-    'adminEmail' => 'imobilegang@gmail.com',
+    'adminEmail' => 'info@beachclubippocampo.it',
 ];

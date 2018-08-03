@@ -1,0 +1,506 @@
+Message-ID: <4ae971e52bafc79535367673f49f4d14@beachclubippocampo.rentals>
+Date: Tue, 08 Nov 2016 23:33:53 +0100
+Subject: Booking info
+From: info@beachclubippocampo.it
+To: admininfo@beachclubippocampo.it
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+<h4  style=3D"background: url(http://beachclubippocampo.rentals/img/disponi=
+bile.png) left center no-repeat; min-height: 55px;">
+    <a href=3D"http://beachclubippocampo.rentals" style=3D"display: flex; p=
+adding-left: 60px; padding-top: 8px;  color: blue"><strong>Beach Club Ippoc=
+ampo</strong>
+    </a>
+</h4>
+
+<h3>
+    <b>
+        Sunshade=20
+    :</b> E19=20
+</h3>
+
+<p>
+    <b>- Service Type :</b> 7 days</p>
+
+<p>
+    <b>- Number of Guests :</b> 4=20
+</p>
+
+<p>
+    <b>- Paid Money (=E2=82=AC) : </b> 20 / 150=20
+</p>
+
+<p>
+    <b>- Username :</b> t t=20
+</p>
+
+<p>
+    <b>- Address :</b>  t</p>
+       =20
+<p>
+    <b>- Email :</b> test@te.tt</p>
+
+<p>
+    <b>- Phone Number :</b> sd</p>
+
+<p>
+    <b>- Check In :</b>=20
+        15 Nov, 2016</p>
+
+<p>
+    <b>- Check Out :</b> 21 Nov, 2016=20
+</p>
+
+--------------------------------------------------------<div id=3D"yii-debu=
+g-toolbar" data-url=3D"/admin/debug/default/toolbar?tag=3D582252d10a0ae" st=
+yle=3D"display:none" class=3D"yii-debug-toolbar-bottom"></div><style>
+#yii-debug-toolbar-logo {
+    position: fixed;
+    right: 31px;
+    bottom: 4px;
+}
+
+.yii-debug-toolbar {
+    font: 11px Verdana, Arial, sans-serif;
+    text-align: left;
+    width: 96px;
+    height: 42px;
+    transition: width .3s ease;
+    z-index: 1000000;
+}
+
+.yii-debug-toolbar_active {
+    width: 100%;
+    height: auto;
+}
+
+.yii-debug-toolbar_position_top {
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+.yii-debug-toolbar_position_bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+}
+
+.yii-debug-toolbar__bar {
+    position: relative;
+    padding: 0;
+    font: 11px Verdana, Arial, sans-serif;
+    text-align: left;
+    height: 40px;
+    overflow: hidden;
+
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(top, rgb(255, 255, 255) 0%, rgb(247, 2=
+47, 247) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, rgb(247=
+, 247, 247) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(247, =
+247, 247) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=3D'#ff=
+ffff', endColorstr=3D'#f7f7f7', GradientType=3D0); /* IE6-9 */
+
+    border: 1px solid rgba(0, 0, 0, 0.11);
+
+    /* ensure debug toolbar text is displayed ltr even on rtl pages */
+    direction: ltr;
+}
+
+.yii-debug-toolbar__bar:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.yii-debug-toolbar__view {
+    height: 0;
+    overflow: hidden;
+    background: white;
+    transition: height .3s ease;
+}
+
+.yii-debug-toolbar__view iframe {
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    height: 100%;
+    width: 100%;
+    border: 0;
+}
+
+.yii-debug-toolbar_iframe_active .yii-debug-toolbar__view {
+    height: 100%;
+}
+
+.yii-debug-toolbar__block {
+    float: left;
+    margin: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.11);
+    padding: 4px 8px;
+    line-height: 32px;
+    white-space: nowrap;
+}
+
+.yii-debug-toolbar__block_active {
+    background: rgb(247, 247, 247); /* Old browsers */
+    background: -moz-linear-gradient(top, rgb(247, 247, 247) 0%, rgb(224, 2=
+24, 224) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgb(247, 247, 247) 0%, rgb(224=
+, 224, 224) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgb(247, 247, 247) 0%, rgb(224, =
+224, 224) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=3D'#f7=
+f7f7', endColorstr=3D'#e0e0e0', GradientType=3D0); /* IE6-9 */
+}
+
+.yii-debug-toolbar__block a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.yii-debug-toolbar__block img {
+    vertical-align: middle;
+}
+
+.yii-debug-toolbar__label {
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 14px;
+    white-space: nowrap;
+    vertical-align: baseline;
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #999999;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.yii-debug-toolbar__label:empty {
+    display: none;
+}
+
+a.yii-debug-toolbar__label:hover,
+a.yii-debug-toolbar__label:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.yii-debug-toolbar__label_important {
+    background-color: #b94a48;
+}
+
+.yii-debug-toolbar__label_important[href] {
+    background-color: #953b39;
+}
+
+.yii-debug-toolbar__label_warning,
+.yii-debug-toolbar__badge_warning {
+    background-color: #f89406;
+}
+
+.yii-debug-toolbar__label_warning[href] {
+    background-color: #c67605;
+}
+
+.yii-debug-toolbar__label_success {
+    background-color: #468847;
+}
+
+.yii-debug-toolbar__label_success[href] {
+    background-color: #356635;
+}
+
+.yii-debug-toolbar__label_info {
+    background-color: #3a87ad;
+}
+
+.yii-debug-toolbar__label_info[href] {
+    background-color: #2d6987;
+}
+
+.yii-debug-toolbar__label_inverse,
+.yii-debug-toolbar__badge_inverse {
+    background-color: #333333;
+}
+
+.yii-debug-toolbar__label_inverse[href],
+.yii-debug-toolbar__badge_inverse[href] {
+    background-color: #1a1a1a;
+}
+
+.yii-debug-toolbar__title {
+    background: rgb(247, 247, 247); /* Old browsers */
+    background: -moz-linear-gradient(top, rgb(247, 247, 247) 0%, rgb(224, 2=
+24, 224) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgb(247, 247, 247) 0%, rgb(224=
+, 224, 224) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgb(247, 247, 247) 0%, rgb(224, =
+224, 224) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=3D'#f7=
+f7f7', endColorstr=3D'#e0e0e0', GradientType=3D0); /* IE6-9 */
+}
+
+.yii-debug-toolbar__toggle,
+.yii-debug-toolbar__external {
+    cursor: pointer;
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    font-weight: 100;
+    line-height: 28px;
+    color: #ffffff;
+    text-align: center;
+
+    opacity: 0.5;
+    filter: alpha(opacity=3D50);
+
+    transition: opacity .3s ease;
+}
+
+.yii-debug-toolbar__toggle:hover,
+.yii-debug-toolbar__toggle:focus,
+.yii-debug-toolbar__external:hover,
+.yii-debug-toolbar__external:focus {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.9;
+    filter: alpha(opacity=3D90);
+}
+
+.yii-debug-toolbar__toggle-icon,
+.yii-debug-toolbar__external-icon {
+    display: inline-block;
+
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.yii-debug-toolbar__toggle {
+    right: 10px;
+    top: 4px;
+}
+
+.yii-debug-toolbar__toggle-icon {
+    padding: 7px 0;
+    width: 10px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cD=
+ovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iM=
+CAwIDUwIDUwIj48cGF0aCBmaWxsPSIjNDQ0IiBkPSJNMTUuNTYzIDQwLjgzNmEuOTk3Ljk5NyAw=
+IDAgMCAxLjQxNCAwbDE1LTE1YTEgMSAwIDAgMCAwLTEuNDE0bC0xNS0xNWExIDEgMCAwIDAtMS4=
+0MTQgMS40MTRMMjkuODU2IDI1LjEzIDE1LjU2MyAzOS40MmExIDEgMCAwIDAgMCAxLjQxNHoiLz=
+48L3N2Zz4=3D');
+    transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+}
+
+.yii-debug-toolbar_active .yii-debug-toolbar__toggle-icon {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.yii-debug-toolbar_iframe_active .yii-debug-toolbar__toggle-icon {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.yii-debug-toolbar__external {
+    display: none;
+    right: 50px;
+    top: 4px;
+}
+
+.yii-debug-toolbar_iframe_active .yii-debug-toolbar__external {
+    display: block;
+}
+
+.yii-debug-toolbar__external-icon {
+    padding: 8px 0;
+    width: 14px;
+    height: 14px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cD=
+ovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iM=
+CAwIDUwIDUwIj48cGF0aCBmaWxsPSIjNDQ0IiBkPSJNMzkuNjQyIDkuNzIyYTEuMDEgMS4wMSAw=
+IDAgMC0uMzgyLS4wNzdIMjguMTAzYTEgMSAwIDAgMCAwIDJoOC43NDNMMjEuNyAyNi43OWExIDE=
+gMCAwIDAgMS40MTQgMS40MTVMMzguMjYgMTMuMDZ2OC43NDNhMSAxIDAgMCAwIDIgMFYxMC42ND=
+ZhMS4wMDUgMS4wMDUgMCAwIDAtLjYxOC0uOTI0eiIvPjxwYXRoIGQ9Ik0zOS4yNiAyNy45ODVhM=
+SAxIDAgMCAwLTEgMXYxMC42NmgtMjh2LTI4aDEwLjY4M2ExIDEgMCAwIDAgMC0ySDkuMjZhMSAx=
+IDAgMCAwLTEgMXYzMGExIDEgMCAwIDAgMSAxaDMwYTEgMSAwIDAgMCAxLTF2LTExLjY2YTEgMSA=
+wIDAgMC0xLTF6Ii8+PC9zdmc+');
+}
+</style><script>(function () {
+    'use strict';
+
+    var findToolbar =3D function () {
+            return document.querySelector('#yii-debug-toolbar');
+        },
+        ajax =3D function (url, settings) {
+            var xhr =3D window.XMLHttpRequest ? new XMLHttpRequest() : new =
+ActiveXObject('Microsoft.XMLHTTP');
+            settings =3D settings || {};
+            xhr.open(settings.method || 'GET', url, true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.setRequestHeader('Accept', 'text/html');
+            xhr.onreadystatechange =3D function (state) {
+                if (xhr.readyState =3D=3D=3D 4) {
+                    if (xhr.status =3D=3D=3D 200 && settings.success) {
+                        settings.success(xhr);
+                    } else if (xhr.status !=3D 200 && settings.error) {
+                        settings.error(xhr);
+                    }
+                }
+            };
+            xhr.send(settings.data || '');
+        },
+        url,
+        div,
+        toolbarEl =3D findToolbar(),
+        barSelector =3D '.yii-debug-toolbar__bar',
+        viewSelector =3D '.yii-debug-toolbar__view',
+        blockSelector =3D '.yii-debug-toolbar__block',
+        toggleSelector =3D '.yii-debug-toolbar__toggle',
+        externalSelector =3D '.yii-debug-toolbar__external',
+
+        CACHE_KEY =3D 'yii-debug-toolbar',
+        ACTIVE_STATE =3D 'active',
+
+        activeClass =3D 'yii-debug-toolbar_active',
+        iframeActiveClass =3D 'yii-debug-toolbar_iframe_active',
+        titleClass =3D 'yii-debug-toolbar__title',
+        blockClass =3D 'yii-debug-toolbar__block',
+        blockActiveClass =3D 'yii-debug-toolbar__block_active';
+
+    if (toolbarEl) {
+        url =3D toolbarEl.getAttribute('data-url');
+
+        ajax(url, {
+            success: function (xhr) {
+                div =3D document.createElement('div');
+                div.innerHTML =3D xhr.responseText;
+
+                toolbarEl.parentNode.replaceChild(div, toolbarEl);
+
+                showToolbar(findToolbar());
+            },
+            error: function (xhr) {
+                toolbarEl.innerHTML =3D xhr.responseText;
+            }
+        });
+    }
+
+    function showToolbar(toolbarEl) {
+        var barEl =3D toolbarEl.querySelector(barSelector),
+            viewEl =3D toolbarEl.querySelector(viewSelector),
+            toggleEl =3D toolbarEl.querySelector(toggleSelector),
+            externalEl =3D toolbarEl.querySelector(externalSelector),
+            blockEls =3D barEl.querySelectorAll(blockSelector),
+            iframeEl =3D viewEl.querySelector('iframe'),
+            iframeHeight =3D function () {
+                return (window.innerHeight * 0.7) + 'px';
+            },
+            isIframeActive =3D function () {
+                return toolbarEl.classList.contains(iframeActiveClass);
+            },
+            showIframe =3D function (href) {
+                toolbarEl.classList.add(iframeActiveClass);
+
+                iframeEl.src =3D externalEl.href =3D href;
+                viewEl.style.height =3D iframeHeight();
+            },
+            hideIframe =3D function () {
+                toolbarEl.classList.remove(iframeActiveClass);
+                removeActiveBlocksCls();
+
+                externalEl.href =3D '#';
+                viewEl.style.height =3D '';
+            },
+            removeActiveBlocksCls =3D function () {
+                [].forEach.call(blockEls, function (el) {
+                    el.classList.remove(blockActiveClass);
+                });
+            },
+            toggleToolbarClass =3D function (className) {
+                if (toolbarEl.classList.contains(className)) {
+                    toolbarEl.classList.remove(className);
+                } else {
+                    toolbarEl.classList.add(className);
+                }
+            },
+            toggleStorageState =3D function (key, value) {
+                if (window.localStorage) {
+                    var item =3D localStorage.getItem(key);
+
+                    if (item) {
+                        localStorage.removeItem(key);
+                    } else {
+                        localStorage.setItem(key, value);
+                    }
+                }
+            },
+            restoreStorageState =3D function (key) {
+                if (window.localStorage) {
+                    return localStorage.getItem(key);
+                }
+            },
+            togglePosition =3D function () {
+                if (isIframeActive()) {
+                    hideIframe();
+                } else {
+                    toggleToolbarClass(activeClass);
+                    toggleStorageState(CACHE_KEY, ACTIVE_STATE);
+                }
+            };
+
+        toolbarEl.style.display =3D 'block';
+
+        if (restoreStorageState(CACHE_KEY) =3D=3D ACTIVE_STATE) {
+            toolbarEl.classList.add(activeClass);
+        }
+
+        window.onresize =3D function () {
+            if (toolbarEl.classList.contains(iframeActiveClass)) {
+                viewEl.style.height =3D iframeHeight();
+            }
+        };
+
+        barEl.onclick =3D function (e) {
+            var target =3D e.target,
+                block =3D findAncestor(target, blockClass);
+
+            if (block && !block.classList.contains(titleClass)) {
+                while (target !=3D=3D this) {
+                    if (target.href) {
+                        removeActiveBlocksCls();
+                        block.classList.add(blockActiveClass);
+                        showIframe(target.href);
+                    }
+                    target =3D target.parentNode;
+                }
+
+                e.preventDefault();
+            }
+        };
+
+        toggleEl.onclick =3D togglePosition;
+    }
+
+    function findAncestor(el, cls) {
+        while ((el =3D el.parentElement) && !el.classList.contains(cls));
+        return el;
+    }
+})();
+</script>

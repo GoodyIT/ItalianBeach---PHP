@@ -14,6 +14,7 @@ class ContactForm extends Model
     public $subject;
     public $body;
     public $verifyCode;
+    public $privacyPolicy;
 
     /**
      * Returns the validation rules for attributes.
@@ -23,8 +24,9 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            [['name', 'email', 'subject', 'body', 'verifyCode'], 'required'],
+            [['name', 'email', 'subject', 'body', 'verifyCode', 'privacyPolicy'], 'required'],
             ['email', 'email'],
+            ['privacyPolicy', 'boolean'],
             ['verifyCode', 'captcha'],
         ];
     }
@@ -42,6 +44,7 @@ class ContactForm extends Model
             'subject' => Yii::t('messages', 'Subject'),
             'body' => Yii::t('messages', 'Text'),
             'verifyCode' => Yii::t('messages', 'Verification Code'),
+            'privacyPolicy' => Yii::t('messages', 'Accept Privacy Policy Disclaimer')
         ];
     }
 

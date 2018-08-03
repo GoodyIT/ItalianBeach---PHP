@@ -7,6 +7,7 @@ use yii\helpers\Url;
 /* @var $model frontend\models\Guest */
 /* @var $form yii\widgets\ActiveForm */
 
+$lang = Yii::$app->language;
 ?>
 
 <div class="panel panel-success">
@@ -16,39 +17,37 @@ use yii\helpers\Url;
     <div class="panel-body">
         <div class="guest-form">
 
-            <?php $form = ActiveForm::begin([
-                'id' => 'guest-form',
-                'enableAjaxValidation' => false,
-            ]); ?>
+           <form id="guest-form" action="<?=Url::to(['guest/create', 'lang' => $lang])?>" method="POST" data-toggle="validator" role="form">
+
+            <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 
             <?=Html::hiddenInput('Guest[Id]', $model->Id);?>
 
-            <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
+            <input type="text" name="Guest[firstname]" value="<?=$model->firstname?>">
 
-            <?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
+            <input type="text" name="Guest[lastname]" value="<?=$model->lastname?>">
+
+            <input type="text" name="Guest[lastname]" value="<?=$model->lastname?>">
 
             <?=Html::hiddenInput('Guest[email]', $model->email);?>
 
-            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'zipcode')->textInput(['maxlength' => true]) ?>
+            <input type="text" name="Guest[address]" value="<?=$model->address?>">
 
-            <?=Html::hiddenInput('Guest[recurringcount]', $model->recurringcount);?>
+            <input type="text" name="Guest[city]" value="<?=$model->city?>">
 
-            <?=Html::hiddenInput('Guest[paymentId]', $model->paymentId);?>
+            <input type="text" name="Guest[zipcode]" value="<?=$model->zipcode?>">
 
             <div class="form-group field-guest-country">
                 <label class="control-label" for="guest-country"><?=Yii::t('messages', 'Country')?></label>
                 <?php require_once 'country.php'; ?>
             </div>
 
-            <?= $form->field($model, 'phonenumber')->textInput(['maxlength' => true]) ?>
-
+            <input type="text" name="Guest[phonenumber]" value="<?=$model->phonenumber?>">
             <br>
 
             <?= Html::submitButton($model->isNewRecord ? Yii::t('messages', 'CONFIRM BOOKING') : Yii::t('messages', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary  btn-update']) ?>
             <button class="btn btn-danger waves-effect delete-customer pull-right"><?=Yii::t('messages', 'Delete')?></button>
-            <?php ActiveForm::end(); ?>
+            </form>
         </div>
     </div>
 </div>

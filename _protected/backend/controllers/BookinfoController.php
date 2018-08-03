@@ -42,9 +42,9 @@ class BookinfoController extends \common\component\BaseController
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['bulk', 'index', 'view', 'create', 'bookinfo', 'bookupdate', 'logout', 'noprice', 'roombook'],
+                        'actions' => ['index', 'view', 'create', 'logout', 'noprice', 'roombook', 'checkbulkbookavailability', 'saveintosession', ],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
                 ],
             ],
@@ -57,194 +57,73 @@ class BookinfoController extends \common\component\BaseController
         ];
     }
 
-    public function actionBookupdate(){
-        $id = Yii::$app->request->get('id');
-        $selectedId = Yii::$app->request->get('selectedId');
-        $guestId = Bookinfo::getGuestId($id);
-
-        $sunshade = $this->findModel($selectedId)->seat;
-
-        $lang = Yii::$app->request->get('lang');
-        
-
-        $rowRestrictionLists = Price::getRowristriction();
-        $priceLists = Price::getAllInfo();
-        $serviceTypeLists = Servicetype::getAllInfo($lang);
-
-        $guest = Guest::findOne($guestId['guestId']);
-
-
-         if (Yii::$app->request->post('Book')) {
-            
-            $array=Yii::$app->request->post('Book');
-            $array_price = Yii::$app->request->post('Milestone_Price');
-            $array_date = Yii::$app->request->post('Milestone_Date');
-
-            $paidAmount = array_sum($array_price);
-            $bookId = Book::saveWithPost($array, $paidAmount);
-            $timestamp = time(); // milestonegroupId for tbl_bookinfo & tbl_getmilestone
-            Bookinfo::updateInfo($array['sunshadeseat'], $guestId['guestId'], $bookId, "booked", $timestamp);
-            // Bookhistory::saveHistory($guestId, "booked", $array['sunshadeseat'], $bookId, $paidAmount, $array['guests'],  $_SERVER['REMOTE_ADDR']);
-
-          // Milestone
-            $array_price = Yii::$app->request->post('Milestone_Price');
-            $array_date = Yii::$app->request->post('Milestone_Date');
-            $return = Guestmilestone::saveWithGuestId($array_price, $array_date, $guestId, $array['sunshadeseat'], $timestamp);
-
-           // notification
-            Notificationreminder::resetAdminReminder();
-            $title = ' Made a Reservation on Sunshade ' .  $array['sunshadeseat'];
-            $title_it = ' Ha prenotato il Parasole ' . $array['sunshadeseat'];
-
-            Notification::saveNewNotification($title, $title_it, $array['sunshadeseat']);
-
-            $guest = Bookinfo::getCurrentBookinfo($array['sunshadeseat']);
-            $lang = Yii::$app->request->post('lang');
-            
-            $emailBody = $this->buildEmailBody($guest, $lang);
-            $message = Yii::$app->mailer->compose()
-                        ->setFrom(Yii::$app->params['supportEmail'])
-                        ->setTo($guest['email'])
-                        ->setSubject('Booking info')
-                        ->setHtmlBody($emailBody)
-                        ->send();
-            
-            $adminEmails = User::getAllEmails();
-            foreach ($adminEmails as $key => $value) {
-                $message =   Yii::$app->mailer->compose()
-                        ->setFrom(Yii::$app->params['supportEmail'])
-                        ->setTo($value['email'])
-                        ->setSubject('Booking info')
-                        ->setHtmlBody($emailBody)
-                        ->send();
-            }        
-            
-           return $this->redirect(Url::to(['view', 'id' => $guest['Id']]));
-        } else {
-            $seat = $sunshade[0];
-        if ($seat == 1) {
-            $seat = $sunshade;
-        }
-        
-        if (!isset($rowRestrictionLists[$seat])) {
-            return $this->redirect(Url::to(['noprice', 'seat' => $seat]));
-        }
-        $rowRestriction = $rowRestrictionLists[$seat];
-
-            return $this->render('bookupdate', [
-                'id' => [$id],
-                'guest' => $guest,
-                'selectedId' => $selectedId,
-                'seat' => $seat,
-                'rowRestriction' => $rowRestriction,
-                'sunshade' => $sunshade,
-                'rowRestrictionLists' => $rowRestrictionLists,
-                'priceLists' => $priceLists,
-                'serviceTypeLists' => $serviceTypeLists,
-            ]);
-        }
-    }
-   
-    public function actionBulk(){
-        $selection= (array)Yii::$app->request->post('selection');
-        if (empty($selection)) {
-            $selection= (array)Yii::$app->request->get('selection');
-            if (empty($selection)) {
-                return $this->redirect(Url::to(['index']));
-            }
-        }
-
-        $sunshade = $this->findModel($selection)->seat;
-
-        $lang = Yii::$app->request->get('lang');
-        if (!$lang) {
-            $lang = Yii::$app->language;
-        }
-
-        $rowRestrictionLists = Price::getRowristriction();
-        $priceLists = Price::getAllInfo();
-        $serviceTypeLists = Servicetype::getAllInfo($lang);
-
-        $guest = new Guest();
-
-        if (Yii::$app->request->post('Book')) {
-            
-            $guestId =Guest::saveWithPost(Yii::$app->request->post('Guest'), "Booked");
-
-            $array=Yii::$app->request->post('Book');
-            $array_price = Yii::$app->request->post('Milestone_Price');
-            $array_date = Yii::$app->request->post('Milestone_Date');
-            
-            $paidAmount = array_sum($array_price);
-            $bookId = Book::saveWithPost($array, $paidAmount);
-            $timestamp = time(); // milestonegroupId for tbl_bookinfo & tbl_getmilestone
-            Bookinfo::updateInfo($array['sunshadeseat'], $guestId, $bookId, "booked", $timestamp);
-            // Bookhistory::saveHistory($guestId, "booked", $array['sunshadeseat'], $bookId, $paidAmount, $array['guests'],  $_SERVER['REMOTE_ADDR']);
-
-          // Milestone
-            $array_price = Yii::$app->request->post('Milestone_Price');
-            $array_date = Yii::$app->request->post('Milestone_Date');
-            $return = Guestmilestone::saveWithGuestId($array_price, $array_date, $guestId, $array['sunshadeseat'], $timestamp);
-
-           // notification
-            Notificationreminder::resetAdminReminder();
-
-             $title = ' Made a Reservation on Sunshade ' .  $array['sunshadeseat'];
-            $title_it = ' Ha prenotato il Parasole ' . $array['sunshadeseat'];
-
-            Notification::saveNewNotification($title, $title_it, $array['sunshadeseat']);
-
-            $guest = Bookinfo::getCurrentBookinfo($array['sunshadeseat']);
-            $lang = Yii::$app->request->post('lang');
-            
-            $emailBody = $this->buildEmailBody($guest, $lang);
-            $message = Yii::$app->mailer->compose()
-                        ->setFrom(Yii::$app->params['supportEmail'])
-                        ->setTo($guest['email'])
-                        ->setSubject('Booking info')
-                        ->setHtmlBody($emailBody)
-                        ->send();
-            
-            $adminEmails = User::getAllEmails();
-            foreach ($adminEmails as $key => $value) {
-                $message =   Yii::$app->mailer->compose()
-                        ->setFrom(Yii::$app->params['supportEmail'])
-                        ->setTo($value['email'])
-                        ->setSubject('Booking info')
-                        ->setHtmlBody($emailBody)
-                        ->send();
-            }        
-            
-           return $this->redirect(Url::to(['view', 'id' => $guest['Id'], 'lang' => $lang]));
-        } else {
-             $seat = $sunshade[0];
-            if ($seat == 1) {
-                $seat = $sunshade;
-            }
-            
-            if (!isset($rowRestrictionLists[$seat])) {
-                return $this->redirect(Url::to(['noprice', 'seat' => $seat]));
-            }
-            $rowRestriction = $rowRestrictionLists[$seat];
-
-
-            return $this->render('bulkupdate', [
-                'selection' => $selection,
-                'guest' => $guest,
-                'seat' => $seat,
-                'rowRestriction' => $rowRestriction,
-                'model' => $sunshade,
-                'rowRestrictionLists' => $rowRestrictionLists,
-                'priceLists' => $priceLists,
-                'serviceTypeLists' => $serviceTypeLists,
-            ]);
-        }
-    }
-
     public function actionNoprice($seat) {
         return $this->renderPartial('noprice', [
                 'seat' => $seat
         ]);
+    }
+
+    public function actionCheckbulkbookavailability(){
+        $selection= (array)Yii::$app->request->post('selection');
+        $selection = implode(',', $selection);
+        /*print_r($selection);
+        return;*/
+        $_allSunshades = Bookinfo::getAllSunshades($selection);
+        $allSunshades = array();
+        foreach ($_allSunshades as $key => $value) {
+            array_push($allSunshades, $value['seat']);
+        }
+
+        $rows = Bookinfo::getSunshadeRows($selection);
+        if (intval($selection[0]) > 167)  {
+            $rows = Bookinfo::getRooms($selection);
+        }
+
+        if (count($rows) == 1) {
+            echo "1";
+            return;
+        }
+
+        $priceLists = Price::getAllInfo();
+
+        $newPriceLists = array();
+
+        if (count($rows) > 1) {
+            if (intval($rows[0][0]) != "1") {
+                for ($i = 1; $i <= 4; $i++) { 
+                    $serviceExist = true;
+                    foreach ($rows as $key => $value) {
+                        if (!isset($priceLists[$value][$i])) {
+                            $serviceExist = false;
+                        }
+                    }
+                    if ($serviceExist) {
+                        foreach ($rows as $key => $value) {
+                            $newPriceLists[$value][$i] =  $priceLists[$value][$i];
+                        }
+                    }
+                }
+            } else {
+                $serviceExist = true;
+                foreach ($rows as $key => $value) {
+                    if (!isset($priceLists[$value][5])) {
+                        $serviceExist = false;
+                    }
+                }
+                if ($serviceExist) {
+                    foreach ($rows as $key => $value) {
+                        $newPriceLists[$value][5] =  $priceLists[$value][5];
+                    }
+                }
+            }
+        } 
+
+        if (count($newPriceLists) > 0) {
+            echo "1";
+        } else {
+            echo "0";
+        }
+        return;
     }
 
     /**
@@ -256,9 +135,16 @@ class BookinfoController extends \common\component\BaseController
         $searchModel = new BookinfoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $session = Yii::$app->session;
+        if (!$session->isActive) $session->open();
+        $selection = $session['selection'];
+
+        $session->close();
+
         return $this->render('bookinfo', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'selection' => $selection,
         ]);
     }
 
@@ -272,17 +158,6 @@ class BookinfoController extends \common\component\BaseController
         ]);
     }
     
-    public function actionBookinfo() {
-      //  $bookinfolist = Bookinfo::getInfoForBackend();
-        $searchModel = new \frontend\models\BookinfoSearch();
-        
-       $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->render('bookinfo', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
     /**
      * Displays a single Bookinfo model.
      * @param integer $id
@@ -302,16 +177,17 @@ class BookinfoController extends \common\component\BaseController
             $originPaidprice = Yii::$app->request->post('paidprice'); 
             $bookId = Yii::$app->request->post('bookId');
             $milestoneCompleteState = Yii::$app->request->post('milestoneCompleteState');
-            
-            $return = Guestmilestone::saveWithGuestId($array_price, $array_date, $guestId, $sunshadeseat, $timestamp);
-            Bookinfo::updateTimestamp($sunshadeseat, $timestamp);
 
-            if (!$milestoneCompleteState && array_sum($array_price) > 0) {
-                $title = ' Update Milestones on Sunshade ' .  $array['sunshadeseat'];
-                $title_it = ' Ha Aggiornato gli Acconti sul Parasole ' . $array['sunshadeseat'];
+            Guestmilestone::saveWithGuestId($array_price, $array_date, $bookId, $guestId, $sunshadeseat, $timestamp);
+            BookLookup::updateTimestamp($sunshadeseat, $bookId, $guestId, $timestamp);
+
+            if (!$milestoneCompleteState && array_sum($array_price) > 0)
+            {
+                $title = ' Update Milestones on Sunshade ' .  $sunshadeseat;
+                $title_it = ' Ha Aggiornato gli Acconti sul Parasole ' . $sunshadeseat;
 
                 Notification::saveNewNotification($title, $title_it, $sunshadeseat);
-                Yii::$app->getDb()->createCommand('UPDATE `tbl_book` SET `paidprice`= :paidprice WHERE `Id` = :Id', [':paidprice' => $originPaidprice + array_sum($array_price), ':Id' => $bookId])->execute();
+                Book::updateInfoWithBookId($bookId, $originPaidprice, $array_price);
             }
         }
 
@@ -321,7 +197,7 @@ class BookinfoController extends \common\component\BaseController
 
         return $this->render('view', [
             'model' => $model,
-            'guest' => $guest,
+            'guest' => $q,
             'book' => $book,
             'milestones' => $milestones
         ]);

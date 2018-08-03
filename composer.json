@@ -17,10 +17,7 @@
         "nenad/yii2-password-strength": "*",
         "mihaildev/yii2-ckeditor": "*",
         "machour/yii2-notifications": "@dev",
-        "robregonm/yii2-pdf": "*",
-        "resque/yii2-resque": "*",
-        "resque/yii2-resque": "dev-master",
-        "yiisoft/yii2-redis": "~2.0.0"
+        "robregonm/yii2-pdf": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

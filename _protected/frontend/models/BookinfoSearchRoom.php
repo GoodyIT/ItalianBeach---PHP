@@ -67,7 +67,7 @@ class BookinfoSearchRoom extends Bookinfo
         ]);
 
         $query->andFilterWhere([
-            '>=', 'Id', 176
+            '>=', 'Id', 168
         ]);
 
         $query->andFilterWhere(['like', 'bookstate', $this->bookstate])

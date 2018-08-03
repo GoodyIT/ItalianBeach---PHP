@@ -1,9 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\helpers\Url;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Guest */
@@ -13,40 +11,77 @@ $this->params['breadcrumbs'][] = Yii::t('messages', 'Customers Info');
 
 ?>
 
+<style type="text/css">
+    @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+         /*
+        Label the data
+        */
+        .table > tbody > tr > td.my-cart:nth-of-type(1):before { content: "ID"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(2):before { content: "<?=Yii::t('messages', 'Username')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(3):before { content: "<?=Yii::t('messages', 'Country')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(4):before { content: "<?=Yii::t('messages', 'Email')?>"; text-align: left; }
+        .table > tbody > tr > td.my-cart:nth-of-type(5):before { content: "<?=Yii::t('messages', 'Telephone/Mobile')?>"; text-align: left;}
+        .table > tbody > tr > td.my-cart:nth-of-type(6):before { content: "<?=Yii::t('messages', 'Total Paid')?>"; text-align: left;}
+        .table > tbody > tr > td.my-cart:nth-of-type(7):before { content: "<?=Yii::t('messages', '# of Bookings')?>"; text-align: left;}
+
+        .form-control{padding: 6px 3px;}
+
+        .table > tbody > tr > td, .table > tfoot > tr > td.my-cart {
+            /* Behave  like a "row" */
+            /*border: 2px;*/
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 150px;
+        }
+
+        .container-fluid.azz
+        {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .container-fluid.azz .container
+        {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+</style>
+
 <div class="guest-view">
 <form id="sendinfo-form" method="post">
-    <div class="card">
+    <div class="card card-padding">
         <div class="card-header">
-            <h2></h2>
         </div>
-        <div class="table-responsive">
-        <table id="data-table-command" class="table table-striped table-vmiddle">
-            <thead>
-                <tr>
-                    <th data-column-id="sunshadeId" data-type="numeric" data-visible="false">sunshadeId</th>
-                    <th data-column-id="id" data-type="numeric">ID</th>
-                    <th data-column-id="username"><?=Yii::t('messages', 'Username')?></th>
-                    <th data-column-id="country"><?=Yii::t('messages', 'Country')?></th>
-                    <th data-column-id="state"><?=Yii::t('messages', 'State')?></th>
-                    <th data-column-id="email"><?=Yii::t('messages', 'Email')?></th>
-                    <th data-column-id="phonenumber"><?=Yii::t('messages', 'Telephone/Mobile')?></th>
-                    <th data-column-id="price"><?=Yii::t('messages', 'Total Paid')?>&nbsp;(€)</th>
-                    <th data-column-id="numberOfBooking"><?=Yii::t('messages', '# of Bookings')?></th>
-                    <th data-column-id="commands" data-formatter="commands" data-sortable="false"></th>
+        <div class="card-body card-padding table-responsive">
+        <table id="guestinfo-data" class="table display hover w-100">
+            <thead class="my-cart">
+                <tr class="my-cart">
+                    <th class="my-cart text-center" data-column-id="id" data-type="numeric">ID</th>
+                    <th class="my-cart text-center" data-column-id="username"><?=Yii::t('messages', 'Username')?></th>
+                    <th class="my-cart text-center" data-column-id="country"><?=Yii::t('messages', 'Country')?></th>
+                    <th class="my-cart text-center" data-column-id="email"><?=Yii::t('messages', 'Email')?></th>
+                    <th class="my-cart text-center" data-column-id="phonenumber"><?=Yii::t('messages', 'Telephone/Mobile')?></th>
+                    <th class="my-cart text-center" data-column-id="price"><?=Yii::t('messages', 'Total Paid')?>&nbsp;(€)</th>
+                    <th class="my-cart text-center" data-column-id="numberOfBooking"><?=Yii::t('messages', '# of Bookings')?></th>
+                    <th class="my-cart text-center" data-column-id="commands" data-sortable="false"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="my-cart">
             <?php for ($i = 0; $i < count($guest); $i++) {?>
-                <tr>
-                    <td><?=$guest[$i]['Id']?></td>
-                    <td><?=$i+1?></td>
-                    <td><?=$guest[$i]['username']?></td>
-                    <td><?=$guest[$i]['country']?></td>
-                    <td><?=$guest[$i]['state']?></td>
-                    <td><?=$guest[$i]['email']?></td>
-                    <td><?=$guest[$i]['phonenumber']?></td>
-                    <td><?=$guest[$i]['paidprice']?></td>
-                    <td><?=$guest[$i]['numberOfBooking']?></td>
+                <tr class="my-cart">
+                    <td class="my-cart  text-center"><?=$i+1?></td>
+                    <td class="my-cart  text-center"><?=$guest[$i]['username']?></td>
+                    <td class="my-cart  text-center"><?=$guest[$i]['country']?></td>
+                    <td class="my-cart  text-center"><?=$guest[$i]['email']?></td>
+                    <td class="my-cart  text-center"><?=$guest[$i]['phonenumber']?></td>
+                    <td class="my-cart  text-center"><?=$guest[$i]['totalpaid']?></td>
+                    <td class="my-cart  text-center"><?=$guest[$i]['recurringcount']?></td>
+                    <td class="my-cart  text-center">
+                        <button type="button" class="btn btn-icon command-view waves-effect waves-circle" data-row-guestid="<?=$guest[$i]['guestId']?>" title="<?=Yii::t('messages', 'View')?>"><span class="zmdi zmdi-view-toc zmdi-hc-fw"></span></button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-icon command-plus waves-effect waves-circle bgm-green" data-toggle="modal" data-target="#recursive-booking" data-row-guestid="<?=$guest[$i]['guestId']?>" title="<?=Yii::t('messages', 'Delte')?>"><span class="zmdi zmdi-plus"></span></button>
+                    </td>
                 </tr>
             <?php }?>
             </tbody>
@@ -56,85 +91,40 @@ $this->params['breadcrumbs'][] = Yii::t('messages', 'Customers Info');
     </form>
 </div>
 
-<div class="modal fade" id="recursive-booking" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title"><?=Yii::t('messages', 'Please select the sunshade or room you want to make a reservation.')?></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <span class="col-sm-2">
-                        <?=  Html::dropDownList('List', [], $sunshadeList);?>
-                    </span>
-                     <span class="col-sm-2">
-                        <span class="bookstate">
-                            <?=$availableSunshadePair[1]?>
-                        </span>
-                     </span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link recurise-book"><?=Yii::t('messages', 'Reserve');?></button>
-                <button type="button" class="btn btn-link" data-dismiss="modal"><?=Yii::t('messages', 'Cancel');?></button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script type="text/javascript">
 ;(function($) {
     $(function () {
-        var availableSunshadePair = '<?=json_encode($availableSunshadePair)?>';
-        availableSunshadePair = JSON.parse(availableSunshadePair);
-        $('select').change(function(){
-            var selectedSunshade = $(this).children("option:selected").val();
-            console.log(availableSunshadePair[selectedSunshade]);
-            $('.bookstate').html(availableSunshadePair[selectedSunshade]);
-        })
-
-        var id = 0;
-        var grid = $("#data-table-command").bootgrid({
-            caseSensitive: false,
-            css: {
-                icon: 'zmdi icon',
-                iconColumns: 'zmdi-view-module',
-                iconDown: 'zmdi-expand-more',
-                iconRefresh: 'zmdi-refresh',
-                iconUp: 'zmdi-expand-less'
-            },
-             formatters: {
-                commands: function (column, row)
-                {
-                    return "<button type=\"button\" class=\"btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.sunshadeId + "\"><span class=\"zmdi zmdi-edit\"></span></button> " + "<button type=\"button\" class=\"btn btn-icon command-view waves-effect waves-circle\" data-row-id=\"" + row.sunshadeId + "\"><span class=\"zmdi zmdi-view-toc zmdi-hc-fw\"></span></button>" + "<button type=\"button\" class=\"btn btn-icon command-plus waves-effect waves-circle\" data-row-id=\"" + row.sunshadeId + "\"><span class=\"zmdi zmdi-plus\"></span></button> ";
-                }
-            },
-            rowSelect: true,
-            selection: true,
-        }).
-        on("loaded.rs.jquery.bootgrid", function(e){
-            grid.find(".command-view").on("click", function(e)
-            {
-                id = $(this).data('row-id');
-
-                if(id != undefined)
-                    location.href = '<?=Url::to(["guest/guestdetail"])?>' + '/' + id +'?lang='  + '<?=Yii::$app->language?>';
-           }).end().find(".command-edit").on("click", function(e){
-                id = $(this).data('row-id');
-
-                if(id != undefined)
-                    location.href = '<?=Url::to(["guest/update"])?>' + '/' + id +'?lang='  + '<?=Yii::$app->language?>';
-           }).end().find(".command-plus").on("click", function(e){
-                id = $(this).data('row-id');
-                if(id != undefined) {
-                    $('#recursive-booking').modal('show');
-                }
-           });
+        var option_lang =   "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
+        <?php if (Yii::$app->language == "it") : ?>
+            option_lang =   "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Italian.json";
+        <?php endif ?>
+        $('#guestinfo-data').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5',
+                'print'
+            ],
+            "pagingType": "full_numbers",
+            "language": {
+                "url" : option_lang
+            }
         });
 
-        $('body').on('click', '.recurise-book', function() {
-           var seletedId =  $('select option:selected').val();
-           location.href = '<?=Url::to(["bookinfo/bookupdate"])?>' + '/' + id + '?selectedId=' + seletedId +'&lang='  + '<?=Yii::$app->language?>';
+        $('.command-view').click(function(){
+            var guestId = $(this).data('row-guestid');
+            if(guestId != undefined) {
+                location.href = '<?=Url::to(["guest/guestdetail"])?>' +'?id=' + guestId + '&lang='  + '<?=Yii::$app->language?>';
+            }
+        });
+
+        $('.command-plus').click(function(){
+            var guestId = $(this).data('row-guestid');
+                if(guestId != undefined) {
+                    location.href = '<?=Url::to(["guest/mapbooking"])?>' + '/' + guestId + '?lang='  + '<?=Yii::$app->language?>';
+                }
         });
     });
 })(jQuery);

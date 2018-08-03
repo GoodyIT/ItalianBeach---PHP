@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'sunshadeseat',
-            'arrival',
+            'checkin',
             'servicetype',
             /*'attributes' => [
                     'label'  =>

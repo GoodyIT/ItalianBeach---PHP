@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
-            <?= $form->field($model, 'email')->textInput(['placeholder' => Yii::t('app', 'Please fill out your email.')]) ?>
+            <?= $form->field($model, 'email')->textInput(['placeholder' => Yii::t('messages', 'Please fill out your email.')]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('messages', 'Send'), ['class' => 'btn btn-primary']) ?>

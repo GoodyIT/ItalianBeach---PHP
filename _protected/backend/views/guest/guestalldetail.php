@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title = Yii::t('messages', 'Guest Detail
                                 <tr>
                                     <td><?=$i+1?></td>
                                     <td><?=$guest[$i]['sunshade']?></td>
-                                    <td><?=$guest[$i]['arrival']?></td>
+                                    <td><?=$guest[$i]['checkin']?></td>
                                     <td><?=$guest[$i]['paidprice']?></td>
                                     <td><?=$guest[$i]['price']?></td>
                                     <td><?=$guest[$i]['bookstate']?></td>

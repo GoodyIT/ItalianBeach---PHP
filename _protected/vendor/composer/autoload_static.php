@@ -16,7 +16,6 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
-            'yii\\redis\\' => 10,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -29,7 +28,6 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
         array (
             'robregonm\\pdf\\' => 14,
             'rmrevin\\yii\\fontawesome\\' => 24,
-            'resque\\' => 7,
         ),
         'n' => 
         array (
@@ -46,6 +44,10 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
         array (
             'cebe\\markdown\\' => 14,
         ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
         'F' => 
         array (
             'Faker\\' => 6,
@@ -60,10 +62,6 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
-        ),
-        'yii\\redis\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-redis',
         ),
         'yii\\gii\\' => 
         array (
@@ -101,10 +99,6 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
         array (
             0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
         ),
-        'resque\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/resque/yii2-resque',
-        ),
         'nenad\\passwordStrength\\' => 
         array (
             0 => __DIR__ . '/..' . '/nenad/yii2-password-strength',
@@ -130,6 +124,10 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
@@ -143,10 +141,6 @@ class ComposerStaticInitf3e1969c905029f13c5ff092c912c2d1
     public static $prefixesPsr0 = array (
         'P' => 
         array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
             'PayPal' => 
             array (
                 0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',

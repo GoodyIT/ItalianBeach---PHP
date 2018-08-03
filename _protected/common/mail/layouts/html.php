@@ -15,6 +15,10 @@ use yii\helpers\Html;
 </head>
 <body>
     <?php $this->beginBody() ?>
+    <h4  style="background: url(http://beachclubippocampo.rentals/img/disponibile.png) left center no-repeat; min-height: 55px;">
+	    <a href="http://www.doitweb.it/sunticketsDemo/" style="display: flex; padding-left: 60px; top: 10px;  color: blue">SunTickets
+	    </a>
+	</h4>
     <?= $content ?>
     <?php $this->endBody() ?>
 </body>

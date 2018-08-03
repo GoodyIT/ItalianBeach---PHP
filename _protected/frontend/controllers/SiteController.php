@@ -3,12 +3,20 @@ namespace frontend\controllers;
 
 use common\models\LoginForm;
 use frontend\models\Bookinfo;
-use frontend\models\Rowrestriction;
+use frontend\models\BookLookup;
+use frontend\models\Cart;
+use frontend\models\General;
 use frontend\models\Price;
-use frontend\models\Servicetype;
+use frontend\models\Guest;
+use frontend\models\Guestmilestone;
+use frontend\models\CartMilestone;
+use frontend\models\PendingGuest;
+use frontend\models\Notification;
 use frontend\models\Notificationreminder;
 use frontend\models\ContactForm;
+use common\models\User;
 use frontend\models\Setting;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -82,111 +90,165 @@ class SiteController extends \common\component\BaseController
      *
      * @return string
      */
+    public function actionTest()
+    {
+        $lang = Yii::$app->language;
+        
+        return $this->render('index');
+      
+    }
+
     public function actionIndex()
     {
-        $day = Yii::$app->request->get('day');
-        Bookinfo::resetBookInfo();
-        $message = Yii::$app->request->get('message');
-        $messageType = Yii::$app->request->get('messageType');
-
-        $jsonValue = Bookinfo::getAllInfoForFrontend($day);
+        //   Bookinfo::resetBookInfo();
+        $from = Yii::$app->request->get('from');
+        $to = Yii::$app->request->get('to');
+        $token = isset($_COOKIE['clientId']) ? $_COOKIE['clientId'] : "";
+        if ($from == "" || $to == "") {
+           $model = General::getFromTo($token);
+            if (!empty($model)) {
+                $from = $model['searchfrom'];
+                $to = $model['searchto'];
+            } else {
+                $from = date('d M, Y');
+                $to = new \DateTime($from);
+                $to = $to->modify('+3 months')->format('d M, Y');
+                General::saveFromTo($token, $from, $to);
+            }
+        } else
+        {
+            General::saveFromTo($token, $from, $to);
+        }
+        $jsonValue = BookLookup::getAllSunshadesWithinRange($from, $to, $token);
 
         // check and update sunshade which is expired
-
         if (!Notificationreminder::checkSunshadeReminder()) {
-            Bookinfo::checkExpiredate();
+            BookLookup::checkExpiredate();
             Notificationreminder::updateSunshadeReminder();
         }
 
-        return $this->render('index', [
+        if (!Notificationreminder::checkCartExpire()) {
+            Cart::checkExpire();
+            CartMilestone::checkExpire();
+            Notificationreminder::updateCartExipreReminder();
+        }
+
+        return $this->render('test', [
             'jsonValue' => $jsonValue,
-            'message' => $message,
-            'messageType' => $messageType,
-            'day' => $day,
+            'from' => $from,
+            'to' => $to
         ]);
     }
 
+    public function actionGotocart()
+    {
+        if (!isset($_COOKIE['clientId'])) {
+            return $this->redirect(Url::to(['site/index', 'lang' =>  Yii::$app->language]));
+        }
+        $from = Yii::$app->request->get('from');
+        $to = Yii::$app->request->get('to');
+        $token = $_COOKIE['clientId'];
+        if ($from == "" || $to == "") {
+           $model = General::getFromTo($token);
+            if (!empty($model)) {
+                $from = $model['searchfrom'];
+                $to = $model['searchto'];
+            } else {
+                $from = date('d M, Y');
+                $to = new \DateTime($from);
+                $to = $to->modify('+3 months')->format('d M, Y');
+            }
+        }
+        
+        $jsonValue = BookLookup::getAllSunshadesWithinRange($from, $to, $token);
+        $price = Price::getAllInfoWithArray();
+        $myCart = Cart::getAllCartsWithToken($token);
+
+        return $this->render('bookingcart', [
+            'jsonValue' => $jsonValue,
+            'price' => $price,
+            'myCart' => $myCart,
+            'from' => $from,
+            'to' => $to
+        ]);
+    }
+
+    public function beforeAction($action) {
+        if ($action->id == 'updatecart' || $action->id == 'savecart' || $action->id == 'removesunshadefromcartwithid') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
+    public function actionSavetocart()
+    {
+        $token = Yii::$app->request->post('token');
+        $sunshade_id = Yii::$app->request->post('sunshade_id');
+        $sunshade = Yii::$app->request->post('sunshade');
+        $previous = Yii::$app->request->post('previous');
+
+        echo  Cart::saveToCart($token, $sunshade_id, $sunshade, $previous);
+        return;
+    }
+
+    public function actionRemovesunshadefromcartwithid()
+    {
+        $cartid = Yii::$app->request->post('cartid');
+        Cart::findOne($cartid)->delete();
+        return;
+    }
+
+    public function actionUpdatecart()
+    {
+        $data = Yii::$app->request->post('data');
+        Cart::updateCart($data);
+
+        $token = $_COOKIE['clientId'];
+        $model = General::getFromTo($token);
+        $from = $model['searchfrom'];
+        $to = $model['searchto'];
+        $jsonValue = BookLookup::getAllSunshadesWithinRange($from, $to, $token);
+        $myCart = Cart::getAllCartsWithToken($token);
+        echo json_encode(['arrayOfSunshades' => $jsonValue, 'myCart' => $myCart]);
+        return;
+    }
+
+    public function actionReadcart()
+    {
+        $token = Yii::$app->request->get('token');
+        $myCart = Cart::getAllCartsWithToken($token);
+        echo json_encode($myCart);   
+        return;
+    }
+
+    public function actionReadsunshades()
+    {
+        $token = $_COOKIE['clientId'];
+        $model = General::getFromTo($token);
+        $from = "";
+        $to = "";
+        if (!empty($model)) {
+            $from = $model['searchfrom'];
+            $to = $model['searchto'];
+        }
+        $jsonValue = BookLookup::getAllSunshadesWithinRange($from, $to, $token);
+
+        echo json_encode($jsonValue);
+        return;
+    }
+
+    public function actionPrice()
+    {
+        $lang = Yii::$app->request->get('lang');
+        $prices = Price::getAllAsArray($lang);
+        return $this->render('price', [
+            'prices' => $prices,
+        ]);
+    }
 
     public function actionInfo()
     {
         return  $this->render('info');
-    }
-
-    /**
-     * Display the book list of the sunshade
-     */
-    public function actionSunshade($id){
-        $day = Yii::$app->request->get('day');
-        $lang = Yii::$app->request->get('lang');
-        $rowRestrictionLists = Price::getRowristriction();
-        $priceLists = Price::getAllInfo();
-        $serviceTypeLists = Servicetype::getAllInfo($lang);
-
-        Bookinfo::updateSeatState($id, "booking");
-
-        return $this->render('booklist', [
-            'day' =>$day,
-            'model' => $id,
-            'rowRestrictionLists' => $rowRestrictionLists,
-            'priceLists' => $priceLists,
-            'serviceTypeLists' => $serviceTypeLists,
-        ]);
-    }
-
-    public function actionBook() {
-         $availability = Bookinfo::checkAvailability(Yii::$app->request->post('sunshadeseat'), Yii::$app->request->post('day'));
-
-        if (!$availability)
-            $this->refresh();
-
-        $cookies = Yii::$app->response->cookies;
-
-        // add a new cookie to the response to be sent
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'sunshadeseat',
-            'value' => Yii::$app->request->post('sunshadeseat'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'arrival',
-            'value' => Yii::$app->request->post('arrival'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'servicetype',
-            'value' => Yii::$app->request->post('servicetype'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'price',
-            'value' =>Yii::$app->request->post('price'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'guests',
-            'value' => Yii::$app->request->post('guests'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'mainprice',
-            'value' => Yii::$app->request->post('mainprice'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'tax',
-            'value' => Yii::$app->request->post('tax'),
-        ]));
-
-        $cookies->add(new \yii\web\Cookie([
-            'name' => 'supplement',
-            'value' => Yii::$app->request->post('supplement'),
-        ]));
-
-        Bookinfo::updateSeatState(Yii::$app->request->post('sunshadeseat'), "booking");
-
-        Yii::$app->language =  Yii::$app->request->post('lang');
-       /*header("Location: " . Yii::$app->urlManager->createAbsoluteUrl(["guest/create", "lang"=>Yii::$app->request->post('lang')]));*/
-        return $this->redirect(\Yii::$app->urlManager->createUrl("guest/create"));
     }
 
     /**
@@ -289,6 +351,4 @@ class SiteController extends \common\component\BaseController
 
         return $this->goHome();
     }
-
-
 }

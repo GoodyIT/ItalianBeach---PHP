@@ -133,7 +133,7 @@ class User extends UserIdentity
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => User::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username]);
     }  
     
     /**
@@ -319,8 +319,15 @@ class User extends UserIdentity
 
     public static function getAllEmails()
     {
-        $sql = "select email from user";
+        $sql = "SELECT email from user";
 
         return Yii::$app->getDb()->createCommand($sql)->queryAll();
+    }
+
+    public static function deactiveExpiredUsers()
+    {
+        $sql = "UPDATE user SET status=1 WHERE created_at + 3*24*3600 < UNIX_TIMESTAMP() AND username != 'admin';";
+
+        Yii::$app->getDb()->createCommand($sql)->execute();
     }
 }

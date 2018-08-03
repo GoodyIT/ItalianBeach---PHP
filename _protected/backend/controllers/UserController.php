@@ -7,6 +7,8 @@ use common\rbac\models\Role;
 use yii\base\Model;
 use yii\web\NotFoundHttpException;
 use Yii;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -14,12 +16,43 @@ use Yii;
 class UserController extends BackendController
 {
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error', 'request-password-reset', 'reset-password'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['index', 'create', 'view', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    /**
      * Lists all User models.
      *
      * @return string
      */
     public function actionIndex()
     {
+        User::deactiveExpiredUsers();
+        
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -67,13 +100,10 @@ class UserController extends BackendController
                 $role->user_id = $user->getId();
                 $role->save(); 
             }
-
-           
             return $this->redirect('index');
         } 
         else 
         {
-
             return $this->render('create', [
                 'user' => $user,
                 'role' => $role,

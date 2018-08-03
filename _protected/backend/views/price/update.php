@@ -9,7 +9,6 @@ $this->title = Yii::t('messages', 'Update {modelClass}: ', [
     'modelClass' => 'Price',
 ]) . " Row " . $model->rowid;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('messages', 'Prices'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->Id, 'url' => ['view', 'id' => $model->Id]];
 $this->params['breadcrumbs'][] = Yii::t('messages', 'Update');
 ?>
 <div class="price-update card">

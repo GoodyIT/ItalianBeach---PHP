@@ -28,7 +28,7 @@ $this->title = Yii::t('messages', 'Login');
 
         <?= $form->field($model, 'password')->passwordInput() ?>
         <?= $form->field($model, 'rememberMe')->checkbox(['style'=>['opacity'=> 1]]) ?>
-        <?= Html::a(Yii::t('messages', 'Have you forgot your password?'), [Url::to('site/request-password-reset')])?>
+        <?= Html::a(Yii::t('messages', 'Have you forgot your password?'), Url::to(['site/request-password-reset', 'lang' => Yii::$app->language]))?>
         <br />
         <div class="form-group">
             <?= Html::submitButton(Yii::t('messages', 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>

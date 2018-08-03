@@ -1,0 +1,141 @@
+a:8:{s:6:"config";a:5:{s:10:"phpVersion";s:6:"5.4.45";s:10:"yiiVersion";s:5:"2.0.9";s:11:"application";a:4:{s:3:"yii";s:5:"2.0.9";s:4:"name";s:4:"Demo";s:3:"env";s:4:"prod";s:5:"debug";b:0;}s:3:"php";a:4:{s:7:"version";s:6:"5.4.45";s:6:"xdebug";b:0;s:3:"apc";b:0;s:8:"memcache";b:1;}s:10:"extensions";a:13:{s:23:"nenad/yii2-widgets-base";a:3:{s:4:"name";s:23:"nenad/yii2-widgets-base";s:7:"version";s:7:"2.0.0.0";s:5:"alias";a:1:{s:6:"@nenad";s:85:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/nenad/yii2-widgets-base";}}s:28:"nenad/yii2-password-strength";a:3:{s:4:"name";s:28:"nenad/yii2-password-strength";s:7:"version";s:7:"2.3.0.0";s:5:"alias";a:1:{s:23:"@nenad/passwordStrength";s:90:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/nenad/yii2-password-strength";}}s:23:"mihaildev/yii2-ckeditor";a:3:{s:4:"name";s:23:"mihaildev/yii2-ckeditor";s:7:"version";s:7:"1.0.1.0";s:5:"alias";a:1:{s:19:"@mihaildev/ckeditor";s:85:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/mihaildev/yii2-ckeditor";}}s:24:"yiisoft/yii2-codeception";a:3:{s:4:"name";s:24:"yiisoft/yii2-codeception";s:7:"version";s:7:"2.0.5.0";s:5:"alias";a:1:{s:16:"@yii/codeception";s:86:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-codeception";}}s:22:"yiisoft/yii2-bootstrap";a:3:{s:4:"name";s:22:"yiisoft/yii2-bootstrap";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:14:"@yii/bootstrap";s:84:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-bootstrap";}}s:18:"yiisoft/yii2-debug";a:3:{s:4:"name";s:18:"yiisoft/yii2-debug";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:10:"@yii/debug";s:80:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-debug";}}s:16:"yiisoft/yii2-gii";a:3:{s:4:"name";s:16:"yiisoft/yii2-gii";s:7:"version";s:7:"2.0.5.0";s:5:"alias";a:1:{s:8:"@yii/gii";s:78:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-gii";}}s:18:"yiisoft/yii2-faker";a:3:{s:4:"name";s:18:"yiisoft/yii2-faker";s:7:"version";s:7:"2.0.3.0";s:5:"alias";a:1:{s:10:"@yii/faker";s:80:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-faker";}}s:25:"marciocamello/yii2-paypal";a:3:{s:4:"name";s:25:"marciocamello/yii2-paypal";s:7:"version";s:11:"9999999-dev";s:5:"alias";a:1:{s:14:"@marciocamello";s:87:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/marciocamello/yii2-paypal";}}s:18:"robregonm/yii2-pdf";a:3:{s:4:"name";s:18:"robregonm/yii2-pdf";s:7:"version";s:7:"1.0.1.0";s:5:"alias";a:1:{s:14:"@robregonm/pdf";s:80:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/robregonm/yii2-pdf";}}s:24:"yiisoft/yii2-swiftmailer";a:3:{s:4:"name";s:24:"yiisoft/yii2-swiftmailer";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:16:"@yii/swiftmailer";s:86:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-swiftmailer";}}s:24:"rmrevin/yii2-fontawesome";a:3:{s:4:"name";s:24:"rmrevin/yii2-fontawesome";s:7:"version";s:8:"2.16.1.0";s:5:"alias";a:1:{s:24:"@rmrevin/yii/fontawesome";s:86:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/rmrevin/yii2-fontawesome";}}s:26:"machour/yii2-notifications";a:3:{s:4:"name";s:26:"machour/yii2-notifications";s:7:"version";s:11:"9999999-dev";s:5:"alias";a:1:{s:27:"@machour/yii2/notifications";s:88:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/machour/yii2-notifications";}}}}s:7:"request";a:14:{s:7:"flashes";a:0:{}s:10:"statusCode";i:200;s:14:"requestHeaders";a:7:{s:4:"host";s:10:"doitweb.it";s:9:"x-real-ip";s:13:"180.76.15.141";s:15:"accept-encoding";s:4:"gzip";s:10:"connection";s:5:"close";s:10:"user-agent";s:83:"Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)";s:15:"accept-language";s:5:"en-US";s:6:"accept";s:3:"*/*";}s:15:"responseHeaders";a:5:{s:10:"Set-Cookie";a:2:{i:0;s:54:"PHPSESSID=1iapncf0jli8ajibrquqf0tla6; path=/; HttpOnly";i:1;s:190:"_csrf=76a4ca2d017393be0e381a565b768c6fe7aaecc425d99a87bda621b130bca6eba%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22oehNV1FwXUBR3fAwMywXIPJmgqNHXssF%22%3B%7D; path=/; httponly";}s:7:"Expires";s:29:"Thu, 19 Nov 1981 08:52:00 GMT";s:13:"Cache-Control";s:62:"no-store, no-cache, must-revalidate, post-check=0, pre-check=0";s:6:"Pragma";s:8:"no-cache";s:12:"Content-Type";s:24:"text/html; charset=UTF-8";}s:5:"route";s:10:"site/price";s:6:"action";s:50:"frontend\controllers\SiteController::actionPrice()";s:12:"actionParams";a:0:{}s:11:"requestBody";a:0:{}s:6:"SERVER";a:31:{s:4:"PATH";s:28:"/usr/local/bin:/usr/bin:/bin";s:15:"REDIRECT_STATUS";s:3:"200";s:9:"UNIQUE_ID";s:24:"WHJYRE1oib8AAEjFGIAAAAAB";s:10:"PHPHANDLER";s:24:"/usr/local/php54/bin/php";s:9:"HTTP_HOST";s:10:"doitweb.it";s:14:"HTTP_X_REAL_IP";s:13:"180.76.15.141";s:20:"HTTP_ACCEPT_ENCODING";s:4:"gzip";s:15:"HTTP_CONNECTION";s:5:"close";s:15:"HTTP_USER_AGENT";s:83:"Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)";s:20:"HTTP_ACCEPT_LANGUAGE";s:5:"en-US";s:11:"HTTP_ACCEPT";s:3:"*/*";s:15:"SERVER_SOFTWARE";s:144:"Apache/2.2.24 (Unix) mod_hive/5.5 mod_ssl/2.2.24 OpenSSL/1.0.0-fips mod_auth_passthrough/2.1 mod_bwlimited/1.4 mod_fastcgi/2.4.6 mod_fcgid/2.3.6";s:11:"SERVER_NAME";s:10:"doitweb.it";s:11:"SERVER_ADDR";s:14:"77.104.137.191";s:11:"SERVER_PORT";s:2:"80";s:11:"REMOTE_ADDR";s:13:"180.76.15.141";s:13:"DOCUMENT_ROOT";s:28:"/home/suntickets/public_html";s:12:"SERVER_ADMIN";s:20:"webmaster@doitweb.it";s:15:"SCRIPT_FILENAME";s:53:"/home/suntickets/public_html/sunticketsDemo/index.php";s:11:"REMOTE_PORT";s:5:"55546";s:21:"REDIRECT_QUERY_STRING";s:7:"lang=it";s:12:"REDIRECT_URL";s:26:"/sunticketsDemo/site/price";s:17:"GATEWAY_INTERFACE";s:7:"CGI/1.1";s:15:"SERVER_PROTOCOL";s:8:"HTTP/1.0";s:14:"REQUEST_METHOD";s:3:"GET";s:12:"QUERY_STRING";s:7:"lang=it";s:11:"REQUEST_URI";s:34:"/sunticketsDemo/site/price?lang=it";s:11:"SCRIPT_NAME";s:25:"/sunticketsDemo/index.php";s:8:"PHP_SELF";s:25:"/sunticketsDemo/index.php";s:18:"REQUEST_TIME_FLOAT";d:1483888708.889430999755859375;s:12:"REQUEST_TIME";i:1483888708;}s:3:"GET";a:1:{s:4:"lang";s:2:"it";}s:4:"POST";a:0:{}s:6:"COOKIE";a:0:{}s:5:"FILES";a:0:{}s:7:"SESSION";a:1:{s:7:"__flash";a:0:{}}}s:3:"log";a:1:{s:8:"messages";a:12:{i:0;a:5:{i:0;s:35:"SELECT * FROM tbl_price order by Id";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9530870914459228515625;i:4;a:0:{}}i:1;a:5:{i:0;s:64:"Opening DB connection: mysql:host=localhost;dbname=sunticke_temp";i:1;i:4;i:2;s:23:"yii\db\Connection::open";i:3;d:1483888708.953113079071044921875;i:4;a:0:{}}i:6;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9647541046142578125;i:4;a:0:{}}i:9;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.967959880828857421875;i:4;a:0:{}}i:12;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.975327014923095703125;i:4;a:0:{}}i:15;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1483888708 AND `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9890029430389404296875;i:4;a:0:{}}i:18;a:5:{i:0;s:15:"Session started";i:1;i:4;i:2;s:21:"yii\web\Session::open";i:3;d:1483888708.98941707611083984375;i:4;a:0:{}}i:19;a:5:{i:0;s:102:"Access to debugger is denied due to IP address restriction. The requesting IP address is 180.76.15.141";i:1;i:2;i:2;s:29:"yii\debug\Module::checkAccess";i:3;d:1483888708.9895250797271728515625;i:4;a:0:{}}i:20;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9918301105499267578125;i:4;a:0:{}}i:23;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.992084026336669921875;i:4;a:0:{}}i:26;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9934270381927490234375;i:4;a:0:{}}i:29;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', '1iapncf0jli8ajibrquqf0tla6', 1483890148)";i:1;i:4;i:2;s:23:"yii\db\Command::execute";i:3;d:1483888708.994102001190185546875;i:4;a:0:{}}}}s:9:"profiling";a:3:{s:6:"memory";i:7712568;s:4:"time";d:0.0974409580230712890625;s:8:"messages";a:20:{i:2;a:5:{i:0;s:64:"Opening DB connection: mysql:host=localhost;dbname=sunticke_temp";i:1;i:80;i:2;s:23:"yii\db\Connection::open";i:3;d:1483888708.9531180858612060546875;i:4;a:0:{}}i:3;a:5:{i:0;s:64:"Opening DB connection: mysql:host=localhost;dbname=sunticke_temp";i:1;i:96;i:2;s:23:"yii\db\Connection::open";i:3;d:1483888708.9539020061492919921875;i:4;a:0:{}}i:4;a:5:{i:0;s:35:"SELECT * FROM tbl_price order by Id";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9539139270782470703125;i:4;a:0:{}}i:5;a:5:{i:0;s:35:"SELECT * FROM tbl_price order by Id";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9541819095611572265625;i:4;a:0:{}}i:7;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9647810459136962890625;i:4;a:0:{}}i:8;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.967133045196533203125;i:4;a:0:{}}i:10;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9679820537567138671875;i:4;a:0:{}}i:11;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.968730926513671875;i:4;a:0:{}}i:13;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9753539562225341796875;i:4;a:0:{}}i:14;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9754478931427001953125;i:4;a:0:{}}i:16;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1483888708 AND `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9890320301055908203125;i:4;a:0:{}}i:17;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1483888708 AND `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9893929958343505859375;i:4;a:0:{}}i:21;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.991847991943359375;i:4;a:0:{}}i:22;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9919679164886474609375;i:4;a:0:{}}i:24;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.99209690093994140625;i:4;a:0:{}}i:25;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9932079315185546875;i:4;a:0:{}}i:27;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.993443012237548828125;i:4;a:0:{}}i:28;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9937388896942138671875;i:4;a:0:{}}i:30;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', '1iapncf0jli8ajibrquqf0tla6', 1483890148)";i:1;i:80;i:2;s:23:"yii\db\Command::execute";i:3;d:1483888708.994122982025146484375;i:4;a:0:{}}i:31;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', '1iapncf0jli8ajibrquqf0tla6', 1483890148)";i:1;i:96;i:2;s:23:"yii\db\Command::execute";i:3;d:1483888708.9942760467529296875;i:4;a:0:{}}}}s:2:"db";a:1:{s:8:"messages";a:18:{i:4;a:5:{i:0;s:35:"SELECT * FROM tbl_price order by Id";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9539139270782470703125;i:4;a:0:{}}i:5;a:5:{i:0;s:35:"SELECT * FROM tbl_price order by Id";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9541819095611572265625;i:4;a:0:{}}i:7;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9647810459136962890625;i:4;a:0:{}}i:8;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.967133045196533203125;i:4;a:0:{}}i:10;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9679820537567138671875;i:4;a:0:{}}i:11;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.968730926513671875;i:4;a:0:{}}i:13;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9753539562225341796875;i:4;a:0:{}}i:14;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9754478931427001953125;i:4;a:0:{}}i:16;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1483888708 AND `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9890320301055908203125;i:4;a:0:{}}i:17;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1483888708 AND `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9893929958343505859375;i:4;a:0:{}}i:21;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.991847991943359375;i:4;a:0:{}}i:22;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='1iapncf0jli8ajibrquqf0tla6'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9919679164886474609375;i:4;a:0:{}}i:24;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.99209690093994140625;i:4;a:0:{}}i:25;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9932079315185546875;i:4;a:0:{}}i:27;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.993443012237548828125;i:4;a:0:{}}i:28;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1483888708.9937388896942138671875;i:4;a:0:{}}i:30;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', '1iapncf0jli8ajibrquqf0tla6', 1483890148)";i:1;i:80;i:2;s:23:"yii\db\Command::execute";i:3;d:1483888708.994122982025146484375;i:4;a:0:{}}i:31;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', '1iapncf0jli8ajibrquqf0tla6', 1483890148)";i:1;i:96;i:2;s:23:"yii\db\Command::execute";i:3;d:1483888708.9942760467529296875;i:4;a:0:{}}}}s:6:"assets";a:0:{}s:4:"mail";a:0:{}s:7:"summary";a:9:{s:3:"tag";s:13:"58725844e16c6";s:3:"url";s:51:"http://doitweb.it/sunticketsDemo/site/price?lang=it";s:4:"ajax";i:0;s:6:"method";s:3:"GET";s:2:"ip";s:13:"180.76.15.141";s:4:"time";i:1483888708;s:10:"statusCode";i:200;s:8:"sqlCount";i:9;s:9:"mailCount";i:0;}}

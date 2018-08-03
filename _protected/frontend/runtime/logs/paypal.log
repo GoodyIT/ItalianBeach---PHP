@@ -1,8 +1,0 @@
-[30-04-2016 01:22:43] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
-[30-04-2016 01:22:44] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
-[30-04-2016 01:22:46] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
-[30-04-2016 01:22:46] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
-[30-04-2016 01:25:08] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
-[30-04-2016 01:25:09] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
-[30-04-2016 01:25:11] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
-[30-04-2016 01:25:11] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}

@@ -47,10 +47,10 @@ class Price extends \yii\db\ActiveRecord
     {
         return [
             'Id' => Yii::t('messages', 'ID'),
-            'rowid' => Yii::t('messages', 'Sunshade Row'),
+            'rowid' => Yii::t('messages', 'Sunshades Row'),
             'servicetype_Id' => Yii::t('messages', 'Service Type  ID'),
             'mainprice' => Yii::t('messages', 'Main Price'),
-            'tax' => Yii::t('messages', 'Tax'),
+            'tax' => Yii::t('messages', 'Add.Pass'),
             'supplement' => Yii::t('messages', 'Supplement'),
             'maxguests' => Yii::t('messages', 'Max Guests'),
         ];
@@ -73,6 +73,56 @@ class Price extends \yii\db\ActiveRecord
             $results[$value['rowid']][$value['servicetype_Id']]['tax'] = $value['tax'];
             $results[$value['rowid']][$value['servicetype_Id']]['supplement'] = $value['supplement'];
             $results[$value['rowid']][$value['servicetype_Id']]['maxguests'] = $value['maxguests'];
+            $results['"'.$value['rowid'].'"'][$value['servicetype_Id']]['day'] = Yii::$app->params['service'][$value['servicetype_Id']];
+        }
+
+        return $results;
+    }
+
+    public static function getAllAsArray($lang)
+    {
+      $sql = "SELECT * FROM tbl_price order by Id";
+      $list =  static::findBySql($sql)->asArray()->all();
+      $results = [];
+      $array = [];
+        for ($i = 0; $i < count($list); $i++) {
+          if ($lang == "en" || $lang == "") {
+            $results['servicename'] = Yii::$app->params['servicetype'][$list[$i]['servicetype_Id']];
+
+          } else {
+           $results['servicename'] = Yii::$app->params['servicetype_it'][$list[$i]['servicetype_Id']];
+          }
+
+          $results['Id'] = $list[$i]['Id'];
+          $results['rowid'] = $list[$i]['rowid'];
+          $results['mainprice'] = $list[$i]['mainprice'];
+          $results['tax'] = $list[$i]['tax'];
+          $results['maxguests'] = $list[$i]['maxguests'];
+          $results['supplement'] = $list[$i]['supplement'];
+          
+          array_push($array, $results);
+        }
+
+      return $array;
+    }
+
+    public static function getAllInfoWithArray() {
+        $sql = "SELECT * FROM tbl_price";
+        $lists =  static::findBySql($sql)->asArray()->all();
+        $results = [];
+       
+        foreach ($lists as $key => $value) {
+            if (!isset($results[$value['rowid']])) {
+              $results[$value['rowid']] = [];
+            }
+            $service['mainprice'] = $value['mainprice'];
+            $service['servicetype'] = $value['servicetype_Id'];
+            $service['tax'] = $value['tax'];
+            $service['supplement'] = $value['supplement'];
+            $service['maxguests'] = $value['maxguests'];
+            $service['day'] = Yii::$app->params['service'][$value['servicetype_Id']];
+
+            array_unshift($results[$value['rowid']], $service);
         }
 
         return $results;
@@ -95,13 +145,6 @@ class Price extends \yii\db\ActiveRecord
         $sql = "SELECT * FROM tbl_price INNER JOIN tbl_servicetype ON tbl_price.servicetype_Id = tbl_servicetype.Id";
         $lists =  static::findBySql($sql)->asArray()->all();
         if ($id != "") {
-          /* * 
-            $lists = static::find()  
-                   ->innerJoin('tbl_servicetype', 'tbl_price.servicetype = tbl_servicetype.Id')
-                   ->addSelect('tbl_price.Id, rowid, mainprice, tax, supplement,maxguests, tbl_servicetype.servicetype')  
-                    ->where('tbl_price.Id ='. $id)
-                    ->one();
-           */
               $sql = "SELECT tbl_price.Id, rowid, tbl_servicetype.servicetype, mainprice, tax, supplement, maxguests FROM tbl_price INNER JOIN tbl_servicetype ON tbl_price.servicetype_Id = tbl_servicetype.Id where tbl_price.Id = 1";
               $lists =  static::find()->joinWith('servicetype')->where(['tbl_price.id' =>$id])->one();
 

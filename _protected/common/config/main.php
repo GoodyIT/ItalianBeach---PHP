@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => 'Beach Club Ippocampo',
+    'name' => 'Demo',
     //'language' => 'sr',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [

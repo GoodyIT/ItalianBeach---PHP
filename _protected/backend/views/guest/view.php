@@ -7,7 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\Guest */
 
 $this->title = $model->Id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('messages', 'Books'), 'url' => ['book/bookinfo']];
 $this->params['breadcrumbs'][] = $model->firstname . ' ' . $model->lastname;
 ?>
 <div class="guest-view card">

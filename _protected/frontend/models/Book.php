@@ -4,12 +4,13 @@ namespace frontend\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "tbl_book".
  *
  * @property integer $Id
  * @property string $sunshadeseat
- * @property string $arrival
+ * @property string $checkin
  * @property integer $servicetype
  * @property integer $price
  * @property integer $paidprice
@@ -39,7 +40,7 @@ class Book extends \yii\db\ActiveRecord
         return [
             [['servicetype', 'price', 'paidprice', 'mainprice', 'tax', 'supplement', 'guests'], 'integer'],
             [['sunshadeseat', 'bookedtime'], 'string', 'max' => 100],
-            [['arrival', 'comment'], 'string', 'max' => 255],
+            [['checkin', 'comment'], 'string', 'max' => 255],
             [['bookstate'], 'string', 'max' => 50],
         ];
     }
@@ -52,7 +53,7 @@ class Book extends \yii\db\ActiveRecord
         return [
             'Id' => Yii::t('messages', 'ID'),
             'sunshadeseat' => Yii::t('messages', 'Sunshadeseat'),
-            'arrival' => Yii::t('messages', 'Arrival'),
+            'checkin' => Yii::t('messages', 'checkin'),
             'servicetype' => Yii::t('messages', 'Servicetype'),
             'price' => Yii::t('messages', 'Price'),
             'paidprice' => Yii::t('messages', 'Paidamount'),
@@ -84,80 +85,75 @@ class Book extends \yii\db\ActiveRecord
         return $lists;
     }
     
-    public static function saveInfo() {
-        date_default_timezone_set("UTC");
-        $cookies = Yii::$app->request->cookies;
-        $sunshadeseat  ="";
-        $arrival = "";
-        $price = "";
-        $mainprice = "";
-        $tax = "";
-        $supplement = "";
-        $servicetype = "";
-        $guests = "";
-
-        if (($cookie = $cookies->get('sunshadeseat')) !== null) 
-            $sunshadeseat = $cookie->value;
-
-        if (($cookie = $cookies->get('arrival')) !== null) 
-                $arrival = $cookie->value;
-
-        if (($cookie = $cookies->get('price')) !== null) 
-                $price = $cookie->value;  
-
-        if (($cookie = $cookies->get('mainprice')) !== null) 
-                $mainprice = $cookie->value;  
-
-        if (($cookie = $cookies->get('tax')) !== null) 
-                $tax = $cookie->value;  
-
-        if (($cookie = $cookies->get('supplement')) !== null) 
-                $supplement = $cookie->value;  
-
-        if (($cookie = $cookies->get('servicetype')) !== null) 
-                $servicetype = $cookie->value;
-        if (($cookie = $cookies->get('guests')) !== null) 
-                $guests = $cookie->value;
+    public static function saveInfo($allSunshades) {
+        date_default_timezone_set("Europe/Rome");
+        $book = array();
         
-        $sql = "select * from tbl_book where sunshadeseat = '" . $sunshadeseat . "'";
-        $Book = Book::findBySql($sql)->one();
-        if ($Book == null) {
+        /*if ($checkout > $endDate) {
+            $endDate =  date_create(date('Y')."-09-09");
+            $checkout = $endDate;
+        }   */
+        
+        for ($i =0; $i < count($allSunshades); $i++) {
             $Book = new Book();
-            $Book->sunshadeseat = $sunshadeseat;
-            $Book->arrival = $arrival;
+            $Book->sunshadeseat = $allSunshades[$i]['sunshade'];
+            $Book->checkin = date_create($allSunshades[$i]['checkin'])->format('Y-m-d');
+            $Book->servicetype = $allSunshades[$i]['servicetype'];
+            $Book->price = $allSunshades[$i]['price'];
+            $Book->paidprice = $allSunshades[$i]['price'];
+            $Book->mainprice = $allSunshades[$i]['mainprice'];
+            $Book->tax = $allSunshades[$i]['tax'];
+            $Book->checkout = date_create($allSunshades[$i]['checkout'])->format('Y-m-d');
+            $Book->supplement = $allSunshades[$i]['supplement'];
+            $Book->guests = $allSunshades[$i]['guests'];
+            $Book->bookstate = "booked";
+            $Book->bookedtime = date('Y-m-d H:i:s');
+            $Book->save();
+            array_push($book, $Book);
         }
+        
+        return $book;
+    }
 
-        $Book->arrival = $arrival;
-        $Book->servicetype = $servicetype;
-        $Book->price = $price;
-        $Book->paidprice = $price;
-        $Book->mainprice = $mainprice;
-        $Book->tax = $tax;
-        $Book->supplement = $supplement;
-        $Book->guests = $guests;
+    public static function saveFromCart($sunshadeInfo, $paidAmount)
+    {          
+        date_default_timezone_set("Europe/Rome");
+        $Book = new Book();
+        // $Book->checkout =date_create($sunshadeInfo['checkout'])->format('Y-m-d');
+        $Book->checkout = $sunshadeInfo['checkout'];
+        $Book->sunshadeseat = $sunshadeInfo['sunshade'];
+        // $Book->checkin = date_create($sunshadeInfo['checkin'])->format('Y-m-d');
+        $Book->checkin = date_format(date_create(trim($sunshadeInfo['checkin'])), 'Y-m-d');
+        $Book->servicetype = $sunshadeInfo['servicetype'];
+        $Book->price = $sunshadeInfo['price'];
+        $Book->paidprice = $paidAmount;
+        $Book->mainprice = $sunshadeInfo['mainprice'];
+        $Book->tax = $sunshadeInfo['tax'];
+        $Book->supplement = $sunshadeInfo['supplement'];
+        $Book->guests = $sunshadeInfo['guests'];
         $Book->bookstate = "booked";
         $Book->bookedtime = date('Y-m-d H:i:s');
 
         $Book->save();
-        return $Book;
+        return $Book->Id;
     }
 
-    public static function saveWithPost($model, $paidAmount) {
-        date_default_timezone_set("UTC");
+    public static function saveWithPost($priceLists, $array, $row, $price, $paidAmount) {
+
+        date_default_timezone_set("Europe/Rome");
         $Book = new Book();
 
-        $Book->sunshadeseat = $model['sunshadeseat'];
-        $Book->arrival = $model['arrival'];
-        if ($model['sunshadeseat'][0] == 1) {
-            $Book->checkout = $model['checkout'];
-        }
-        $Book->servicetype = $model['servicetype'];
-        $Book->price = $model['price'];
+        $Book->checkout =date_create($array['checkout'])->format('Y-m-d');
+        
+        $Book->sunshadeseat = $row;
+        $Book->checkin = date_create($array['checkin'])->format('Y-m-d');
+        $Book->servicetype = $array['servicetype'];
+        $Book->price = $price;
         $Book->paidprice = $paidAmount;
-        $Book->mainprice = $model['mainprice'];
-        $Book->tax = $model['tax'];
-        $Book->supplement = $model['supplement'];
-        $Book->guests = $model['guests'];
+        $Book->mainprice = $priceLists[$row][0]['mainprice'];
+        $Book->tax = $priceLists[$row][0]['tax'];
+        $Book->supplement = $priceLists[$row][0]['supplement'];
+        $Book->guests = $array['guests'];
         $Book->bookstate = "booked";
         $Book->bookedtime = date('Y-m-d H:i:s');
 
@@ -166,10 +162,22 @@ class Book extends \yii\db\ActiveRecord
     }
 
     public static function getInfoWithId($Id) {
-        $sql = sprintf("select Id, arrival, servicetype, if(substr(sunshadeseat, 1, 1) = 1, checkout, adddate(arrival, interval case servicetype when 1 then 1 when 2 then 7 when 3 then 31 when 4 then 100 else 1 end day)) as checkout, paidprice, price, guests from tbl_book where Id=%d", $Id);
-         $connection = Yii::$app->getDb();
+        $sql = sprintf("SELECT Id, checkin, case servicetype when 1 then '1 day' when 2 then '7 days' when 3 then '31 days' when 4 then 'All season' when 5 then 'Room book' end as servicetype, checkout, paidprice, price, guests from tbl_book where Id=%d", $Id);
+        $connection = Yii::$app->getDb();
         $book = $connection->createCommand($sql)->queryOne();
 
         return $book;
     }
+
+    public static function updateInfoWithBookId($bookId, $originPaidprice, $array_price)
+    {
+        Yii::$app->getDb()->createCommand('UPDATE tbl_book SET paidprice= :paidprice WHERE Id = :Id', [':paidprice' => $originPaidprice + array_sum($array_price), ':Id' => $bookId])->execute();
+    }
+
+    public static function deleteBook($selection)
+    {
+        $sql = "DELETE FROM tbl_book where Id in ($selection);";
+        Yii::$app->getDb()->createCommand($sql)->execute();
+    }
+
 }

@@ -1,0 +1,80 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway';@import 'https://fonts.googleapis.com/css?family=PT+Sans';body{font-family:'PT Sans';}
+.nav>li>a{position:relative;display:block;padding:10px 15px 10px 0;}
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus{background-color:transparent;}
+.nav>li>a:hover{color:#fff;}
+.navbar{min-height:37px;}
+.navbar-orange{background:#FF9D0C;font-family:'PT Sans';}
+.navbar-orange a{color:rgba(255, 255, 255, 0.5);text-transform:uppercase;font-size:13px;}
+.navbar-orange li.active a{color:rgba(255, 255, 255, 1);}
+@media (min-width:768px){.navbar-nav>li>a{padding-top:9px;padding-bottom:5px;}
+}
+.navbar-toggle .icon-bar{background:#fff;}
+h1.slogan{text-align:right;font-size:30px;font-family:'Raleway';color:#487FBE;border-top:1px solid #487FBE;text-transform:uppercase;padding:10px 0;border-bottom:1px solid #487FBE;}
+h1.slogan_mobile{text-align:right;font-size:25px;font-family:'Raleway';color:#487FBE;line-height:28px;vertical-align:middle;display:table-cell;}
+.orange{color:#FF9D0C;}
+.ptsans{font-family:'PT Sans';}
+.raleway{font-family:Raleway;}
+.mail{font-size:11px;}
+.align-right{text-align:right;}
+.align-center{text-align:center;}
+.onda_azz{background:transparent url('../img/bkg_onda_azz.png') CENTER 11PX no-repeat;background-size:cover;height:70px;}
+h2.inner_page_title{color:#487FBE;text-transform:uppercase;border-bottom:1px solid #487FBE;font-size:20px;padding-bottom:3px;}
+h2.page_title{color:#487FBE;font-size:24px;padding-bottom:3px;}
+.mappa_spiaggia{background:url('../img/spiaggia.jpg') center no-repeat;background-size:cover;height:520px;position:relative;}
+.beige{background:rgba(163,66,11,0.5);}
+h3.title_beige{padding-top:13px;color:#A3420B;font-size:24px;}
+.min_height{min-height:400px;}
+.footer_orange{background:#fff url('../img/bkg_footer.png') center top no-repeat;height:65px;background-size:cover;margin-top:29px;}
+.footer_bottom{background:#ff9d0b;}
+.payment{padding-top:30px;}
+.azz{background:#dce7f3;}
+h3.footer{color:#487FBE;font-size:18px;}
+footer a{font-family:Raleway;color:#487FBE;font-size:13px;}
+.footer_menu{color:#487FBE;}
+.logo_footer{margin-top:20px;width: 149px;height: 99px;}
+.footer_middle{padding-top:40px;}
+.mappa_spiaggia a{font-family:'PT Sans';}
+a.non_disp{border-radius:40px;background:#FF0000;color:#fff;font-size:11px;padding:7px 5px;display:inline-block;}
+a.disp{background:url('../img/disponibile.png');color:#fff;font-size:11px;padding:24px;display:inline-block;position:absolute;left:53px;bottom:136px;background-size:cover;}
+a.pop{background:url('../img/pop.png') center no-repeat;color:#fff;font-size:17px;padding:11px 13px;display:inline-block;position:absolute;left:77px;bottom:159px;background-size:cover;font-weight:bold;}
+.c32{position:absolute;left:65px;bottom:79px;}
+.c76{position:absolute;left:247px;bottom:110px;}
+.overlay{margin:0 auto;float:none;position:relative;top:40px;background:rgba(162, 255, 0, 0.33);border:none;border-radius:5px;color:#fff;overflow:auto;}
+.overlay .left{text-align:center;padding:15px;}
+.overlay .left .number{font-family:'PT Sans';font-size:20px;font-weight:bold;}
+.overlay .right{text-align:center;padding:15px;font-family:'PT Sans';font-size:20px;font-weight:bold;}
+.overlay button{background:rgba(88,205,0,0.64);border:none;border-radius:5px;font-family:'PT Sans';text-transform:uppercase;margin-top:20px;}
+.overlay a{background:rgba(88,205,0,0.64);border:none;border-radius:5px;font-family:'PT Sans';text-transform:uppercase;margin-top:20px;color:white;font-weight:bold;width:200px;text-decoration:none;}
+img.footer_sun{width:310px;position:relative;bottom:40px;}
+@media (max-width:350px){img.footer_sun{width:100%;}
+}
+.brown{color:#fff;text-align:center;padding:20px 0;}
+.brown a{color:#fff;}
+.iframe{background:#ddd;min-height:200px;}
+@media (max-width:768px){ul.nav li{padding-left:20px;}
+.prenotazione p{height:5px;}
+}
+.green{color:#6EBB6F;}
+p{font-size:20px;}
+.num_ombrellone{font-size:23px;}
+.prenotazione{overflow:auto;background:#fff;border-radius:8px;padding:40px 15px 0;margin-bottom:60px;}
+.prenotazione label{text-transform:uppercase;color:#6EBB6F;font-size:16px;}
+.prenotazione strong{text-transform:uppercase;color:#6EBB6F;font-size:14px;}
+.prenotazione .p-l-25{padding-bottom:15px;}
+.prenotazione .p-l-15{padding-bottom:15px;}
+label.label_totale{color:#6EBB6F;font-size:24px;font-weight:bold;}
+span.totale{color:#000;font-size:24px;font-weight:bold;margin-left:10px;}
+.btn.prenota{color:#fff;font-weight:bold;font-size:22px;background:#56AD58;border-radius:5px;text-transform:uppercase;border:none;padding:5px 50px;}
+.intro{font-size:22px;padding:12px;}
+@media (min-width:400px){.logo_sx{background:url(../img/disponibile.png) left center no-repeat;min-height:55px;}
+}
+.step_1 .form-group{margin-bottom:20px;overflow:auto;}
+.step_1_right{padding-left:20px;}
+@media (max-width:768px){.lingua{margin-left:0;float:left;}
+.lingua li{display:inline-block;padding:0!important;}
+.lingua .fb{background:transparent url('../img/fb.png') center no-repeat;background-size:contain;padding:12px;position:relative;top:6px;margin-right:10px;}
+}
+@media (min-width:769px){.lingua{float:right;}
+.lingua li{display:inline-block;padding:0!important;}
+.lingua .fb{background:transparent url('../img/fb.png') center no-repeat;background-size:contain;padding:12px;position:relative;top:6px;right:20px;}
+}

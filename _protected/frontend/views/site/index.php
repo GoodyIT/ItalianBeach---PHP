@@ -1,92 +1,30 @@
 <?php
-
-/* @var $this yii\web\View */
-$this->title = Yii::t('app', Yii::$app->name);
-$lang = Yii::$app->language;
-
+    $this->title = Yii::t('messages', Yii::$app->name);
 ?>
-     
-<div class="site-index">
-    <div class="row" style= "margin-top: 10px;">
-        <div class="col-sm-4 col-md-4 newfont">
-            <form role="search" action="" method="post">
-                <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                <input class="span2 date " id="appendedInputButton" type="text" style=" width: 200px;" placeholder="<?=Yii::t('messages', 'Check Availability')?>">
-                <button  type="submit" class="check-availability" >
-                    <i class="fa fa-search"></i>
-                </button >
-            </form>
-        </div>
-        <div class="col-sm-8 col-md-8 lead newfont" style="color:white">
-            <?=Yii::t('messages', 'Please click on the available sunshade to book it')?>
-            <strong style="color: darkgreen;"> (<?=Yii::t('messages', 'green')?>)</strong>
-        </div>
-    </div>
-            
-    <div id="imgdiv" align="center" style="margin-top: 10px">
-        <img  id="image" src="<?=Yii::getAlias('@web')?>/images/1.png" />
-    </div>
 
-    <div class="video__background">
-        <p class="lead text-center newfont" style="color:white">  <?=Yii::t('messages', 'Welcome to Beach Club Ippocampo')?> </p>
-        <video  autoplay loop muted preload="auto" width=100%>
-          <source src="<?=Yii::getAlias('@web')?>/uploads/beach.mp4" type="video/mp4">
-        </video>
-       
-    </div>
-</div>
+<script>
 
-<script type="text/javascript">
-          
-    tagWidth = 18;
-    tagFontSize = 6;
-    tagHeight = 18;
-    dy = 6;
-    dx = 1;
-    lang = '<?=$lang?>';
+    sunshadeList = [];
+    lang = '<?=Yii::$app->language?>';
 
-    seat = '';
-    bookingChartUrl = '';
+    function bookingCart() {
+        $('.modal').modal('hide');
 
-    function bookingChart() {
-        if (seat == '')
+        if (sunshadeList.length == 0)
         {
-            $.notifyDefaults({
-            placement: {
-                from:'top',
-                align:'center'
-            }});
-            $.notify({
-                message: '<?=Yii::t('messages', 'There is no book list yet.')?>'
-            });
+            $("#myModal-warning").modal();
             return;
         }
 
-        bookingChartUrl = '<?= Yii::$app->urlManager->createUrl(["site/sunshade"]) ?>';
-        bookingChartUrl += '?id=' + seat;
-        bookingChartUrl += '&lang=' + '<?=Yii::$app->language?>';
-        bookingChartUrl += '&day=' + $('.span2.date').val();
-        window.location.href = bookingChartUrl;
+        bookingCartUrl = '<?= Yii::$app->urlManager->createUrl(["guest/sunshade"]) ?>';
+        bookingCartUrl += '?id=' + sunshadeList;
+        bookingCartUrl += '&lang=' + '<?=Yii::$app->language?>';
+        bookingCartUrl += '&day=' + $('.span2.date').val();
+        window.location.href = bookingCartUrl;
     }
 
-    $('body').on('click', '.booklist', function(e){
-        e.preventDefault();
-        bookingChart();                
-    });
-
-    var $img;
-    ;(function($) {
+     ;(function($) {
         $(document).ready(function() {
-             function checkPosition() {
-                if (window.matchMedia('(max-width: 767px)').matches) {
-                    tagWidth = 8;
-                    tagFontSize = 3;
-                    tagHeight = 8;
-                    dy = 6;
-                    dx = 4;
-                } 
-            }    
-
             var currYear = new Date().getFullYear();
             var startDate = new Date(currYear,5,1);
             var endDate = new Date(currYear, 8, 8);
@@ -97,9 +35,9 @@ $lang = Yii::$app->language;
                 autoclose: true,
                 todayHighlight: true,
                 format: "yyyy-mm-dd",
-                startDate: startDate,
-                endDate: endDate,
-                orientation: "auto top",
+            /*    startDate: startDate,
+                endDate: endDate,*/
+                orientation: "bottom",
                 keyboardNavigation: true,
                 setDate: $day,
             }).on('changeDate', function(ev){
@@ -108,108 +46,140 @@ $lang = Yii::$app->language;
 
             $('.span2.date').datepicker('setDate', $day);
 
-            function addMarker(target, coord){
-                $img = target.imgNotes({
-                    onShow: $.noop,
-                    onAdd: function() {
-                        this.options.vAll = "middle";
-                        this.options.hAll = "middle";
-                        this.options.tagHeight = tagHeight;
-                        this.options.tagWidth = tagWidth;
-                        this.options.tagFontSize = tagFontSize;
-                        var elem = $(document.createElement('span')).addClass("marker blue").css({
-                            // "background-color": "#0f0",
-                            height: tagHeight+"px",
-                            width: tagWidth + "px",
-                          //  "border-radius": "60px",
-                   
-                        }).attr("rel", "tooltip");
-                        return elem;
+            function Demo_Function () {
+                $('#sunshademap').smoothZoom('addLandmark', 
+                [
+                <?php 
+                  for ($i = 0; $i < count($jsonValue); $i++) {
+                    $mark_image_name = "";
+                    if ($jsonValue[$i]['bookstate'] == "booked") {
+                        $mark_image_name = "red";
+                    } else if ($jsonValue[$i]['bookstate'] == "booking") {
+                        $mark_image_name = "yellow";    
+                    } else {
+                        $mark_image_name = "blue";
                     }
-                });
-
-                $img.imgNotes("import", coord);
+                    
+                    echo "'" . '<div class="item mark" data-show-at-zoom="0" data-allow-scale = "true" data-position="'. $jsonValue[$i]['x'] .', '. $jsonValue[$i]['y'] .'">\
+                            <div>\
+                        <span class="sunshade text mark '.$mark_image_name.'" data-id="'. $jsonValue[$i]['Id'] .'" data-balloon-pos="up" data-balloon="'. $jsonValue[$i]['seat'] .'">\
+                                </div>\
+                        </span>\
+                    </div>' . "' ,";
+                  } 
+                ?>
+                ]
+                );
             }
 
-            checkPosition();
-            addMarker($('#imgdiv').children('img'), <?= $jsonValue ?>);
+            Demo_Function();
 
-            var targets = $( '[rel~=tooltip]' ),
-                target  = false,
-                tooltip = false,
-                title   = false;
+            // check sunshade booking state
+        $('.sunshade').on('click touchstart', function() {
+            var sunshade = $(this).data('balloon');
+            var id = $(this).data('id');
+            var msg = "";
+            var msgType = "yellow";
+            /* check if it is booked or not */
+            var bookingState = 'available';
+            if ($(this).hasClass('blue')) {
+                if (lang == "it") {
+                    msg = sunshade + " è stato inserito nella vostro carrello prenotazione con successo <br>";
+                } else {
+                    msg = sunshade + " was inserted into your booking list successfully <br>";   
+                }
+                msgType = "success";
+                bookingstate = 'booked';
+                $(this).removeClass('blue').addClass('yellow');
+            } else if ($(this).hasClass('red')) {
+                if (lang == "it") {
+                    msg = "Mi dispiace, questo ombrellone è stato già prenotato da altri!";
+                } else {
+                    msg = "Sorry, This sunshade was already booked by others! ";
+                }
+                bookingstate = 'error';
+                msgType = "danger";
+                id = 0;
+            } else if ($(this).hasClass('yellow')) {
+                if (lang == "it") {
+                    msg = "La Prenotazione dell'Ombrellone per " + sunshade + " è stata annullata.";
+                } else {
+                    msg = "Sunshade booking for " + sunshade + " was cancelled.";
+                }
+                bookingstate = 'cancel';
+                msgType = "warning";
+                $(this).removeClass('yellow').addClass('blue');
+            }
 
-            targets.bind( 'mouseenter', function()
-            {
-                target  = $( this );
-                tip     = target.attr( 'title' );
-                tooltip = $( '<div id="tooltip"></div>' );
+          //  showMessage(msg, msgType);
+            manageSunshadeList(sunshadeList, sunshade);
 
-                if( !tip || tip == '' )
-                    return false;
-
-                target.removeAttr( 'title' );
-                tooltip.css( 'opacity', 0 )
-                    .html( tip )
-                    .appendTo( 'body' );
-
-                var init_tooltip = function()
-                {
-                    if( $( window ).width() < tooltip.outerWidth() * 1.5 )
-                        tooltip.css( 'max-width', $( window ).width() / 2 );
-                    else
-                        tooltip.css( 'max-width', 340 );
-
-                    var pos_left = target.offset().left + ( target.outerWidth() / 2 ) - ( tooltip.outerWidth() / 2 ),
-                        pos_top  = target.offset().top - tooltip.outerHeight() - 20;
-
-                    if( pos_left < 0 )
-                    {
-                        pos_left = target.offset().left + target.outerWidth() / 2 - 20;
-                        tooltip.addClass( 'left' );
-                    }
-                    else
-                        tooltip.removeClass( 'left' );
-
-                    if( pos_left + tooltip.outerWidth() > $( window ).width() )
-                    {
-                        pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
-                        tooltip.addClass( 'right' );
-                    }
-                    else
-                        tooltip.removeClass( 'right' );
-
-                    if( pos_top < 0 )
-                    {
-                        var pos_top  = target.offset().top + target.outerHeight();
-                        tooltip.addClass( 'top' );
-                    }
-                    else
-                        tooltip.removeClass( 'top' );
-
-                    tooltip.css( { left: pos_left, top: pos_top } )
-                        .animate( { top: '+=10', opacity: 1 }, 50 );
-                };
-
-                init_tooltip();
-                $( window ).resize( init_tooltip );
-
-                var remove_tooltip = function()
-                {
-                    tooltip.animate( { top: '-=10', opacity: 0 }, 50, function()
-                    {
-                        $( this ).remove();
-                    });
-
-                    target.attr( 'title', tip );
-                };
-
-                target.bind( 'mouseleave', remove_tooltip );
-                tooltip.bind( 'click', remove_tooltip );
-            });
+            $('.message').html(msg);
+            $('.number').html(sunshade);
+            $('#myModal').modal();
         });
-    })(jQuery);
+   });
+})(jQuery);
+
 </script>
 
+<div class="site-index" style="padding-bottom: 20px;">
+     <div class="row" style= "margin-top: 10px;">
+        <div class="col-sm-4 col-md-4 newfont">
+            <form role="search" action="" method="post">
+                <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                <input class="span2 date " id="appendedInputButton" type="text" style="  padding-left: 15px; width: 200px;" placeholder="<?=Yii::t('messages', 'Check Availability')?>">
+                <button  type="submit" class="check-availability" >
+                    <i class="fa fa-search"></i>
+                </button >
+            </form>
+        </div>
+        <div class="col-sm-8 col-md-8 lead newfont" style="color:white">
+            <?=Yii::t('messages', 'Choose your Sunshade and Book it now!')?>
+        </div>
+    </div>
+    <div class="row " style= "margin-top: 10px;">
+        <div id="zoom_container">
+            <img id="sunshademap"   src="https://s3.eu-central-1.amazonaws.com/suntickets/BeachClubIppocampo/beachclubippocampo.jpg"  width="12993px" height="6663px" />
+            <div class="landmarks" data-show-at-zoom="100" data-allow-drag="true" data-allow-scale="false"> 
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="row modal-content overlay" style=" overflow-x: hidden;">
+        <div class="col-xs-2 col-sm-2 left">
+            <img src="<?=Yii::getAlias('@web')?>/img/disponibile.png" />
+            <div class="number" style="padding-left: 8px;">C23</div>
+        </div>
+        <div class="col-xs-9 col-sm-9 left">
+            <div class="message"><?=Yii::t('messages', 'This sunshine is available now!')?></div>
+            <button class="add_sunshine" onclick="javascript:bookingCart();"><?=Yii::t('messages', 'GO TO CART')?>
+            </button>
+        </div>
+        <div class="col-xs-1 col-sm-1 left" style="padding-left: 0px; padding-right: 20px;  cursor: pointer;">
+            <i class="fa fa-close modal-close" aria-hidden="true"></i>
+        </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="myModal-warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="row modal-content overlay" style=" overflow-x: hidden;">
+        <div class="col-xs-2 col-sm-2 left">
+            <img src="<?=Yii::getAlias('@web')?>/img/disponibile.png" />
+        </div>
+        <div class="col-xs-9 col-sm-9 left ">
+            <div class="message-warning"><?=Yii::t('messages', 'There is no book list yet.')?></div>
+            <button class="add_sunshine" style="width: 100px;" onclick="javascript:dismissModal();"><?=Yii::t('messages', 'OK')?>
+            </button>
+        </div>
+        <div class="col-xs-1 col-sm-1 left" style="padding-left:0px;  padding-right: 20px; cursor: pointer;">
+            <i class="fa fa-close modal-close" aria-hidden="true"></i>
+        </div>
+    </div>
+  </div>
+</div>

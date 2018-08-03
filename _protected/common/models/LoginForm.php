@@ -76,6 +76,26 @@ class LoginForm extends Model
     }
 
     /**
+     *  Validate the user state
+     *  @return bool Whether the user's credential has less than 3 days left
+    **/
+    public function validatePeriod()
+    {
+        $user = $this->getUser();
+        $created_at = new \DateTime();
+        $created_at->setTimestamp($user->created_at);
+        $created_at->modify('+3 day');
+        $created_at = $created_at->format('Y-m-d H:i:s'); 
+        $current = date('Y-m-d H:i:s');
+        if ($user->username == "admin" || ($created_at >= $current)) {
+            return true;
+        } else {
+            return false;
+        }
+        // return [$created_at, $current];
+    }
+
+    /**
      * Logs in a user using the provided username|email and password.
      *
      * @return bool Whether the user is logged in successfully.
@@ -138,5 +158,13 @@ class LoginForm extends Model
                 return false;
             }
         }
-    }  
+    } 
+
+    /*public function afterValidate()
+    {
+        if (parent::afterValidate()) {
+            return true;
+        } else ($)
+        return false;
+    } */
 }

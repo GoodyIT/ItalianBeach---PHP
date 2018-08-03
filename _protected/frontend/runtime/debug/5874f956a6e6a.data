@@ -1,0 +1,141 @@
+a:8:{s:6:"config";a:5:{s:10:"phpVersion";s:6:"5.4.45";s:10:"yiiVersion";s:5:"2.0.9";s:11:"application";a:4:{s:3:"yii";s:5:"2.0.9";s:4:"name";s:4:"Demo";s:3:"env";s:4:"prod";s:5:"debug";b:0;}s:3:"php";a:4:{s:7:"version";s:6:"5.4.45";s:6:"xdebug";b:0;s:3:"apc";b:0;s:8:"memcache";b:1;}s:10:"extensions";a:13:{s:23:"nenad/yii2-widgets-base";a:3:{s:4:"name";s:23:"nenad/yii2-widgets-base";s:7:"version";s:7:"2.0.0.0";s:5:"alias";a:1:{s:6:"@nenad";s:85:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/nenad/yii2-widgets-base";}}s:28:"nenad/yii2-password-strength";a:3:{s:4:"name";s:28:"nenad/yii2-password-strength";s:7:"version";s:7:"2.3.0.0";s:5:"alias";a:1:{s:23:"@nenad/passwordStrength";s:90:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/nenad/yii2-password-strength";}}s:23:"mihaildev/yii2-ckeditor";a:3:{s:4:"name";s:23:"mihaildev/yii2-ckeditor";s:7:"version";s:7:"1.0.1.0";s:5:"alias";a:1:{s:19:"@mihaildev/ckeditor";s:85:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/mihaildev/yii2-ckeditor";}}s:24:"yiisoft/yii2-codeception";a:3:{s:4:"name";s:24:"yiisoft/yii2-codeception";s:7:"version";s:7:"2.0.5.0";s:5:"alias";a:1:{s:16:"@yii/codeception";s:86:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-codeception";}}s:22:"yiisoft/yii2-bootstrap";a:3:{s:4:"name";s:22:"yiisoft/yii2-bootstrap";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:14:"@yii/bootstrap";s:84:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-bootstrap";}}s:18:"yiisoft/yii2-debug";a:3:{s:4:"name";s:18:"yiisoft/yii2-debug";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:10:"@yii/debug";s:80:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-debug";}}s:16:"yiisoft/yii2-gii";a:3:{s:4:"name";s:16:"yiisoft/yii2-gii";s:7:"version";s:7:"2.0.5.0";s:5:"alias";a:1:{s:8:"@yii/gii";s:78:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-gii";}}s:18:"yiisoft/yii2-faker";a:3:{s:4:"name";s:18:"yiisoft/yii2-faker";s:7:"version";s:7:"2.0.3.0";s:5:"alias";a:1:{s:10:"@yii/faker";s:80:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-faker";}}s:25:"marciocamello/yii2-paypal";a:3:{s:4:"name";s:25:"marciocamello/yii2-paypal";s:7:"version";s:11:"9999999-dev";s:5:"alias";a:1:{s:14:"@marciocamello";s:87:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/marciocamello/yii2-paypal";}}s:18:"robregonm/yii2-pdf";a:3:{s:4:"name";s:18:"robregonm/yii2-pdf";s:7:"version";s:7:"1.0.1.0";s:5:"alias";a:1:{s:14:"@robregonm/pdf";s:80:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/robregonm/yii2-pdf";}}s:24:"yiisoft/yii2-swiftmailer";a:3:{s:4:"name";s:24:"yiisoft/yii2-swiftmailer";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:16:"@yii/swiftmailer";s:86:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/yiisoft/yii2-swiftmailer";}}s:24:"rmrevin/yii2-fontawesome";a:3:{s:4:"name";s:24:"rmrevin/yii2-fontawesome";s:7:"version";s:8:"2.16.1.0";s:5:"alias";a:1:{s:24:"@rmrevin/yii/fontawesome";s:86:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/rmrevin/yii2-fontawesome";}}s:26:"machour/yii2-notifications";a:3:{s:4:"name";s:26:"machour/yii2-notifications";s:7:"version";s:11:"9999999-dev";s:5:"alias";a:1:{s:27:"@machour/yii2/notifications";s:88:"/home/suntickets/public_html/sunticketsDemo/_protected/vendor/machour/yii2-notifications";}}}}s:7:"request";a:14:{s:7:"flashes";a:0:{}s:10:"statusCode";i:200;s:14:"requestHeaders";a:6:{s:4:"host";s:14:"www.doitweb.it";s:9:"x-real-ip";s:14:"163.172.65.145";s:15:"accept-encoding";s:13:"deflate, gzip";s:10:"connection";s:5:"close";s:10:"user-agent";s:66:"Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)";s:6:"accept";s:3:"*/*";}s:15:"responseHeaders";a:5:{s:10:"Set-Cookie";a:2:{i:0;s:54:"PHPSESSID=he3itbmtdt4o1a1vob9v7kc055; path=/; HttpOnly";i:1;s:190:"_csrf=2cb31d3674ecc98cb72e3c972a1e190d4ea9fa06969ed8a37ab5503ccfc5213ca%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22q6lmc5DEtuehnIyahsVRL00PSq5Czkcg%22%3B%7D; path=/; httponly";}s:7:"Expires";s:29:"Thu, 19 Nov 1981 08:52:00 GMT";s:13:"Cache-Control";s:62:"no-store, no-cache, must-revalidate, post-check=0, pre-check=0";s:6:"Pragma";s:8:"no-cache";s:12:"Content-Type";s:24:"text/html; charset=UTF-8";}s:5:"route";s:10:"site/index";s:6:"action";s:50:"frontend\controllers\SiteController::actionIndex()";s:12:"actionParams";a:0:{}s:11:"requestBody";a:0:{}s:6:"SERVER";a:30:{s:4:"PATH";s:28:"/usr/local/bin:/usr/bin:/bin";s:15:"REDIRECT_STATUS";s:3:"200";s:9:"UNIQUE_ID";s:24:"WHT5Vk1oib8AAK6KLDQAAAAD";s:10:"PHPHANDLER";s:24:"/usr/local/php54/bin/php";s:9:"HTTP_HOST";s:14:"www.doitweb.it";s:14:"HTTP_X_REAL_IP";s:14:"163.172.65.145";s:20:"HTTP_ACCEPT_ENCODING";s:13:"deflate, gzip";s:15:"HTTP_CONNECTION";s:5:"close";s:15:"HTTP_USER_AGENT";s:66:"Mozilla/5.0 (compatible; AhrefsBot/5.2; +http://ahrefs.com/robot/)";s:11:"HTTP_ACCEPT";s:3:"*/*";s:15:"SERVER_SOFTWARE";s:144:"Apache/2.2.24 (Unix) mod_hive/5.5 mod_ssl/2.2.24 OpenSSL/1.0.0-fips mod_auth_passthrough/2.1 mod_bwlimited/1.4 mod_fastcgi/2.4.6 mod_fcgid/2.3.6";s:11:"SERVER_NAME";s:14:"www.doitweb.it";s:11:"SERVER_ADDR";s:14:"77.104.137.191";s:11:"SERVER_PORT";s:2:"80";s:11:"REMOTE_ADDR";s:14:"163.172.65.145";s:13:"DOCUMENT_ROOT";s:28:"/home/suntickets/public_html";s:12:"SERVER_ADMIN";s:20:"webmaster@doitweb.it";s:15:"SCRIPT_FILENAME";s:53:"/home/suntickets/public_html/sunticketsDemo/index.php";s:11:"REMOTE_PORT";s:5:"41132";s:21:"REDIRECT_QUERY_STRING";s:7:"lang=it";s:12:"REDIRECT_URL";s:26:"/sunticketsDemo/site/index";s:17:"GATEWAY_INTERFACE";s:7:"CGI/1.1";s:15:"SERVER_PROTOCOL";s:8:"HTTP/1.0";s:14:"REQUEST_METHOD";s:3:"GET";s:12:"QUERY_STRING";s:7:"lang=it";s:11:"REQUEST_URI";s:34:"/sunticketsDemo/site/index?lang=it";s:11:"SCRIPT_NAME";s:25:"/sunticketsDemo/index.php";s:8:"PHP_SELF";s:25:"/sunticketsDemo/index.php";s:18:"REQUEST_TIME_FLOAT";d:1484061014.6662719249725341796875;s:12:"REQUEST_TIME";i:1484061014;}s:3:"GET";a:1:{s:4:"lang";s:2:"it";}s:4:"POST";a:0:{}s:6:"COOKIE";a:0:{}s:5:"FILES";a:0:{}s:7:"SESSION";a:1:{s:7:"__flash";a:0:{}}}s:3:"log";a:1:{s:8:"messages";a:17:{i:0;a:5:{i:0;s:40:"SELECT * from tbl_general WHERE token=''";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.6988499164581298828125;i:4;a:0:{}}i:1;a:5:{i:0;s:64:"Opening DB connection: mysql:host=localhost;dbname=sunticke_temp";i:1;i:4;i:2;s:23:"yii\db\Connection::open";i:3;d:1484061014.6988770961761474609375;i:4;a:0:{}}i:6;a:5:{i:0;s:95:"select c.Id, c.seat, c.x, c.y, c.bookstate from tbl_bookinfo as c where c.booktype = 'sunshade'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.70106792449951171875;i:4;a:0:{}}i:9;a:5:{i:0;s:442:"SELECT c.Id, c.seat, b.checkin, b.checkout, if(('2016-12-21' < SUBDATE(b.checkin, 1) AND '2016-12-21' > SUBDATE(b.checkin, 1)) OR  ('2016-12-21' < ADDDATE(b.checkout, 1) AND ADDDATE(b.checkout, 1) < '2016-12-21'), 'possible', a.bookstate) as bookstate   from tbl_book_lookup as a left join  tbl_bookinfo as c on a.bookinfo_id = c.Id left join tbl_book as b on a.book_id = b.Id  where c.booktype = 'sunshade' and a.deleted = 0  order by c.seat";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.701611042022705078125;i:4;a:0:{}}i:12;a:5:{i:0;s:38:"SELECT * from tbl_cart where valid = 1";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.702127933502197265625;i:4;a:0:{}}i:15;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 2";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7033889293670654296875;i:4;a:0:{}}i:18;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 3";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7038938999176025390625;i:4;a:0:{}}i:21;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7180500030517578125;i:4;a:0:{}}i:24;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7202351093292236328125;i:4;a:0:{}}i:27;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7254140377044677734375;i:4;a:0:{}}i:30;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1484061014 AND `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.733560085296630859375;i:4;a:0:{}}i:33;a:5:{i:0;s:15:"Session started";i:1;i:4;i:2;s:21:"yii\web\Session::open";i:3;d:1484061014.733993053436279296875;i:4;a:0:{}}i:34;a:5:{i:0;s:103:"Access to debugger is denied due to IP address restriction. The requesting IP address is 163.172.65.145";i:1;i:2;i:2;s:29:"yii\debug\Module::checkAccess";i:3;d:1484061014.7342259883880615234375;i:4;a:0:{}}i:35;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.736754894256591796875;i:4;a:0:{}}i:38;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7371768951416015625;i:4;a:0:{}}i:41;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7390329837799072265625;i:4;a:0:{}}i:44;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', 'he3itbmtdt4o1a1vob9v7kc055', 1484062454)";i:1;i:4;i:2;s:23:"yii\db\Command::execute";i:3;d:1484061014.73995304107666015625;i:4;a:0:{}}}}s:9:"profiling";a:3:{s:6:"memory";i:8684328;s:4:"time";d:0.07252407073974609375;s:8:"messages";a:30:{i:2;a:5:{i:0;s:64:"Opening DB connection: mysql:host=localhost;dbname=sunticke_temp";i:1;i:80;i:2;s:23:"yii\db\Connection::open";i:3;d:1484061014.69888591766357421875;i:4;a:0:{}}i:3;a:5:{i:0;s:64:"Opening DB connection: mysql:host=localhost;dbname=sunticke_temp";i:1;i:96;i:2;s:23:"yii\db\Connection::open";i:3;d:1484061014.6998050212860107421875;i:4;a:0:{}}i:4;a:5:{i:0;s:40:"SELECT * from tbl_general WHERE token=''";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.6998250484466552734375;i:4;a:0:{}}i:5;a:5:{i:0;s:40:"SELECT * from tbl_general WHERE token=''";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.6999928951263427734375;i:4;a:0:{}}i:7;a:5:{i:0;s:95:"select c.Id, c.seat, c.x, c.y, c.bookstate from tbl_bookinfo as c where c.booktype = 'sunshade'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.70108699798583984375;i:4;a:0:{}}i:8;a:5:{i:0;s:95:"select c.Id, c.seat, c.x, c.y, c.bookstate from tbl_bookinfo as c where c.booktype = 'sunshade'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7014598846435546875;i:4;a:0:{}}i:10;a:5:{i:0;s:442:"SELECT c.Id, c.seat, b.checkin, b.checkout, if(('2016-12-21' < SUBDATE(b.checkin, 1) AND '2016-12-21' > SUBDATE(b.checkin, 1)) OR  ('2016-12-21' < ADDDATE(b.checkout, 1) AND ADDDATE(b.checkout, 1) < '2016-12-21'), 'possible', a.bookstate) as bookstate   from tbl_book_lookup as a left join  tbl_bookinfo as c on a.bookinfo_id = c.Id left join tbl_book as b on a.book_id = b.Id  where c.booktype = 'sunshade' and a.deleted = 0  order by c.seat";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7016251087188720703125;i:4;a:0:{}}i:11;a:5:{i:0;s:442:"SELECT c.Id, c.seat, b.checkin, b.checkout, if(('2016-12-21' < SUBDATE(b.checkin, 1) AND '2016-12-21' > SUBDATE(b.checkin, 1)) OR  ('2016-12-21' < ADDDATE(b.checkout, 1) AND ADDDATE(b.checkout, 1) < '2016-12-21'), 'possible', a.bookstate) as bookstate   from tbl_book_lookup as a left join  tbl_bookinfo as c on a.bookinfo_id = c.Id left join tbl_book as b on a.book_id = b.Id  where c.booktype = 'sunshade' and a.deleted = 0  order by c.seat";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.701713085174560546875;i:4;a:0:{}}i:13;a:5:{i:0;s:38:"SELECT * from tbl_cart where valid = 1";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7021429538726806640625;i:4;a:0:{}}i:14;a:5:{i:0;s:38:"SELECT * from tbl_cart where valid = 1";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7022130489349365234375;i:4;a:0:{}}i:16;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 2";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.703404903411865234375;i:4;a:0:{}}i:17;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 2";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7038590908050537109375;i:4;a:0:{}}i:19;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 3";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7039051055908203125;i:4;a:0:{}}i:20;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 3";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7040770053863525390625;i:4;a:0:{}}i:22;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.718080997467041015625;i:4;a:0:{}}i:23;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.719479084014892578125;i:4;a:0:{}}i:25;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.720263957977294921875;i:4;a:0:{}}i:26;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7206709384918212890625;i:4;a:0:{}}i:28;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7254579067230224609375;i:4;a:0:{}}i:29;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.725615024566650390625;i:4;a:0:{}}i:31;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1484061014 AND `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7335999011993408203125;i:4;a:0:{}}i:32;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1484061014 AND `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7339589595794677734375;i:4;a:0:{}}i:36;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7367870807647705078125;i:4;a:0:{}}i:37;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7370030879974365234375;i:4;a:0:{}}i:39;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7371959686279296875;i:4;a:0:{}}i:40;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7387359142303466796875;i:4;a:0:{}}i:42;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.739058971405029296875;i:4;a:0:{}}i:43;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.73935699462890625;i:4;a:0:{}}i:45;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', 'he3itbmtdt4o1a1vob9v7kc055', 1484062454)";i:1;i:80;i:2;s:23:"yii\db\Command::execute";i:3;d:1484061014.7399790287017822265625;i:4;a:0:{}}i:46;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', 'he3itbmtdt4o1a1vob9v7kc055', 1484062454)";i:1;i:96;i:2;s:23:"yii\db\Command::execute";i:3;d:1484061014.7407169342041015625;i:4;a:0:{}}}}s:2:"db";a:1:{s:8:"messages";a:28:{i:4;a:5:{i:0;s:40:"SELECT * from tbl_general WHERE token=''";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.6998250484466552734375;i:4;a:0:{}}i:5;a:5:{i:0;s:40:"SELECT * from tbl_general WHERE token=''";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.6999928951263427734375;i:4;a:0:{}}i:7;a:5:{i:0;s:95:"select c.Id, c.seat, c.x, c.y, c.bookstate from tbl_bookinfo as c where c.booktype = 'sunshade'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.70108699798583984375;i:4;a:0:{}}i:8;a:5:{i:0;s:95:"select c.Id, c.seat, c.x, c.y, c.bookstate from tbl_bookinfo as c where c.booktype = 'sunshade'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7014598846435546875;i:4;a:0:{}}i:10;a:5:{i:0;s:442:"SELECT c.Id, c.seat, b.checkin, b.checkout, if(('2016-12-21' < SUBDATE(b.checkin, 1) AND '2016-12-21' > SUBDATE(b.checkin, 1)) OR  ('2016-12-21' < ADDDATE(b.checkout, 1) AND ADDDATE(b.checkout, 1) < '2016-12-21'), 'possible', a.bookstate) as bookstate   from tbl_book_lookup as a left join  tbl_bookinfo as c on a.bookinfo_id = c.Id left join tbl_book as b on a.book_id = b.Id  where c.booktype = 'sunshade' and a.deleted = 0  order by c.seat";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7016251087188720703125;i:4;a:0:{}}i:11;a:5:{i:0;s:442:"SELECT c.Id, c.seat, b.checkin, b.checkout, if(('2016-12-21' < SUBDATE(b.checkin, 1) AND '2016-12-21' > SUBDATE(b.checkin, 1)) OR  ('2016-12-21' < ADDDATE(b.checkout, 1) AND ADDDATE(b.checkout, 1) < '2016-12-21'), 'possible', a.bookstate) as bookstate   from tbl_book_lookup as a left join  tbl_bookinfo as c on a.bookinfo_id = c.Id left join tbl_book as b on a.book_id = b.Id  where c.booktype = 'sunshade' and a.deleted = 0  order by c.seat";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.701713085174560546875;i:4;a:0:{}}i:13;a:5:{i:0;s:38:"SELECT * from tbl_cart where valid = 1";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7021429538726806640625;i:4;a:0:{}}i:14;a:5:{i:0;s:38:"SELECT * from tbl_cart where valid = 1";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7022130489349365234375;i:4;a:0:{}}i:16;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 2";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.703404903411865234375;i:4;a:0:{}}i:17;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 2";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7038590908050537109375;i:4;a:0:{}}i:19;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 3";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7039051055908203125;i:4;a:0:{}}i:20;a:5:{i:0;s:151:"select * from tbl_notificationreminder where reminderdate > subdate(now(), interval 1 day) and reminderdate < adddate(now(), interval 1 day) and Id = 3";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7040770053863525390625;i:4;a:0:{}}i:22;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.718080997467041015625;i:4;a:0:{}}i:23;a:5:{i:0;s:36:"SHOW FULL COLUMNS FROM `tbl_setting`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.719479084014892578125;i:4;a:0:{}}i:25;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.720263957977294921875;i:4;a:0:{}}i:26;a:5:{i:0;s:609:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'tbl_setting' AND kcu.table_name = 'tbl_setting'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7206709384918212890625;i:4;a:0:{}}i:28;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7254579067230224609375;i:4;a:0:{}}i:29;a:5:{i:0;s:40:"SELECT * FROM `tbl_setting` WHERE `Id`=1";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.725615024566650390625;i:4;a:0:{}}i:31;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1484061014 AND `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7335999011993408203125;i:4;a:0:{}}i:32;a:5:{i:0;s:92:"SELECT `data` FROM `session` WHERE `expire`>1484061014 AND `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7339589595794677734375;i:4;a:0:{}}i:36;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7367870807647705078125;i:4;a:0:{}}i:37;a:5:{i:0;s:66:"SELECT `id` FROM `session` WHERE `id`='he3itbmtdt4o1a1vob9v7kc055'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7370030879974365234375;i:4;a:0:{}}i:39;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7371959686279296875;i:4;a:0:{}}i:40;a:5:{i:0;s:32:"SHOW FULL COLUMNS FROM `session`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.7387359142303466796875;i:4;a:0:{}}i:42;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.739058971405029296875;i:4;a:0:{}}i:43;a:5:{i:0;s:601:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'session' AND kcu.table_name = 'session'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1484061014.73935699462890625;i:4;a:0:{}}i:45;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', 'he3itbmtdt4o1a1vob9v7kc055', 1484062454)";i:1;i:80;i:2;s:23:"yii\db\Command::execute";i:3;d:1484061014.7399790287017822265625;i:4;a:0:{}}i:46;a:5:{i:0;s:114:"INSERT INTO `session` (`data`, `id`, `expire`) VALUES ('__flash|a:0:{}', 'he3itbmtdt4o1a1vob9v7kc055', 1484062454)";i:1;i:96;i:2;s:23:"yii\db\Command::execute";i:3;d:1484061014.7407169342041015625;i:4;a:0:{}}}}s:6:"assets";a:0:{}s:4:"mail";a:0:{}s:7:"summary";a:9:{s:3:"tag";s:13:"5874f956a6e6a";s:3:"url";s:55:"http://www.doitweb.it/sunticketsDemo/site/index?lang=it";s:4:"ajax";i:0;s:6:"method";s:3:"GET";s:2:"ip";s:14:"163.172.65.145";s:4:"time";i:1484061014;s:10:"statusCode";i:200;s:8:"sqlCount";i:14;s:9:"mailCount";i:0;}}

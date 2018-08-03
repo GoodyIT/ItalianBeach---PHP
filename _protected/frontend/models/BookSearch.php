@@ -19,7 +19,7 @@ class BookSearch extends Book
     {
         return [
             [['Id', 'servicetype', 'price', 'mainprice', 'tax', 'supplement', 'guests'], 'integer'],
-            [['sunshadeseat', 'arrival', 'bookstate', 'bookedtime', 'comment'], 'safe'],
+            [['sunshadeseat', 'checkin', 'bookstate', 'bookedtime', 'comment'], 'safe'],
         ];
     }
 
@@ -69,7 +69,7 @@ class BookSearch extends Book
         ]);
 
         $query->andFilterWhere(['like', 'sunshadeseat', $this->sunshadeseat])
-            ->andFilterWhere(['like', 'arrival', $this->arrival])
+            ->andFilterWhere(['like', 'checkin', $this->checkin])
             ->andFilterWhere(['like', 'bookstate', $this->bookstate])
             ->andFilterWhere(['like', 'bookedtime', $this->bookedtime])
             ->andFilterWhere(['like', 'comment', $this->comment]);

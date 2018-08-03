@@ -21,3 +21,5 @@ Features
 * Price & Service mangement
 * Interactive map booking
 * Full control over the front end
+* Send email
+* Notification about the new Booking, update milestones, sunshade available

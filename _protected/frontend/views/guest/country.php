@@ -7,7 +7,8 @@
  */
 
 ?>
-<select class="form-control" id="guest-country" name="Guest[country]">
+<div class="mainselection">
+<select class="col-xs-12 dropup" id="pendingguest-country" name="PendingGuest[country]" data-style="btn-success" data-size="5" style="font-size: 14px;">
     <option value="Italy">Italy</option>
     <option value="Afghanistan">Afghanistan</option>
     <option value="Åland Islands">Åland Islands</option>
@@ -254,3 +255,4 @@
     <option value="Zambia">Zambia</option>
     <option value="Zimbabwe">Zimbabwe</option>
 </select>
+</div>

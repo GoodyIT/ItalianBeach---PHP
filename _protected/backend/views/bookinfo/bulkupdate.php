@@ -19,11 +19,11 @@ $this->params['breadcrumbs'][] = Yii::t('messages', 'Update');
         'selection' => $selection,
         'guest' => $guest,
         'model' => $model,
+        'bookableSunshades' => $bookableSunshades,
         'seat' => $seat,
         'rowRestriction' => $rowRestriction,
         'rowRestrictionLists' => $rowRestrictionLists,
         'priceLists' => $priceLists,
-        'serviceTypeLists' => $serviceTypeLists,
         'day' => ''
     ]) ?>
 </div>

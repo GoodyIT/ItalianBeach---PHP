@@ -433,9 +433,9 @@
 			$.each(this.notes, function() {
 				var $elem = $(this);
 				notes.push({
-						x: $elem.data("relx"),
-						y: $elem.data("rely"),
-						note: $elem.data("note")
+					x: $elem.data("relx"),
+					y: $elem.data("rely"),
+					note: $elem.data("note")
 				});
 			});
 			return notes;

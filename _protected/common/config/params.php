@@ -11,7 +11,7 @@ return [
      *
      * If set to true users will have to activate their accounts using email account activation.
      */
-    'rna' => false,
+    'rna' => true,
 
     /**
      * Login With Email.
@@ -46,7 +46,11 @@ return [
      * Not used in template.
      * You can set support email here.
      */
-    'supportEmail' => 'info@beachclubippocampo.it',
+    'supportEmail' => 'imobilegang@gmail.com',
 
-    'servicetype' => [1=>"1 day  ( max 2 people )", 2=>"7 days  ( max 4 people )", 3=>"31 days  ( max 4 people )", 4=>'All season  ( max 4 people )', 5 => 'Rooms'],
+    'service' => [1 => 1, 2 => 7, 3 => 31, 4 => 100, 5 => 0],
+
+    'servicetype' => [1=>"1 day", 2=>"7 days", 3=>"31 days", 4=>'All season', 5 => 'Rooms'],
+    'servicetype_it' => [1=>"1 giorno", 2=>"7 giorni", 3=>"31 giorni", 4=>'Intera Stagione', 5 => 'Stanze'],
+    'intervals' => ['1' => '0 day', '2' =>'6 days', '3' => '30 days', '4' => '99 days']
 ];
